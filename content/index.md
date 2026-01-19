@@ -64,10 +64,10 @@ tabs:
     title: Deployment Verification
     description: Automatically verify deployments by correlating metrics, logs, and traces before and after changes. Detect anomalies early and ensure safe rollouts.
     docsUrl: /docs/features/deployment-verification
-  - label: Ask your System
+  - label: System Q&A
     icon: i-lucide-circle-question-mark
-    title: Ask your System
-    description: Use @ to mention your services or IT Resources and easily ask about its status, architecture and alerts.
+    title: System Q&A
+    description: Query your system using natural language. Mention services / IT resources with @ to ask about status, architecture, or alerts.
     fullWidthImage: /images/ask1.png
     imagePosition: top center
     demoUrl: http://10.0.12.149:5000/shared/ad6d09ff-5a96-49d9-854d-74a30d14b2fe
