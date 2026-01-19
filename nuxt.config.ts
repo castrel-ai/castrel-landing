@@ -1,4 +1,14 @@
 export default defineNuxtConfig({
+    // Mermaid 图表支持
+    modules: ['@barzhsieh/nuxt-content-mermaid'],
+
+    // Vite 配置 - 解决 mermaid ESM 兼容性问题
+    vite: {
+        optimizeDeps: {
+            include: ['mermaid'],
+        },
+    },
+
     // 应用配置
     app: {
         head: {
