@@ -1,4 +1,10 @@
 export default defineNuxtConfig({
+    // 路由重定向
+    routeRules: {
+        '/privacy': { redirect: '/docs/security/privacy-policy' },
+        '/terms': { redirect: '/docs/security/terms-of-service' },
+    },
+
     // Mermaid 图表支持
     modules: ['@barzhsieh/nuxt-content-mermaid'],
 
@@ -29,12 +35,6 @@ export default defineNuxtConfig({
             subsets: ['latin', 'latin-ext'],
         },
         families: [
-            // UI 字体
-            {
-                name: 'SF Pro Text',
-                provider: 'local',
-                global: true,
-            },
             // 文章内容字体
             {
                 name: 'iA Writer Quattro',

@@ -15,7 +15,7 @@ orientation: horizontal
 Hands off, Always on
 
 #description
-Castrel is a SRE Agent. It can triage alerts, investigate incidents, plan and perform operation tasks for you.
+Castrel is an SRE Agent. It can triage alerts, investigate incidents, verify deployments, plan and perform operation tasks and answer Ops questions for you.
 
 #links
   :::get-started-button
