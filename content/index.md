@@ -48,6 +48,7 @@ tabs:
     imagePosition: top left
     imageScale: 1.1
     docsUrl: /docs/features/alert-triage
+    demoUrl: https://app-sit.castrel.ai/shared/4eeef2a9-f3b3-45ce-b2b4-a9204366001f
   - label: Incident Investigation
     icon: i-lucide-bug
     title: Incident Investigation
@@ -112,18 +113,31 @@ Native integrations with popular observability, cloud and technology tools.
   integrations:
     - name: Prometheus
       icon: i-simple-icons-prometheus
+      to: /docs/integrations/prometheus
     - name: Elasticsearch
       icon: i-simple-icons-elasticsearch
+      to: /docs/integrations/elasticsearch
     - name: Grafana Loki
       icon: /images/logo-grafana-loki.png
+      to: /docs/integrations/grafana-loki
     - name: Grafana Tempo
       icon: /images/tempo-icon.png
+      to: /docs/integrations/grafana-tempo
+    - name: Datadog
+      icon: i-simple-icons-datadog
+      to: /docs/integrations/datadog
+    - name: Graylog
+      icon: i-simple-icons-graylog
+      to: /docs/integrations/graylog
     - name: Slack
       icon: i-simple-icons-slack
+      to: /docs/integrations/slack
     - name: GitHub
       icon: i-simple-icons-github
+      to: /docs/integrations/github
     - name: Vercel
       icon: i-simple-icons-vercel
+      to: /docs/integrations/vercel
   ---
   :::
 ::

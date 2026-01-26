@@ -35,3 +35,6 @@ logs
 #VSC
 .history
 .wrangler
+
+# Temp directory
+tmp/
