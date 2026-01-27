@@ -4,6 +4,7 @@
 
 This is the default Docus starter template that provides everything you need to build beautiful documentation sites with Markdown and Vue components.
 
+
 > [!TIP]
 > If you're looking for i18n support, check out the [i18n starter](https://github.com/nuxt-themes/docus/tree/main/.starters/i18n).
 
