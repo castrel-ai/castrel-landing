@@ -34,11 +34,13 @@
     <div class="product-feature-tab">
         <!-- 视觉展示区域 -->
         <div v-if="tab.fullWidthImage"
-            class="visual-area relative h-[400px] overflow-hidden">
-            <img :src="tab.fullWidthImage" :alt="tab.title"
-                class="absolute inset-0 w-full h-full object-cover" :style="{
-                    objectPosition: tab.imagePosition || 'center'
-                }" />
+            class="visual-area relative h-[400px] overflow-hidden gradient-base">
+            <div class="image-wrapper">
+                <img :src="tab.fullWidthImage" :alt="tab.title"
+                    class="w-full h-full object-cover rounded-lg" :style="{
+                        objectPosition: tab.imagePosition || 'center'
+                    }" />
+            </div>
         </div>
         <div v-else
             class="visual-area grid grid-cols-1 lg:grid-cols-2 gap-0 h-[400px] overflow-hidden">
@@ -53,14 +55,17 @@
             </div>
 
             <!-- 右侧：slot 或图片 -->
-            <div class="visual-right relative w-full h-full overflow-hidden">
+            <div class="visual-right relative w-full h-full overflow-hidden"
+                :class="{ 'gradient-base': tab.rightImage }">
                 <slot :name="`tab-${index}-right`">
-                    <img v-if="tab.rightImage" :src="tab.rightImage" :alt="tab.title"
-                        class="absolute inset-0 w-full h-full object-cover" :style="{
-                            objectPosition: tab.imagePosition || 'center',
-                            transform: tab.imageScale ? `scale(${tab.imageScale})` : undefined,
-                            transformOrigin: tab.imagePosition || 'center'
-                        }" />
+                    <div v-if="tab.rightImage" class="image-wrapper">
+                        <img :src="tab.rightImage" :alt="tab.title"
+                            class="w-full h-full object-cover rounded-lg" :style="{
+                                objectPosition: tab.imagePosition || 'center',
+                                transform: tab.imageScale ? `scale(${tab.imageScale})` : undefined,
+                                transformOrigin: tab.imagePosition || 'center'
+                            }" />
+                    </div>
                     <div v-else
                         class="w-full h-full flex items-center justify-center bg-neutral-100/50 dark:bg-neutral-800/50 text-neutral-400 text-sm">
                         right side
@@ -104,3 +109,33 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+/* 翡翠云雾绿渐变背景底座 */
+.gradient-base {
+    background: linear-gradient(135deg,
+            #26a69a 0%,
+            #80cbc4 25%,
+            #b2dfdb 50%,
+            #e0f2f1 75%,
+            #ffffff 100%);
+}
+
+.dark .gradient-base {
+    background: linear-gradient(135deg,
+            #00695c 0%,
+            #00897b 25%,
+            #26a69a 50%,
+            #4db6ac 75%,
+            #80cbc4 100%);
+}
+
+/* 图片包装器 - 在渐变底座上留出边距 */
+.image-wrapper {
+    position: absolute;
+    inset: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+</style>

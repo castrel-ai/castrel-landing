@@ -58,7 +58,7 @@ tabs:
     icon: i-lucide-bug
     title: Incident Investigation
     description: Collaborate with AI to pinpoint root causes. Provide clues, review hypotheses, and get transparent evidence chains — human context meets AI's global data analysis.
-    fullWidthImage: /images/incident-investigation.png
+    fullWidthImage: /images/incident-investigation.jpg
     imagePosition: top center
     demoUrl: https://app-sit.castrel.ai/shared/61f819ae-a351-438f-8bb3-e35753fd8fc0
     docsUrl: /docs/features/incident-investigation
@@ -75,7 +75,7 @@ tabs:
     icon: i-lucide-shield-check
     title: Deployment Verification
     description: Automatically verify deployments by correlating metrics, logs, and traces before and after changes. Detect anomalies early and ensure safe rollouts.
-    rightImage: /images/deployment-verification.png
+    rightImage: /images/deployment-verification.jpg
     imagePosition: top left
     imageScale: 1.1
     demoUrl: https://app-sit.castrel.ai/shared/eed90769-97a5-4c4f-ba72-85cc3ae10859
