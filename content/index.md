@@ -136,9 +136,6 @@ Native integrations with popular observability, cloud and technology tools.
     - name: Slack
       icon: i-simple-icons-slack
       to: /docs/integrations/slack
-    - name: GitHub
-      icon: i-simple-icons-github
-      to: /docs/integrations/github
     - name: Vercel
       icon: i-simple-icons-vercel
       to: /docs/integrations/vercel

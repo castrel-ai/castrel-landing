@@ -1,74 +1,84 @@
-# Docus Default Starter
+# Castrel Landing & Docs
 
+Repo for [castrel.ai](https://castrel.ai). Based on [Docus](https://docus.dev/) and [Nuxt 4](https://nuxt.com/).
 
-> A beautiful, minimal starter for creating documentation with Docus
+## Local Development
 
-This is the default Docus starter template that provides everything you need to build beautiful documentation sites with Markdown and Vue components.
+Pre-requisites: Node.js 22, pnpm 10+
 
+1. Run `pnpm install` to install the dependencies.
+2. Run `pnpm dev` to start the development server on localhost:3000
 
-> [!TIP]
-> If you're looking for i18n support, check out the [i18n starter](https://github.com/nuxt-themes/docus/tree/main/.starters/i18n).
-
-## ✨ Features
-
-- 🎨 **Beautiful Design** - Clean, modern documentation theme
-- 📱 **Responsive** - Mobile-first responsive design  
-- 🌙 **Dark Mode** - Built-in dark/light mode support
-- 🔍 **Search** - Full-text search functionality
-- 📝 **Markdown Enhanced** - Extended markdown with custom components
-- 🎨 **Customizable** - Easy theming and brand customization
-- ⚡ **Fast** - Optimized for performance with Nuxt 4
-- 🔧 **TypeScript** - Full TypeScript support
-
-## 🚀 Quick Start
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Your documentation site will be running at `http://localhost:3000`
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-my-docs/
-├── content/              # Your markdown content
-│   ├── index.md         # Homepage
-│   ├── 1.getting-started/  # Getting started section
-│   └── 2.essentials/    # Essential documentation
-├── public/              # Static assets
-└── package.json         # Dependencies and scripts
+castrel-landing/
+├── app/
+│   ├── app.config.ts        # App configuration (header, toc, etc.)
+│   ├── components/          # Vue components
+│   └── pages/               # Custom pages (blogs, etc.)
+├── content/
+│   ├── index.md             # Homepage
+│   ├── docs/                # Documentation pages
+│   │   ├── 1.getting-started/
+│   │   ├── 2.features/
+│   │   ├── 3.integrations/
+│   │   ├── 4.more/
+│   │   └── 5.security/
+│   └── blogs/               # Blog posts
+├── public/
+│   ├── images/              # Static images
+│   └── fonts/               # Custom fonts
+├── nuxt.config.ts           # Nuxt configuration
+└── package.json
 ```
 
-## ⚡ Built with
+## Content
 
-This starter comes pre-configured with:
+All documentation content is written in Markdown with [MDC (Markdown Components)](https://content.nuxt.com/usage/markdown) syntax. Files are organized with numeric prefixes for ordering (e.g., `1.introduction.md`).
 
-- [Nuxt 4](https://nuxt.com) - The web framework
-- [Nuxt Content](https://content.nuxt.com/) - File-based CMS
-- [Nuxt UI](https://ui.nuxt.com) - UI components
-- [Nuxt Image](https://image.nuxt.com/) - Optimized images
-- [Tailwind CSS 4](https://tailwindcss.com/) - Utility-first CSS
-- [Docus Layer](https://www.npmjs.com/package/docus) - Documentation theme
+### Navigation
 
-## 📖 Documentation
+Each section can have a `.navigation.yml` file to customize the sidebar navigation title and icon.
 
-For detailed documentation on customizing your Docus project, visit the [Docus Documentation](https://docus.dev)
+### Custom Components
 
-## 🚀 Deployment
+Custom Vue components in `app/components/` can be used directly in markdown files using MDC syntax:
+
+```md
+::component-name
+---
+prop: value
+---
+Content here
+::
+```
+
+## Media
+
+### Images
+
+All images are stored in the `public/images/` directory. To use them in markdown files, use the absolute path `/images/your-image.png`.
+
+### Fonts
+
+Custom fonts are stored in `public/fonts/` and configured in `app/assets/css/fonts.css`.
+
+## Stack
+
+- [Nuxt 4](https://nuxt.com/) - The web framework
+- [Docus](https://docus.dev/) - Documentation theme layer
+- [Nuxt Content](https://content.nuxt.com/) - File-based CMS with MDC support
+- [Nuxt UI](https://ui.nuxt.com/) - UI components
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Mermaid](https://mermaid.js.org/) - Diagrams and charts
+
+## Deployment
 
 Build for production:
 
 ```bash
-npm run build
+pnpm build
 ```
 
-The built files will be in the `.output` directory, ready for deployment to any hosting provider that supports Node.js.
-
-## 📄 License
-
-[MIT License](https://opensource.org/licenses/MIT) 
+The built files will be in the `.output` directory.

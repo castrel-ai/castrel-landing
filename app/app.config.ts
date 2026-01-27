@@ -8,11 +8,6 @@ export default defineAppConfig({
         },
         title: 'Castrel AI',
     },
-    // GitHub 集成，启用 Edit this page 和 Report an issue 链接
-    github: {
-        url: 'https://github.com/castrel-ai/castrel-landing',
-        branch: 'main',
-    },
     // TOC 配置
     toc: {
         bottom: {
@@ -28,12 +23,6 @@ export default defineAppConfig({
                     icon: 'i-simple-icons-discord',
                     label: 'Discord',
                     to: 'https://discord.gg/DynAHf3pgV',
-                    target: '_blank',
-                },
-                {
-                    icon: 'i-simple-icons-github',
-                    label: 'GitHub',
-                    to: 'https://github.com/castrel-ai',
                     target: '_blank',
                 },
                 {
