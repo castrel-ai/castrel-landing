@@ -8,8 +8,11 @@ export default defineAppConfig({
         },
         title: 'Castrel AI',
     },
-    // 禁用 GitHub 集成，隐藏 header 和 footer 中的 GitHub 链接
-    github: false,
+    // GitHub 集成，启用 Edit this page 和 Report an issue 链接
+    github: {
+        url: 'https://github.com/castrel-ai/castrel-landing',
+        branch: 'main',
+    },
     // TOC 配置
     toc: {
         bottom: {

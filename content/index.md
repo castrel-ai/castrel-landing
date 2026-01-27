@@ -1,9 +1,7 @@
 ---
 seo:
   title: Castrel - the AI SRE Agent
-  description: Ship fast, flexible, and SEO-optimized documentation with beautiful
-    design out of the box. Docus brings together the best of the Nuxt ecosystem.
-    Powered by Nuxt UI.
+  description: Castrel is a helpful and secure SRE Agent for incident investigation, alert triage, auto operation and more.
 ---
 
 ::u-page-hero
