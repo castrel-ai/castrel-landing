@@ -4,8 +4,8 @@ export default defineAppConfig({
     github: false,
     header: {
         logo: {
-            light: '/images/castrel_logo_v3.png',
-            dark: '/images/castrel_logo_v3.png',
+            light: '/images/logo.svg',
+            dark: '/images/logo.svg',
             alt: 'Castrel',
         },
         title: 'Castrel AI',
