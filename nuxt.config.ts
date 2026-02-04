@@ -8,6 +8,16 @@ export default defineNuxtConfig({
     // Mermaid 图表支持
     modules: ['@barzhsieh/nuxt-content-mermaid'],
 
+    // 实验性功能 - MCP 服务器需要 asyncContext
+    experimental: {
+        asyncContext: true,
+    },
+
+    // MCP 服务器配置 (可选,用于自定义)
+    mcp: {
+        name: 'castrel-docs',
+    },
+
     // Vite 配置 - 解决 mermaid ESM 兼容性问题
     vite: {
         optimizeDeps: {
