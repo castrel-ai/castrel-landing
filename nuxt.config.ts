@@ -5,18 +5,36 @@ export default defineNuxtConfig({
         '/terms': { redirect: '/docs/security/terms-of-service' },
     },
 
-    // Mermaid 图表支持
-    modules: ['@barzhsieh/nuxt-content-mermaid'],
-
     // 实验性功能 - MCP 服务器需要 asyncContext
     experimental: {
         asyncContext: true,
     },
 
-    // MCP 服务器配置 (可选,用于自定义)
+    // MCP 服务器配置
     mcp: {
         name: 'castrel-docs',
     },
+
+    // Nitro 配置 - 确保 @nuxt/content/server 能被正确解析
+    nitro: {
+        externals: {
+            inline: ['@nuxt/content'],
+        },
+    },
+
+    // Nuxt Content 配置 - 定义 collections
+    content: {
+        sources: {
+            blogs: {
+                prefix: '/blogs',
+                driver: 'fs',
+                base: './content/blogs',
+            },
+        },
+    },
+
+    // Mermaid 图表支持
+    modules: ['@barzhsieh/nuxt-content-mermaid'],
 
     // Vite 配置 - 解决 mermaid ESM 兼容性问题
     vite: {
