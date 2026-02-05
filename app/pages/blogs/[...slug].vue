@@ -63,8 +63,8 @@
 
         <div v-if="post.meta?.image?.src"
             class="mb-10 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800">
-            <img :src="post.meta.image.src" :alt="post.title"
-                class="size-full object-cover" />
+            <NuxtImg :src="post.meta.image.src" :alt="post.title"
+                class="size-full object-cover" format="webp" quality="80" />
         </div>
 
         <div class="prose prose-lg prose-neutral dark:prose-invert mx-auto max-w-none">
@@ -76,8 +76,8 @@
             <div class="flex items-center gap-3">
                 <div v-if="post.meta?.authorImage"
                     class="size-12 overflow-hidden rounded-full">
-                    <img :src="post.meta.authorImage" :alt="post.meta.authorName"
-                        class="size-full object-cover" />
+                    <NuxtImg :src="post.meta.authorImage" :alt="post.meta.authorName"
+                        class="size-full object-cover" format="webp" quality="80" />
                 </div>
                 <div>
                     <p class="font-medium text-neutral-900 dark:text-neutral-100">

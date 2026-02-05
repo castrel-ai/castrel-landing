@@ -34,8 +34,8 @@
     <NuxtLink :to="post.path"
         class="group block overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-primary-500 dark:hover:border-primary-400 transition-all duration-300 hover:shadow-lg no-underline">
         <div class="aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-            <img v-if="post.meta?.image?.src" :src="post.meta.image.src"
-                :alt="post.title"
+            <NuxtImg v-if="post.meta?.image?.src" :src="post.meta.image.src"
+                :alt="post.title" format="webp" quality="80" loading="lazy"
                 class="size-full object-cover transition-transform duration-300 group-hover:scale-105" />
             <div v-else class="size-full flex items-center justify-center">
                 <UIcon name="i-lucide-image"

@@ -12,10 +12,10 @@
                 :alt="appConfig.header?.logo?.alt || appConfig.header?.title"
                 class="h-6 w-auto shrink-0" />
             <template #fallback>
-                <img v-if="appConfig.header?.logo?.light"
+                <NuxtImg v-if="appConfig.header?.logo?.light"
                     :src="appConfig.header?.logo?.light"
                     :alt="appConfig.header?.logo?.alt || appConfig.header?.title"
-                    class="h-6 w-auto shrink-0" />
+                    class="h-6 w-auto shrink-0" format="webp" quality="80" />
             </template>
         </ClientOnly>
         <span class="font-bold text-sm text-neutral-500 dark:text-neutral-500">

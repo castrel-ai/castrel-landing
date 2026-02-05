@@ -1,6 +1,5 @@
 <script setup lang="ts">
     import { ref, onMounted } from 'vue'
-    import mermaid from 'mermaid'
 
     const rendered = ref('')
 
@@ -36,6 +35,8 @@ flowchart TD
 `
 
     onMounted(async () => {
+        // 动态导入 mermaid 以实现懒加载
+        const mermaid = (await import('mermaid')).default
         mermaid.initialize({
             startOnLoad: false,
             theme: 'neutral',

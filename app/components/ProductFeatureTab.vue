@@ -36,8 +36,9 @@
         <div v-if="tab.fullWidthImage"
             class="visual-area relative h-[400px] overflow-hidden gradient-base">
             <div class="image-wrapper">
-                <img :src="tab.fullWidthImage" :alt="tab.title"
-                    class="w-full h-full object-cover rounded-lg" :style="{
+                <NuxtImg :src="tab.fullWidthImage" :alt="tab.title"
+                    class="w-full h-full object-cover rounded-lg" format="webp"
+                    quality="80" loading="lazy" :style="{
                         objectPosition: tab.imagePosition || 'center'
                     }" />
             </div>
@@ -59,8 +60,9 @@
                 :class="{ 'gradient-base': tab.rightImage }">
                 <slot :name="`tab-${index}-right`">
                     <div v-if="tab.rightImage" class="image-wrapper">
-                        <img :src="tab.rightImage" :alt="tab.title"
-                            class="w-full h-full object-cover rounded-lg" :style="{
+                        <NuxtImg :src="tab.rightImage" :alt="tab.title"
+                            class="w-full h-full object-cover rounded-lg" format="webp"
+                            quality="80" loading="lazy" :style="{
                                 objectPosition: tab.imagePosition || 'center',
                                 transform: tab.imageScale ? `scale(${tab.imageScale})` : undefined,
                                 transformOrigin: tab.imagePosition || 'center'

@@ -18,8 +18,9 @@
             :class="item.to ? 'cursor-pointer' : 'cursor-default'">
             <UIcon v-if="item.icon.startsWith('i-')" :name="item.icon"
                 class="size-10 text-neutral-700 dark:text-neutral-300" />
-            <img v-else :src="item.icon" :alt="item.name"
-                class="size-10 object-contain grayscale dark:invert dark:brightness-90" />
+            <NuxtImg v-else :src="item.icon" :alt="item.name"
+                class="size-10 object-contain grayscale dark:invert dark:brightness-90"
+                format="webp" quality="80" loading="lazy" />
             <span
                 class="mt-2 text-sm text-center text-neutral-600 dark:text-neutral-400">
                 {{ item.name }}

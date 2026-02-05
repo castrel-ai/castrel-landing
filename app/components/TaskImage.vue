@@ -2,7 +2,8 @@
 </script>
 
 <template>
-    <img src="/images/tasks.png" alt="Task Execution" class="task-image" />
+    <NuxtImg src="/images/tasks.png" alt="Task Execution" class="task-image"
+        format="webp" quality="80" loading="lazy" />
 </template>
 
 <style scoped>

@@ -15,11 +15,16 @@ export default defineNuxtConfig({
         name: 'castrel-docs',
     },
 
-    // Nitro 配置 - 确保 @nuxt/content/server 能被正确解析
+    // Nitro 配置 - 预渲染和压缩优化
     nitro: {
         externals: {
             inline: ['@nuxt/content'],
         },
+        prerender: {
+            crawlLinks: true,
+            routes: ['/'],
+        },
+        compressPublicAssets: true,
     },
 
     // Nuxt Content 配置 - 定义 collections
@@ -33,13 +38,31 @@ export default defineNuxtConfig({
         },
     },
 
-    // Mermaid 图表支持
-    modules: ['@barzhsieh/nuxt-content-mermaid'],
+    // Mermaid 图表支持 + 图片优化
+    modules: ['@barzhsieh/nuxt-content-mermaid', '@nuxt/image'],
 
-    // Vite 配置 - 解决 mermaid ESM 兼容性问题
+    // 图片优化配置
+    image: {
+        provider: 'vercel',
+        domains: ['castrel.ai'],
+        formats: ['avif', 'webp'],
+        quality: 80,
+    },
+
+    // Vite 配置 - 解决 mermaid ESM 兼容性问题 + 构建优化
     vite: {
         optimizeDeps: {
             include: ['mermaid'],
+        },
+        build: {
+            cssCodeSplit: true,
+            rollupOptions: {
+                output: {
+                    manualChunks: {
+                        mermaid: ['mermaid'],
+                    },
+                },
+            },
         },
     },
 
@@ -48,6 +71,9 @@ export default defineNuxtConfig({
         head: {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
+                // 字体预加载 - 提升 FCP
+                { rel: 'preload', href: '/fonts/ia-writer-quattro/ia-writer-quattro-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+                { rel: 'preload', href: '/fonts/fira-code/fira-code-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
             ],
         },
     },

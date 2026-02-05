@@ -26,6 +26,9 @@ importers:
       '@nuxt/icon':
         specifier: 2.2.0
         version: 2.2.0(magicast@0.5.1)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
+      '@nuxt/image':
+        specifier: ^2.0.0
+        version: 2.0.0(db0@0.3.4(better-sqlite3@12.6.0))(ioredis@5.9.2)(magicast@0.5.1)
       '@nuxt/scripts':
         specifier: 0.13.2
         version: 0.13.2(@unhead/vue@2.1.2(vue@3.5.26(typescript@5.9.3)))(db0@0.3.4(better-sqlite3@12.6.0))(ioredis@5.9.2)(magicast@0.5.1)(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
@@ -53,6 +56,10 @@ importers:
       nuxt:
         specifier: ^4.2.2
         version: 4.2.2(@parcel/watcher@2.5.4)(@types/node@25.0.9)(@vue/compiler-sfc@3.5.26)(better-sqlite3@12.6.0)(cac@6.7.14)(db0@0.3.4(better-sqlite3@12.6.0))(eslint@9.39.2(jiti@2.6.1))(ioredis@5.9.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.55.1)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0)(yaml@2.8.2))(yaml@2.8.2)
+    devDependencies:
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
 
 packages:
 
@@ -7986,8 +7993,7 @@ snapshots:
       '@iconify/types': 2.0.0
       vue: 3.5.26(typescript@5.9.3)
 
-  '@img/colour@1.0.0':
-    optional: true
+  '@img/colour@1.0.0': {}
 
   '@img/sharp-darwin-arm64@0.34.5':
     optionalDependencies:
@@ -15141,7 +15147,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.5
       '@img/sharp-win32-ia32': 0.34.5
       '@img/sharp-win32-x64': 0.34.5
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:

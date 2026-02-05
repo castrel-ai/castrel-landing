@@ -4,10 +4,12 @@
 <template>
     <div class="incident-images">
         <div class="images-container">
-            <img src="/images/incident1.png" alt="Symptom Matrix"
-                class="incident-image image-back" />
-            <img src="/images/incident2.png" alt="Hypothesis List"
-                class="incident-image image-front" />
+            <NuxtImg src="/images/incident1.png" alt="Symptom Matrix"
+                class="incident-image image-back" format="webp" quality="80"
+                loading="lazy" />
+            <NuxtImg src="/images/incident2.png" alt="Hypothesis List"
+                class="incident-image image-front" format="webp" quality="80"
+                loading="lazy" />
         </div>
     </div>
 </template>
