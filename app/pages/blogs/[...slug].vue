@@ -18,9 +18,26 @@
     }
 
     if (post.value) {
+        const appConfig = useAppConfig()
+        const seoOgImagePath = typeof post.value.meta?.seo?.ogImage === 'string'
+            ? post.value.meta.seo.ogImage
+            : null
+        const directOgImagePath = typeof post.value.meta?.ogImage === 'string'
+            ? post.value.meta.ogImage
+            : null
+        const headerImagePath = typeof post.value.meta?.image?.src === 'string'
+            ? post.value.meta.image.src
+            : null
+        const ogImagePath = seoOgImagePath
+            || directOgImagePath
+            || headerImagePath
+            || '/images/blog/ai-troubleshooting/incident-investigation-header.png'
+        const ogImageUrl = new URL(ogImagePath, appConfig.appUrl).toString()
+
         useSeoMeta({
             title: post.value.title,
-            description: post.value.description
+            description: post.value.description,
+            ogImage: ogImageUrl
         })
     }
 
@@ -64,7 +81,9 @@
         <div v-if="post.meta?.image?.src"
             class="mb-10 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800">
             <NuxtImg :src="post.meta.image.src" :alt="post.title"
-                class="size-full object-cover" format="webp" quality="80" />
+                class="size-full object-cover" format="webp" quality="80"
+                width="1280" height="720" sizes="sm:100vw md:768px lg:896px"
+                preload fetchpriority="high" />
         </div>
 
         <div class="prose prose-lg prose-neutral dark:prose-invert mx-auto max-w-none">
@@ -77,7 +96,8 @@
                 <div v-if="post.meta?.authorImage"
                     class="size-12 overflow-hidden rounded-full">
                     <NuxtImg :src="post.meta.authorImage" :alt="post.meta.authorName"
-                        class="size-full object-cover" format="webp" quality="80" />
+                        class="size-full object-cover" format="webp" quality="80"
+                        loading="lazy" decoding="async" width="96" height="96" />
                 </div>
                 <div>
                     <p class="font-medium text-neutral-900 dark:text-neutral-100">

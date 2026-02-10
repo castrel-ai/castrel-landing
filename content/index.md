@@ -36,9 +36,7 @@ Castrel is currently in :u-badge{variant="outline" color="neutral" class="align-
 ::
 
 ::u-container{class="py-12 lg:py-16"}
-<video controls preload="metadata" poster="/images/incident-investigation.jpg" style="aspect-ratio: 16/9; width: 100%; border-radius: 12px;">
-  <source src="/videos/CastrelIntro.mp4" type="video/mp4" />
-</video>
+<iframe src="https://www.youtube-nocookie.com/embed/zLKHCN6il-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="aspect-ratio: 16/9; width: 100%; border-radius: 12px;"></iframe>
 ::
 
 ::product-features

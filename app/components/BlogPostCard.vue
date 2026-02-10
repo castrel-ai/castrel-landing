@@ -36,6 +36,7 @@
         <div class="aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
             <NuxtImg v-if="post.meta?.image?.src" :src="post.meta.image.src"
                 :alt="post.title" format="webp" quality="80" loading="lazy"
+                decoding="async" width="640" height="360" sizes="sm:100vw md:50vw lg:33vw"
                 class="size-full object-cover transition-transform duration-300 group-hover:scale-105" />
             <div v-else class="size-full flex items-center justify-center">
                 <UIcon name="i-lucide-image"

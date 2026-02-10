@@ -4,6 +4,17 @@ const SpeedInsights = defineAsyncComponent(() =>
     import('@vercel/speed-insights/nuxt').then(m => m.SpeedInsights)
 )
 const isProd = process.env.NODE_ENV === 'production'
+const route = useRoute()
+const appConfig = useAppConfig()
+const docsOgImageUrl = new URL('/images/docs_og_image.png', appConfig.appUrl).toString()
+
+useSeoMeta(() =>
+    route.path.startsWith('/docs')
+        ? {
+            ogImage: docsOgImageUrl,
+        }
+        : {}
+)
 </script>
 
 <template>
