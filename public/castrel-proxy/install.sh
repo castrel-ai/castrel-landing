@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# One-liner install script for Castrel Proxy
-# Usage: curl -fsSL https://raw.githubusercontent.com/stallone-ss/castrel-proxy/develop/install.sh | bash
+# Offline install script for Castrel Proxy
+# Usage: cd <directory containing this script and packages/> && bash install.sh
 #
-# User install (no sudo): curl -fsSL ... | CASTREL_INSTALL_DIR=~/.local/bin bash
+# User install (no sudo): CASTREL_INSTALL_DIR=~/.local/bin bash install.sh
 # Ensure ~/.local/bin is in your PATH.
 #
 # Supports: Ubuntu 20+, Debian 10+, CentOS 7+, macOS
@@ -11,12 +11,33 @@
 
 set -e
 
-REPO="castrel-ai/castrel-proxy"
-BASE_URL="https://github.com/${REPO}"
+# Hardcoded version (tag includes "v" prefix)
+VERSION="v1.0.6"
+
+# REPO="castrel-ai/castrel-proxy"
+# BASE_URL="https://github.com/${REPO}"
 INSTALL_DIR="${CASTREL_INSTALL_DIR:-/usr/local/bin}"
 # Expand ~ to $HOME for user install (e.g. CASTREL_INSTALL_DIR=~/.local/bin)
 INSTALL_DIR="${INSTALL_DIR/#\~/$HOME}"
 BINARY_NAME="castrel-proxy"
+
+# Script directory (where the packages are located)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+
+declare -A PACKAGE_PATHS=(
+  ["macos-arm64"]="packages/castrel-proxy-macos-arm64"
+  ["macos-x86_64"]="packages/castrel-proxy-macos-x86_64"
+  ["linux-x86_64"]="packages/castrel-proxy-linux-x86_64"
+  ["linux-arm64"]="packages/castrel-proxy-linux-arm64"
+)
+
+declare -A CHECKSUM_PATHS=(
+  ["macos-arm64"]="packages/castrel-proxy-macos-arm64.sha256"
+  ["macos-x86_64"]="packages/castrel-proxy-macos-x86_64.sha256"
+  ["linux-x86_64"]="packages/castrel-proxy-linux-x86_64.sha256"
+  ["linux-arm64"]="packages/castrel-proxy-linux-arm64.sha256"
+)
 
 # Colors for output (strip if not a terminal)
 if [ -t 1 ]; then
@@ -41,29 +62,6 @@ warn() {
   echo -e "${YELLOW}$1${NC}"
 }
 
-# Detect download tool (curl preferred, wget fallback)
-need_download() {
-  if command -v curl >/dev/null 2>&1; then
-    echo "curl"
-  elif command -v wget >/dev/null 2>&1; then
-    echo "wget"
-  else
-    die "Neither curl nor wget found. Please install one of them."
-  fi
-}
-
-# Download file (handles redirects)
-download() {
-  local url="$1"
-  local output="$2"
-  local dl_tool="$3"
-
-  if [ "$dl_tool" = "curl" ]; then
-    curl -fsSL -o "$output" "$url" || die "Failed to download $url"
-  else
-    wget -q -O "$output" "$url" || die "Failed to download $url"
-  fi
-}
 
 # Compute SHA256 (try sha256sum, then shasum, then openssl)
 compute_sha256() {
@@ -111,66 +109,56 @@ detect_platform() {
   echo "${os}-${arch}"
 }
 
-# Get latest release info from GitHub API
-get_latest_release() {
-  local api_url="https://api.github.com/repos/${REPO}/releases/latest"
-  local dl_tool="$1"
+# # Get latest release info from GitHub API
+# get_latest_release() {
+#   local api_url="https://api.github.com/repos/${REPO}/releases/latest"
+#   local dl_tool="$1"
+#
+#   if [ "$dl_tool" = "curl" ]; then
+#     curl -fsSL "$api_url" 2>/dev/null || die "Failed to fetch release info. Check network and https://github.com/${REPO}/releases"
+#   else
+#     wget -q -O - "$api_url" 2>/dev/null || die "Failed to fetch release info. Check network and https://github.com/${REPO}/releases"
+#   fi
+# }
 
-  if [ "$dl_tool" = "curl" ]; then
-    curl -fsSL "$api_url" 2>/dev/null || die "Failed to fetch release info. Check network and https://github.com/${REPO}/releases"
-  else
-    wget -q -O - "$api_url" 2>/dev/null || die "Failed to fetch release info. Check network and https://github.com/${REPO}/releases"
-  fi
-}
-
-# Parse JSON (minimal, no jq required) - get tag_name
-parse_tag() {
-  grep -o '"tag_name"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | sed 's/.*"\(v[^"]*\)"$/\1/'
-}
+# # Parse JSON (minimal, no jq required) - get tag_name
+# parse_tag() {
+#   grep -o '"tag_name"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | sed 's/.*"\(v[^"]*\)"$/\1/'
+# }
 
 main() {
-  log "Castrel Proxy - One-click installer"
+  log "Castrel Proxy - Offline installer"
   echo ""
 
-  local dl_tool
-  dl_tool=$(need_download)
+  # Hardcoded version (no longer fetching from GitHub)
+  local tag="${VERSION}"
+  log "Version: $tag"
 
   local platform
   platform=$(detect_platform)
   log "Detected platform: $platform"
 
-  local pkg_name="castrel-proxy-${platform}"
-  local pkg_url="${BASE_URL}/releases/download/UNKNOWN/${pkg_name}"
-  local sha_url="${pkg_url}.sha256"
+  # Resolve local package path from hardcoded mapping
+  local pkg_relative="${PACKAGE_PATHS[$platform]}"
+  local sha_relative="${CHECKSUM_PATHS[$platform]}"
 
-  # Fetch latest release
-  log "Fetching latest release..."
-  local release_json
-  release_json=$(get_latest_release "$dl_tool")
-  local tag
-  tag=$(echo "$release_json" | parse_tag)
-  [ -z "$tag" ] && die "Could not determine latest release tag."
+  [ -z "$pkg_relative" ] && die "No package configured for platform: $platform"
 
-  log "Latest version: $tag"
+  local pkg_path="${SCRIPT_DIR}/${pkg_relative}"
+  local sha_path="${SCRIPT_DIR}/${sha_relative}"
 
-  pkg_url="${BASE_URL}/releases/download/${tag}/${pkg_name}"
-  sha_url="${pkg_url}.sha256"
+  [ -f "$pkg_path" ] || die "Package file not found: $pkg_path"
+  [ -f "$sha_path" ] || die "Checksum file not found: $sha_path"
 
-  # Create temp dir
-  local tmpdir
-  tmpdir=$(mktemp -d 2>/dev/null || mktemp -d -t castrel-proxy)
-  trap "rm -rf $tmpdir" EXIT
-
-  # Download binary and checksum
-  log "Downloading ${pkg_name}..."
-  download "$pkg_url" "${tmpdir}/${pkg_name}" "$dl_tool"
-  download "$sha_url" "${tmpdir}/${pkg_name}.sha256" "$dl_tool"
+  local pkg_name
+  pkg_name=$(basename "$pkg_path")
+  log "Installing ${pkg_name} from local packages..."
 
   # Verify checksum
   local expected_hash
-  expected_hash=$(awk '{print $1}' "${tmpdir}/${pkg_name}.sha256")
+  expected_hash=$(awk '{print $1}' "$sha_path")
   local actual_hash
-  actual_hash=$(compute_sha256 "${tmpdir}/${pkg_name}")
+  actual_hash=$(compute_sha256 "$pkg_path")
 
   if [ "$expected_hash" != "$actual_hash" ]; then
     die "SHA256 verification failed. Expected: $expected_hash, got: $actual_hash"
@@ -190,11 +178,11 @@ main() {
   fi
 
   if [ -w "$INSTALL_DIR" ] 2>/dev/null; then
-    mv "${tmpdir}/${pkg_name}" "$target_path"
+    cp "$pkg_path" "$target_path"
   else
     warn "Need sudo to install to ${INSTALL_DIR}"
     if command -v sudo >/dev/null 2>&1; then
-      sudo mv "${tmpdir}/${pkg_name}" "$target_path"
+      sudo cp "$pkg_path" "$target_path"
     else
       die "Cannot write to ${INSTALL_DIR} and sudo is not available."
     fi
