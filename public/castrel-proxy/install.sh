@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# Offline install script for Castrel Proxy
-# Usage: cd <directory containing this script and packages/> && sh install.sh
+# Online install script for Castrel Proxy
+# Usage: curl -fsSL https://castrel.ai/castrel-proxy/install.sh | sh
 #
-# User install (no sudo): CASTREL_INSTALL_DIR=~/.local/bin sh install.sh
+# User install (no sudo): curl -fsSL https://castrel.ai/castrel-proxy/install.sh | CASTREL_INSTALL_DIR=~/.local/bin sh
 # Ensure ~/.local/bin is in your PATH.
 #
 # Supports: Ubuntu 20+, Debian 10+, CentOS 7+, macOS
@@ -23,27 +23,30 @@ case "$INSTALL_DIR" in
 esac
 BINARY_NAME="castrel-proxy"
 
-# Script directory (where the packages are located)
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# Remote base URL
+BASE_URL="https://www.castrel.ai/castrel-proxy"
+
+# Temporary directory for downloads
+TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'castrel-proxy-install')
 
 # ── Platform-to-package lookup (POSIX compatible) ───────────────────────────
 
-get_package_path() {
+get_package_url() {
   case "$1" in
-    macos-arm64)  echo "packages/castrel-proxy-macos-arm64" ;;
-    macos-x86_64) echo "packages/castrel-proxy-macos-x86_64" ;;
-    linux-x86_64) echo "packages/castrel-proxy-linux-x86_64" ;;
-    linux-arm64)  echo "packages/castrel-proxy-linux-arm64" ;;
+    macos-arm64)  echo "${BASE_URL}/packages/castrel-proxy-macos-arm64" ;;
+    macos-x86_64) echo "${BASE_URL}/packages/castrel-proxy-macos-x86_64" ;;
+    linux-x86_64) echo "${BASE_URL}/packages/castrel-proxy-linux-x86_64" ;;
+    linux-arm64)  echo "${BASE_URL}/packages/castrel-proxy-linux-arm64" ;;
     *)            echo "" ;;
   esac
 }
 
-get_checksum_path() {
+get_checksum_url() {
   case "$1" in
-    macos-arm64)  echo "packages/castrel-proxy-macos-arm64.sha256" ;;
-    macos-x86_64) echo "packages/castrel-proxy-macos-x86_64.sha256" ;;
-    linux-x86_64) echo "packages/castrel-proxy-linux-x86_64.sha256" ;;
-    linux-arm64)  echo "packages/castrel-proxy-linux-arm64.sha256" ;;
+    macos-arm64)  echo "${BASE_URL}/packages/castrel-proxy-macos-arm64.sha256" ;;
+    macos-x86_64) echo "${BASE_URL}/packages/castrel-proxy-macos-x86_64.sha256" ;;
+    linux-x86_64) echo "${BASE_URL}/packages/castrel-proxy-linux-x86_64.sha256" ;;
+    linux-arm64)  echo "${BASE_URL}/packages/castrel-proxy-linux-arm64.sha256" ;;
     *)            echo "" ;;
   esac
 }
@@ -121,20 +124,29 @@ main() {
   platform=$(detect_platform)
   log "Detected platform: $platform"
 
-  # Resolve local package path
-  pkg_relative=$(get_package_path "$platform")
-  sha_relative=$(get_checksum_path "$platform")
+  # Resolve remote package URL
+  pkg_url=$(get_package_url "$platform")
+  sha_url=$(get_checksum_url "$platform")
 
-  [ -z "$pkg_relative" ] && die "No package configured for platform: $platform"
+  [ -z "$pkg_url" ] && die "No package configured for platform: $platform"
 
-  pkg_path="${SCRIPT_DIR}/${pkg_relative}"
-  sha_path="${SCRIPT_DIR}/${sha_relative}"
+  pkg_name="castrel-proxy-${platform}"
+  pkg_path="${TMP_DIR}/${pkg_name}"
+  sha_path="${TMP_DIR}/${pkg_name}.sha256"
 
-  [ -f "$pkg_path" ] || die "Package file not found: $pkg_path"
-  [ -f "$sha_path" ] || die "Checksum file not found: $sha_path"
+  log "Downloading ${pkg_name}..."
 
-  pkg_name=$(basename "$pkg_path")
-  log "Installing ${pkg_name} from local packages..."
+  # Download package file
+  if ! curl -fsSL -o "$pkg_path" "$pkg_url"; then
+    die "Failed to download package from: $pkg_url"
+  fi
+
+  # Download checksum file
+  if ! curl -fsSL -o "$sha_path" "$sha_url"; then
+    die "Failed to download checksum from: $sha_url"
+  fi
+
+  log "Download complete. Verifying checksum..."
 
   # Verify checksum
   expected_hash=$(awk '{print $1}' "$sha_path")
@@ -169,6 +181,9 @@ main() {
   fi
 
   chmod +x "$target_path" 2>/dev/null || sudo chmod +x "$target_path"
+
+  # Clean up temporary directory
+  rm -rf "$TMP_DIR"
 
   log "Installed successfully to $target_path"
   echo ""
