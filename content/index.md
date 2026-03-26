@@ -57,7 +57,7 @@ tabs:
     description: Collaborate with AI to pinpoint root causes. Provide clues, review hypotheses, and get transparent evidence chains — human context meets AI's global data analysis.
     fullWidthImage: /images/incident-investigation.jpg
     imagePosition: top center
-    demoUrl: https://app-sit.castrel.ai/shared/61f819ae-a351-438f-8bb3-e35753fd8fc0
+    demoUrl: https://app.castrel.ai/shared/655b7313-efdd-45e4-89ab-d34bc8c4491d
     docsUrl: /docs/features/incident-investigation
   - label: Operation Tasks
     icon: i-lucide-terminal
