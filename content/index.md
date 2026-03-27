@@ -50,14 +50,14 @@ tabs:
     imagePosition: top left
     imageScale: 1.1
     docsUrl: /docs/features/alert-triage
-    demoUrl: https://app-sit.castrel.ai/shared/4eeef2a9-f3b3-45ce-b2b4-a9204366001f
+    demoUrl: https://app.castrel.ai/shared/655b7313-efdd-45e4-89ab-d34bc8c4491d
   - label: Incident Investigation
     icon: i-lucide-bug
     title: Incident Investigation
     description: Collaborate with AI to pinpoint root causes. Provide clues, review hypotheses, and get transparent evidence chains — human context meets AI's global data analysis.
     fullWidthImage: /images/incident-investigation.jpg
     imagePosition: top center
-    demoUrl: https://app.castrel.ai/shared/655b7313-efdd-45e4-89ab-d34bc8c4491d
+    demoUrl: https://app.castrel.ai/shared/d8ca3664-1f7d-4fbd-b4fc-11c771d469df
     docsUrl: /docs/features/incident-investigation
   - label: Operation Tasks
     icon: i-lucide-terminal
@@ -66,7 +66,7 @@ tabs:
     rightImage: /images/task-execution.png
     imagePosition: top left
     imageScale: 1.1
-    demoUrl: https://app-sit.castrel.ai/shared/b36ac90f-7e22-4a83-af76-f398e73708bb
+    demoUrl: https://app.castrel.ai/shared/d423fb79-2e50-4d3d-8d9e-963780ca5ba5
     docsUrl: /docs/features/castrel-proxy
   - label: Deployment Verification
     icon: i-lucide-shield-check
@@ -75,7 +75,7 @@ tabs:
     rightImage: /images/deployment-verification.jpg
     imagePosition: top left
     imageScale: 1.1
-    demoUrl: https://app-sit.castrel.ai/shared/eed90769-97a5-4c4f-ba72-85cc3ae10859
+    demoUrl: https://app.castrel.ai/shared/634a839b-d664-4384-adf6-e7f4033ceec8
     docsUrl: /docs/features/deployment-verification
   - label: System Q&A
     icon: i-lucide-circle-question-mark
@@ -83,7 +83,7 @@ tabs:
     description: Query your system using natural language. Mention services / IT resources with @ to ask about status, architecture, or alerts.
     fullWidthImage: /images/system-qa.png
     imagePosition: top center
-    demoUrl: https://app-sit.castrel.ai/shared/7dbdddb4-05aa-4625-9895-8e376b335964
+    demoUrl: https://app.castrel.ai/shared/fd7cef41-3dbb-4159-b147-15c535a106d6
 
 
 ---
