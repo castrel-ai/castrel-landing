@@ -1,6 +1,16 @@
 import { CHINESE_LOCALE, DEFAULT_LOCALE, LOCALE_COOKIE, detectChineseLanguage } from '~~/utils/site-locale'
 
 export default defineNuxtRouteMiddleware((to) => {
+    const redirectToChinese = () => {
+        if (process.client) {
+            // Force full document navigation to avoid intermittent client-side 404
+            // when auto-locale switching from `/` to `/zh` in preview builds.
+            return navigateTo('/zh', { external: true, replace: true })
+        }
+
+        return navigateTo('/zh', { redirectCode: 302, replace: true })
+    }
+
     const localeCookie = useCookie<string | undefined>(LOCALE_COOKIE)
     const hasLocalePreference = localeCookie.value === CHINESE_LOCALE || localeCookie.value === DEFAULT_LOCALE
 
@@ -16,7 +26,7 @@ export default defineNuxtRouteMiddleware((to) => {
 
     if (hasLocalePreference) {
         if (localeCookie.value === CHINESE_LOCALE) {
-            return navigateTo('/zh', { redirectCode: 302, replace: true })
+            return redirectToChinese()
         }
         return
     }
@@ -25,13 +35,13 @@ export default defineNuxtRouteMiddleware((to) => {
         const headers = useRequestHeaders(['accept-language'])
         if (detectChineseLanguage(headers['accept-language'])) {
             localeCookie.value = CHINESE_LOCALE
-            return navigateTo('/zh', { redirectCode: 302, replace: true })
+            return redirectToChinese()
         }
         return
     }
 
     if (detectChineseLanguage(navigator.language)) {
         localeCookie.value = CHINESE_LOCALE
-        return navigateTo('/zh', { replace: true })
+        return redirectToChinese()
     }
 })
