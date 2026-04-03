@@ -6,12 +6,7 @@ export const DEFAULT_LOCALE: SiteLocale = 'en'
 export const CHINESE_LOCALE: SiteLocale = 'zh'
 export const LOCALE_COOKIE = 'site_locale'
 
-const AVAILABLE_ZH_PATHS = new Set([
-    '/',
-    '/docs/getting-started/introduction',
-    '/docs/security/privacy-policy',
-    '/docs/security/terms-of-service',
-    '/blogs',
+const AVAILABLE_ZH_BLOG_PATHS = new Set([
     '/blogs/how-castrel-builds-an-incident-troubleshooting-agent',
 ])
 
@@ -96,9 +91,21 @@ export function pathSupportsLocale(path: string | undefined): boolean {
 export function getEquivalentLocalePath(path: string | undefined, locale: SiteLocale): string {
     const normalizedPath = stripLocalePrefix(path)
 
-    if (locale === CHINESE_LOCALE && !AVAILABLE_ZH_PATHS.has(normalizedPath)) {
-        if (normalizedPath.startsWith('/docs/')) return '/zh/docs/getting-started/introduction'
-        if (normalizedPath.startsWith('/blogs')) return '/zh/blogs'
+    if (locale === CHINESE_LOCALE) {
+        if (normalizedPath === '/') return '/zh'
+
+        if (normalizedPath.startsWith('/docs/')) {
+            // Chinese docs are maintained as path-mirrored content, so we can map directly.
+            return `/zh${normalizedPath}`
+        }
+
+        if (normalizedPath === '/blogs') return '/zh/blogs'
+        if (normalizedPath.startsWith('/blogs/')) {
+            return AVAILABLE_ZH_BLOG_PATHS.has(normalizedPath)
+                ? `/zh${normalizedPath}`
+                : '/zh/blogs'
+        }
+
         return '/zh'
     }
 
