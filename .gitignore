@@ -38,3 +38,6 @@ logs
 
 # Temp directory
 tmp/
+
+# Playwright local artifacts
+.playwright-mcp/
