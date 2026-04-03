@@ -13,7 +13,11 @@ const AVAILABLE_ZH_BLOG_PATHS = new Set([
 export function normalizePath(path: string | undefined): string {
     if (!path) return '/'
     if (path === '') return '/'
-    return path.startsWith('/') ? path : `/${path}`
+    const withLeadingSlash = path.startsWith('/') ? path : `/${path}`
+    // Normalize trailing slash for route matching/querying (`/zh/` -> `/zh`).
+    return withLeadingSlash.length > 1
+        ? withLeadingSlash.replace(/\/+$/, '') || '/'
+        : withLeadingSlash
 }
 
 export function isChineseLocale(locale: string | undefined): locale is typeof CHINESE_LOCALE {

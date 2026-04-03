@@ -69,8 +69,8 @@
 ## 3) Castrel Proxy 安装链路
 
 - 安装脚本保留在：`public/castrel-proxy/install.sh`（不要迁走）。
-- 对外统一入口：`/install`（`server/routes/install.get.ts`）。
-  - 目标用法：`curl -fsSL https://castrel.ai/install | sh`
+- 对外安装入口（推荐）：`/castrel-proxy/install.sh`。
+  - 目标用法：`curl -fsSL https://castrel.ai/castrel-proxy/install.sh | bash`
 - 二进制与 `.sha256` 放在 Blob 目录：
   - `blob-assets/castrel-proxy/packages/*`
 
@@ -83,9 +83,50 @@
 ## 5) 常用验收命令
 
 - 检查安装入口：
-  - `curl -I http://localhost:3000/install`
+  - `curl -I http://localhost:3000/castrel-proxy/install.sh`
 - 检查 Proxy 包下载：
   - `curl -I http://localhost:3000/castrel-proxy/packages/castrel-proxy-linux-x86_64`
 - 检查图片路由：
   - `curl -I http://localhost:3000/images/logo.webp`
 
+## 6) Vercel 排障流程（CLI）
+
+出现「Preview 正常打开但图片/字体全 404」时，按下面顺序排：
+
+### 6.1 先确认 CLI 与 scope
+- 检查 CLI 与登录：
+  - `vercel --version`
+  - `vercel whoami`
+- 列团队：
+  - `vercel teams ls`
+- **所有命令显式带 scope**（避免 `Not authorized`）：
+  - `--scope castrel-ai`
+
+### 6.2 定位目标 deployment
+- 列出项目部署：
+  - `vercel ls castrel-landing --scope castrel-ai`
+- 查看部署详情（状态/URL/Build）：
+  - `vercel inspect <deployment-url-or-id> --scope castrel-ai`
+
+### 6.3 拉日志看真实 404 来源
+- 推荐命令（避免本地 link 状态干扰）：
+  - `vercel logs <deployment-id> --scope castrel-ai --project castrel-landing --no-branch --no-follow --since 30m --json --limit 200`
+- 重点看两类路径：
+  - `/_vercel/image`（通常是结果，不一定是根因）
+  - `/images/**`、`/fonts/**`（通常是根因）
+
+### 6.4 本次问题的经验规则
+- 如果日志里 `/_vercel/image` 是 404，同时 `/images/**` 也是 404：
+  - 根因是源图路由没拿到资源，不是 image optimizer 本身坏了。
+- 若 Blob URL 直接 `curl` 是 200，但应用 `/images/**` 404：
+  - 优先检查 `server/utils/blob-assets.ts` 是否依赖了运行时文件系统读取 manifest。
+  - 在 serverless 环境，`process.cwd()` 读文件不稳定，manifest 应优先走构建期静态导入。
+- 若 preview URL `curl` 返回 401：
+  - 先识别是否命中 Vercel Preview Protection（SSO/Password），不要把 401 当应用 404。
+
+### 6.5 修复后回归验证
+- 等新部署 `Ready`：
+  - `vercel inspect <new-deployment> --scope castrel-ai`
+- 再拉同 deployment 的日志，确认：
+  - `/images/**`、`/fonts/**` 返回 200
+  - `/_vercel/image` 的旧 404 若为 `cache: HIT`，多半是历史负缓存，换查询参数验证新 key。

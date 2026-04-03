@@ -3,13 +3,14 @@
     import type { ContentNavigationItem, Collections, DocsCollectionItem } from '@nuxt/content'
     import { findPageHeadline } from '@nuxt/content/utils'
     import type { SiteLocale } from '~~/utils/site-locale'
-    import { getDocsCollection } from '~~/utils/site-locale'
+    import { getDocsCollection, normalizePath } from '~~/utils/site-locale'
 
     const props = defineProps<{
         locale: SiteLocale
     }>()
 
     const route = useRoute()
+    const normalizedPath = computed(() => normalizePath(route.path))
     const appConfig = useAppConfig()
     const siteCopy = computed(() => getSiteCopy(props.locale))
     const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
@@ -17,10 +18,10 @@
 
     const [{ data: page }, { data: surround }] = await Promise.all([
         useAsyncData(`docs_${props.locale}_${kebabCase(route.path)}`, () =>
-            queryCollection(collectionName.value as keyof Collections).path(route.path).first() as Promise<DocsCollectionItem>,
+            queryCollection(collectionName.value as keyof Collections).path(normalizedPath.value).first() as Promise<DocsCollectionItem>,
         ),
         useAsyncData(`docs_${props.locale}_${kebabCase(route.path)}_surround`, () =>
-            queryCollectionItemSurroundings(collectionName.value as keyof Collections, route.path, {
+            queryCollectionItemSurroundings(collectionName.value as keyof Collections, normalizedPath.value, {
                 fields: ['description'],
             }),
         ),

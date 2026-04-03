@@ -79,7 +79,7 @@ Font source files are stored in `blob-assets/fonts/` and configured in `app/asse
 ### Castrel Proxy packages
 
 Castrel Proxy binaries and checksum files are stored in `blob-assets/castrel-proxy/packages/`.
-The install script stays in `public/castrel-proxy/install.sh` and is also served at `/install`.
+The install script stays in `public/castrel-proxy/install.sh` and is served at `/castrel-proxy/install.sh`.
 
 To sync Blob-managed assets and regenerate runtime mapping:
 
