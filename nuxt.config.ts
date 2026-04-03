@@ -1,5 +1,7 @@
 import RemoveDocusRoutes from './modules/remove-docus-routes'
 
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://castrel.ai'
+
 export default defineNuxtConfig({
     // 路由重定向
     routeRules: {
@@ -25,12 +27,20 @@ export default defineNuxtConfig({
         prerender: {
             crawlLinks: true,
             routes: ['/', '/zh'],
+            ignore: ['/_vercel/image', '/_ipx'],
         },
         compressPublicAssets: true,
     },
 
     // Mermaid 图表支持 + 图片优化
     modules: ['@barzhsieh/nuxt-content-mermaid', '@nuxt/image', RemoveDocusRoutes],
+
+    // 内容数据库：强制使用 Node 内置 sqlite，避免 better-sqlite3 在 Vercel 运行时崩溃
+    content: {
+        experimental: {
+            sqliteConnector: 'native',
+        },
+    },
 
     // 图片优化配置
     image: {
@@ -40,6 +50,19 @@ export default defineNuxtConfig({
         quality: 80,
     },
 
+    // LLM 索引配置
+    llms: {
+        domain: siteUrl,
+        full: false,
+    },
+
+    // OG 图片输出配置（Vercel 上统一使用 PNG）
+    ogImage: {
+        defaults: {
+            extension: 'png',
+        },
+    },
+
     // Vite 配置 - 解决 mermaid ESM 兼容性问题 + 构建优化
     vite: {
         optimizeDeps: {
@@ -47,6 +70,7 @@ export default defineNuxtConfig({
         },
         build: {
             cssCodeSplit: true,
+            chunkSizeWarningLimit: 900,
             rollupOptions: {
                 output: {
                     manualChunks: {
@@ -57,11 +81,18 @@ export default defineNuxtConfig({
         },
     },
 
+    // 关闭生产 sourcemap 以避免 Tailwind 插件 sourcemap 警告
+    sourcemap: {
+        client: false,
+        server: false,
+    },
+
     // 应用配置
     app: {
         head: {
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
+                { rel: 'stylesheet', href: '/font-faces.css' },
                 // 字体预加载 - 提升 FCP
                 { rel: 'preload', href: '/fonts/ia-writer-quattro/ia-writer-quattro-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
                 { rel: 'preload', href: '/fonts/fira-code/fira-code-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
