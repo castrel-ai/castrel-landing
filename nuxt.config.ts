@@ -42,9 +42,11 @@ export default defineNuxtConfig({
         },
     },
 
-    // 图片优化配置
+    // 图片配置
+    // NOTE: Use direct image URLs to avoid intermittent `/_vercel/image` 404
+    // cache poisoning on preview deployments.
     image: {
-        provider: 'vercel',
+        provider: 'none',
         domains: ['castrel.ai'],
         format: ['avif', 'webp'],
         quality: 80,
