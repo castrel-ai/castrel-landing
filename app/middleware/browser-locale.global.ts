@@ -5,10 +5,10 @@ export default defineNuxtRouteMiddleware((to) => {
         if (process.client) {
             // Force full document navigation to avoid intermittent client-side 404
             // when auto-locale switching from `/` to `/zh` in preview builds.
-            return navigateTo('/zh', { external: true, replace: true })
+            return navigateTo('/zh/', { external: true, replace: true })
         }
 
-        return navigateTo('/zh', { redirectCode: 302, replace: true })
+        return navigateTo('/zh/', { redirectCode: 302, replace: true })
     }
 
     const localeCookie = useCookie<string | undefined>(LOCALE_COOKIE)
