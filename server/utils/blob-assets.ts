@@ -2,6 +2,7 @@ import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs'
 import { Readable } from 'node:stream'
 import { extname, resolve } from 'node:path'
 import { createError, sendStream, setHeader, type H3Event } from 'h3'
+import manifestJson from '../../blob-assets-manifest.json'
 
 interface BlobAssetsManifest {
     assets?: Record<string, string>
@@ -19,6 +20,7 @@ let manifestMtimeMs = -1
 
 const LOCAL_ASSET_ROOT = resolve(process.cwd(), 'blob-assets')
 const MANIFEST_PATH = resolve(process.cwd(), 'blob-assets-manifest.json')
+const STATIC_MANIFEST_ASSETS = (manifestJson as BlobAssetsManifest).assets ?? {}
 
 function normalizePathSegment(input: string | string[] | undefined) {
     if (!input) return ''
@@ -78,6 +80,12 @@ function getContentType(filePath: string) {
 }
 
 function loadManifest() {
+    // In serverless runtimes, relying on process.cwd() file reads is brittle.
+    // Use the statically bundled manifest in production.
+    if (process.env.NODE_ENV === 'production') {
+        return STATIC_MANIFEST_ASSETS
+    }
+
     try {
         const stat = statSync(MANIFEST_PATH)
         if (manifestCache && manifestMtimeMs === stat.mtimeMs) {
@@ -91,7 +99,7 @@ function loadManifest() {
         return manifestCache
     }
     catch {
-        manifestCache = {}
+        manifestCache = STATIC_MANIFEST_ASSETS
         manifestMtimeMs = -1
         return manifestCache
     }
