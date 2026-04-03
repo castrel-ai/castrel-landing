@@ -4,75 +4,12 @@
  * - UI 字体 (font-ui): 系统字体（macOS 系统字体 / Windows 微软雅黑），用于界面元素
  * - 文章字体 (font-prose): iA Writer Quattro + Noto Sans SC，用于正文内容
  * - 代码字体 (font-mono): Fira Code，用于代码块（支持编程连字）
+ * - @font-face 声明位于 public/font-faces.css（避免构建阶段解析 /fonts 路径告警）
  */
 
 /* ============================================
    Font Face Declarations
    ============================================ */
-
-@font-face {
-    font-family: 'iA Writer Quattro';
-    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-400.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'iA Writer Quattro';
-    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-400-italic.woff2') format('woff2');
-    font-style: italic;
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'iA Writer Quattro';
-    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-700.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'iA Writer Quattro';
-    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-700-italic.woff2') format('woff2');
-    font-style: italic;
-    font-weight: 700;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Fira Code';
-    src: url('/fonts/fira-code/fira-code-400.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Fira Code';
-    src: url('/fonts/fira-code/fira-code-500.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Fira Code';
-    src: url('/fonts/fira-code/fira-code-600.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Fira Code';
-    src: url('/fonts/fira-code/fira-code-700.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-}
 
 /* ============================================
    基础字体应用

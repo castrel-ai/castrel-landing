@@ -1,7 +1,6 @@
 import { promises as fs } from 'node:fs'
 import { extname, resolve, dirname, relative } from 'node:path'
 import process from 'node:process'
-import sharp from 'sharp'
 
 const projectRoot = process.cwd()
 const imagesRoot = resolve(projectRoot, 'blob-assets/images')
@@ -64,6 +63,16 @@ async function statSize(path) {
 }
 
 async function main() {
+    let sharpModule
+    try {
+        sharpModule = (await import('sharp')).default
+    }
+    catch {
+        console.error('sharp is required for `pnpm images:compress-webp`.')
+        console.error('Install it locally with: pnpm add -D sharp')
+        process.exit(1)
+    }
+
     const allFiles = await walk(imagesRoot)
     const sourceFiles = allFiles.filter((filePath) => sourceExts.has(extname(filePath).toLowerCase()))
 
@@ -80,8 +89,8 @@ async function main() {
         try {
             // GIFs are converted from first frame for stable, repeatable output size.
             const transformer = ext === '.gif'
-                ? sharp(sourcePath, { pages: 1, limitInputPixels: false })
-                : sharp(sourcePath, { limitInputPixels: false })
+                ? sharpModule(sourcePath, { pages: 1, limitInputPixels: false })
+                : sharpModule(sourcePath, { limitInputPixels: false })
 
             await transformer
                 .webp(getWebpOptions(sourcePath))
