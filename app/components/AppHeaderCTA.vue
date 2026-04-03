@@ -1,3 +1,3 @@
 <template>
-    <!-- Search moved to DocsAsideLeftTop -->
+    <SiteLanguageSwitch />
 </template>

@@ -20,9 +20,11 @@
         post: BlogPost
     }>()
 
+    const { locale } = useSiteLocale()
+
     function formatDate(dateStr: string): string {
         const date = new Date(dateStr)
-        return date.toLocaleDateString('en-US', {
+        return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'

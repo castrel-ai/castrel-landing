@@ -1,7 +1,5 @@
 export default defineAppConfig({
     appUrl: process.env.NUXT_PUBLIC_APP_URL || 'https://app.castrel.ai',
-    // 禁用 GitHub 集成（隐藏 header/footer 的 GitHub 图标和文档底部的 Edit this page 链接）
-    github: false,
     header: {
         logo: {
             light: '/images/logo.svg',
@@ -9,32 +7,6 @@ export default defineAppConfig({
             alt: 'Castrel',
         },
         title: 'Castrel AI',
-    },
-    // TOC 配置
-    toc: {
-        bottom: {
-            title: 'Community',
-            links: [
-                {
-                    icon: 'i-simple-icons-x',
-                    label: 'X',
-                    to: 'https://x.com/castrel_ai',
-                    target: '_blank',
-                },
-                {
-                    icon: 'i-simple-icons-discord',
-                    label: 'Discord',
-                    to: 'https://discord.gg/DynAHf3pgV',
-                    target: '_blank',
-                },
-                {
-                    icon: 'i-simple-icons-youtube',
-                    label: 'YouTube',
-                    to: 'https://www.youtube.com/@castrelai',
-                    target: '_blank',
-                },
-            ],
-        },
     },
     // Nuxt UI 组件主题配置
     ui: {

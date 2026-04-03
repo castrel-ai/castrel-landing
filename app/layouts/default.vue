@@ -6,15 +6,22 @@ const SpeedInsights = defineAsyncComponent(() =>
 const isProd = process.env.NODE_ENV === 'production'
 const route = useRoute()
 const appConfig = useAppConfig()
+const { locale } = useSiteLocale()
 const docsOgImageUrl = new URL('/images/docs_og_image.png', appConfig.appUrl).toString()
 
 useSeoMeta(() =>
-    route.path.startsWith('/docs')
+    (route.path.startsWith('/docs') || route.path.startsWith('/zh/docs'))
         ? {
             ogImage: docsOgImageUrl,
         }
         : {}
 )
+
+useHead({
+    htmlAttrs: {
+        lang: computed(() => (locale.value === 'zh' ? 'zh-CN' : 'en')),
+    },
+})
 </script>
 
 <template>

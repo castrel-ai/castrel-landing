@@ -1,3 +1,5 @@
+import RemoveDocusRoutes from './modules/remove-docus-routes'
+
 export default defineNuxtConfig({
     // 路由重定向
     routeRules: {
@@ -22,30 +24,19 @@ export default defineNuxtConfig({
         },
         prerender: {
             crawlLinks: true,
-            routes: ['/'],
+            routes: ['/', '/zh'],
         },
         compressPublicAssets: true,
     },
 
-    // Nuxt Content 配置 - 定义 collections
-    content: {
-        sources: {
-            blogs: {
-                prefix: '/blogs',
-                driver: 'fs',
-                base: './content/blogs',
-            },
-        },
-    },
-
     // Mermaid 图表支持 + 图片优化
-    modules: ['@barzhsieh/nuxt-content-mermaid', '@nuxt/image'],
+    modules: ['@barzhsieh/nuxt-content-mermaid', '@nuxt/image', RemoveDocusRoutes],
 
     // 图片优化配置
     image: {
         provider: 'vercel',
         domains: ['castrel.ai'],
-        formats: ['avif', 'webp'],
+        format: ['avif', 'webp'],
         quality: 80,
     },
 
@@ -81,35 +72,16 @@ export default defineNuxtConfig({
     // 全局 CSS
     css: ['~/assets/css/fonts.css'],
 
-    // 字体配置
+    // 字体解析：仅使用本地字体，避免开发环境外网请求阻塞
     fonts: {
-        defaults: {
-            weights: [400, 500, 600, 700],
-            styles: ['normal', 'italic'],
-            subsets: ['latin', 'latin-ext'],
-        },
-        families: [
-            // 文章内容字体
-            {
-                name: 'iA Writer Quattro',
-                provider: 'local',
-                global: true,
-            },
-            // 文章回退字体（中文）
-            {
-                name: 'Noto Sans SC',
-                provider: 'google',
-                global: true,
-            },
-            // 代码字体
-            {
-                name: 'Fira Code',
-                provider: 'local',
-                global: true,
-            },
-        ],
-        experimental: {
-            processCSSVariables: true,
+        provider: 'local',
+        providers: {
+            adobe: false,
+            bunny: false,
+            fontshare: false,
+            fontsource: false,
+            google: false,
+            googleicons: false,
         },
     },
 

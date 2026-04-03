@@ -1,13 +1,37 @@
 <script setup lang="ts">
+    interface MenuItem {
+        label: string
+        to: string
+        icon: string
+    }
+
     const route = useRoute()
+    const { locale, toLocalePath } = useSiteLocale()
+    const siteCopy = useSiteCopy()
 
-    const menuItems = [
-        { label: 'Documentation', to: '/docs/getting-started/introduction', icon: 'i-lucide-book-open' },
-        { label: 'Blog', to: '/blogs', icon: 'i-lucide-file-text' }
-    ]
+    const menuItems = computed<MenuItem[]>(() => [
+        {
+            label: siteCopy.value.documentation,
+            to: toLocalePath('/docs/getting-started/introduction', locale.value),
+            icon: 'i-lucide-book-open',
+        },
+        {
+            label: siteCopy.value.blog,
+            to: toLocalePath('/blogs', locale.value),
+            icon: 'i-lucide-file-text',
+        },
+    ])
 
-    const isActive = (item: typeof menuItems[0]) => {
-        return route.path.startsWith(item.to.split('/').slice(0, 2).join('/'))
+    const isActive = (item: MenuItem) => {
+        if (item.to.includes('/docs/')) {
+            return route.path.includes('/docs/')
+        }
+
+        if (item.to.includes('/blogs')) {
+            return route.path.includes('/blogs')
+        }
+
+        return route.path.startsWith(item.to)
     }
 </script>
 

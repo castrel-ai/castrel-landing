@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { queryCollection } from '@nuxt/content/server'
 import type { Collections } from '@nuxt/content'
+import { getCollectionFromContentPath } from '~~/utils/site-locale'
 
 export default defineMcpTool({
     description: `Retrieves the full content and details of a specific page from Castrel website.
@@ -20,8 +21,12 @@ INPUT: Provide the exact path from list-pages result (e.g., "/docs/getting-start
         const siteUrl = import.meta.dev ? 'http://localhost:3000' : getRequestURL(event).origin
 
         try {
-            // 使用 Nuxt Content v3 的 queryCollection API
-            const page = await queryCollection(event, 'docs' as keyof Collections)
+            const collectionName = getCollectionFromContentPath(path)
+            if (!collectionName) {
+                return errorResult(`Unsupported path: ${path}`)
+            }
+
+            const page = await queryCollection(event, collectionName as keyof Collections)
                 .where('path', '=', path)
                 .select('title', 'path', 'description')
                 .first()
@@ -31,7 +36,7 @@ INPUT: Provide the exact path from list-pages result (e.g., "/docs/getting-start
             }
 
             // Determine content type based on path
-            const contentType = path.startsWith('/blogs') ? 'blogs' : 'docs'
+            const contentType = path.includes('/blogs') ? 'blogs' : 'docs'
 
             // 获取原始 markdown 内容
             let content = ''

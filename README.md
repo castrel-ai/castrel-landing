@@ -61,11 +61,49 @@ Content here
 
 ### Images
 
-All images are stored in the `public/images/` directory. To use them in markdown files, use the absolute path `/images/your-image.png`.
+Image source files are stored in `blob-assets/images/`.
+Use the absolute path `/images/your-image.png` in markdown and components.
+
+To generate or refresh `.webp` variants for all raster images (`.png/.jpg/.jpeg/.gif`):
+
+```bash
+pnpm images:compress-webp
+```
+
+Note: `.gif` is converted to a single-frame `.webp` for predictable build-time processing.
 
 ### Fonts
 
-Custom fonts are stored in `public/fonts/` and configured in `app/assets/css/fonts.css`.
+Font source files are stored in `blob-assets/fonts/` and configured in `app/assets/css/fonts.css`.
+
+### Castrel Proxy packages
+
+Castrel Proxy binaries and checksum files are stored in `blob-assets/castrel-proxy/packages/`.
+The install script stays in `public/castrel-proxy/install.sh` and is also served at `/install`.
+
+To sync Blob-managed assets and regenerate runtime mapping:
+
+```bash
+BLOB_READ_WRITE_TOKEN=xxxx pnpm blob:upload-assets
+```
+
+Or if token is already in your shell env:
+
+```bash
+pnpm blob:upload-assets
+```
+
+Dry run:
+
+```bash
+pnpm blob:upload-assets:dry-run
+```
+
+Runtime behavior:
+- `server/routes/images/[...path].ts` and `server/routes/fonts/[...path].ts` first resolve Blob URL from `blob-assets-manifest.json`.
+- `server/routes/castrel-proxy/packages/[...path].ts` does the same for Castrel Proxy binaries and checksum files.
+- If Blob is unavailable, they fallback to local files in `blob-assets/`.
+- You can also set `BLOB_ASSET_BASE_URL` or `NUXT_PUBLIC_BLOB_ASSET_BASE_URL` to use a fixed Blob prefix.
 
 ## Stack
 

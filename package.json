@@ -2,7 +2,10 @@
   "name": "castrel-landing",
   "scripts": {
     "dev": "nuxt dev --extends docus",
-    "build": "nuxt build --extends docus"
+    "build": "nuxt build --extends docus",
+    "images:compress-webp": "node scripts/compress-images.mjs",
+    "blob:upload-assets": "node scripts/upload-assets-to-blob.mjs",
+    "blob:upload-assets:dry-run": "node scripts/upload-assets-to-blob.mjs --dry-run"
   },
   "dependencies": {
     "@barzhsieh/nuxt-content-mermaid": "^2.2.1",
@@ -16,6 +19,7 @@
     "@nuxt/scripts": "0.13.2",
     "@nuxt/test-utils": "3.23.0",
     "@unhead/vue": "^2.1.2",
+    "@vercel/blob": "^1.1.1",
     "@vercel/speed-insights": "^1.3.1",
     "better-sqlite3": "^12.5.0",
     "docus": "latest",

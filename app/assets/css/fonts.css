@@ -7,6 +7,74 @@
  */
 
 /* ============================================
+   Font Face Declarations
+   ============================================ */
+
+@font-face {
+    font-family: 'iA Writer Quattro';
+    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-400.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'iA Writer Quattro';
+    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-400-italic.woff2') format('woff2');
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'iA Writer Quattro';
+    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-700.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'iA Writer Quattro';
+    src: url('/fonts/ia-writer-quattro/ia-writer-quattro-700-italic.woff2') format('woff2');
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/fira-code/fira-code-400.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/fira-code/fira-code-500.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/fira-code/fira-code-600.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('/fonts/fira-code/fira-code-700.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* ============================================
    基础字体应用
    ============================================ */
 
@@ -27,6 +95,12 @@ body {
 .prose-content,
 [data-content-type="markdown"],
 article {
+    font-family: 'iA Writer Quattro', 'Noto Sans SC', 'Noto Sans', system-ui, sans-serif;
+}
+
+/* 防止 prose 组件内部节点被其它样式覆盖 */
+.prose :where(p, li, blockquote, td, th),
+article :where(p, li, blockquote, td, th) {
     font-family: 'iA Writer Quattro', 'Noto Sans SC', 'Noto Sans', system-ui, sans-serif;
 }
 
@@ -60,6 +134,11 @@ samp,
     font-family: 'Fira Code', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
     font-feature-settings: 'calt' 1, 'liga' 1;
     /* 启用编程连字 */
+}
+
+.prose :where(code, pre, kbd, samp),
+article :where(code, pre, kbd, samp) {
+    font-family: 'Fira Code', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
 }
 
 /* ============================================

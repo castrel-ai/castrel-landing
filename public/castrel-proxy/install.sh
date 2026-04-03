@@ -1,9 +1,9 @@
 #!/bin/sh
 #
 # Online install script for Castrel Proxy
-# Usage: curl -fsSL https://castrel.ai/castrel-proxy/install.sh | sh
+# Usage: curl -fsSL https://castrel.ai/install | sh
 #
-# User install (no sudo): curl -fsSL https://castrel.ai/castrel-proxy/install.sh | CASTREL_INSTALL_DIR=~/.local/bin sh
+# User install (no sudo): curl -fsSL https://castrel.ai/install | CASTREL_INSTALL_DIR=~/.local/bin sh
 # Ensure ~/.local/bin is in your PATH.
 #
 # Supports: Ubuntu 20+, Debian 10+, CentOS 7+, macOS
@@ -24,7 +24,7 @@ esac
 BINARY_NAME="castrel-proxy"
 
 # Remote base URL
-BASE_URL="https://www.castrel.ai/castrel-proxy"
+BASE_URL="https://castrel.ai/castrel-proxy"
 
 # Temporary directory for downloads
 TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'castrel-proxy-install')

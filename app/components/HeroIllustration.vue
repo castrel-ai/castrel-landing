@@ -1,11 +1,8 @@
 <script setup lang="ts">
-    // Label 颜色配置，参考 CastrelLabel 组件
-    const labelStyles = {
-        service: 'bg-purple-50 text-purple-700 border-purple-200',
-        infra: 'bg-sky-50 text-sky-700 border-sky-200',
-    }
+    import { computed } from 'vue'
 
-    // 模拟的对话消息
+    const { locale } = useSiteLocale()
+
     interface MessagePart {
         type: 'text' | 'label'
         content: string
@@ -17,8 +14,7 @@
         parts: MessagePart[]
     }
 
-    // 定义多组对话
-    const conversations: Message[][] = [
+    const englishConversations: Message[][] = [
         [
             {
                 role: 'user',
@@ -91,6 +87,85 @@
         ]
     ]
 
+    const chineseConversations: Message[][] = [
+        [
+            {
+                role: 'user',
+                parts: [
+                    { type: 'text', content: '为什么 ' },
+                    { type: 'label', content: 'order-service', labelType: 'service' },
+                    { type: 'text', content: ' 响应变慢了？' }
+                ]
+            },
+            {
+                role: 'assistant',
+                parts: [
+                    { type: 'text', content: '正在分析 order-service，发现 ' },
+                    { type: 'label', content: 'pod-order-7d8f9', labelType: 'infra' },
+                    { type: 'text', content: ' 延迟明显升高。CPU 使用率达到 95%，建议先扩容。' }
+                ]
+            }
+        ],
+        [
+            {
+                role: 'user',
+                parts: [
+                    { type: 'text', content: '帮我看下 ' },
+                    { type: 'label', content: 'payment-gateway', labelType: 'service' },
+                    { type: 'text', content: ' 为什么错误数突然升高？' }
+                ]
+            },
+            {
+                role: 'assistant',
+                parts: [
+                    { type: 'text', content: '根因已定位：Redis 超时。集群 ' },
+                    { type: 'label', content: 'cache-redis-prod', labelType: 'infra' },
+                    { type: 'text', content: ' 在凌晨 3:42 发生了网络分区。' }
+                ]
+            }
+        ],
+        [
+            {
+                role: 'user',
+                parts: [
+                    { type: 'text', content: '分析一下这次部署对 ' },
+                    { type: 'label', content: 'api-gateway', labelType: 'service' },
+                    { type: 'text', content: ' 的影响。' }
+                ]
+            },
+            {
+                role: 'assistant',
+                parts: [
+                    { type: 'text', content: '部署验证完成。' },
+                    { type: 'label', content: 'k8s-node-03', labelType: 'infra' },
+                    { type: 'text', content: ' 上的错误率保持稳定，核心指标都在正常范围内。' }
+                ]
+            }
+        ],
+        [
+            {
+                role: 'user',
+                parts: [
+                    { type: 'text', content: '检查一下 ' },
+                    { type: 'label', content: 'user-auth', labelType: 'service' },
+                    { type: 'text', content: ' 当前健康状态。' }
+                ]
+            },
+            {
+                role: 'assistant',
+                parts: [
+                    { type: 'text', content: '服务状态正常，当前运行在 ' },
+                    { type: 'label', content: 'node-prod-02', labelType: 'infra' },
+                    { type: 'text', content: '，过去 24 小时可用性为 99.9%。' }
+                ]
+            }
+        ]
+    ]
+
+    const conversations = computed(() =>
+        locale.value === 'zh' ? chineseConversations : englishConversations
+    )
+
     const currentConversationIndex = ref(0)
     const visibleMessages = ref<Message[]>([])
     const isTyping = ref(false)
@@ -99,14 +174,12 @@
 
     let animationTimer: ReturnType<typeof setTimeout> | null = null
 
-    // 获取消息的纯文本内容（用于打字效果）
     const getMessageText = (message: Message): string => {
         return message.parts.map(p => p.content).join('')
     }
 
-    // 动画流程
     const runAnimation = async () => {
-        const conversation = conversations[currentConversationIndex.value]
+        const conversation = conversations.value[currentConversationIndex.value]
 
         // 显示用户消息
         visibleMessages.value = [conversation[0]]
@@ -131,9 +204,8 @@
                 isTyping.value = false
                 visibleMessages.value = [conversation[0], conversation[1]]
 
-                // 等待后切换到下一组对话
                 animationTimer = setTimeout(() => {
-                    currentConversationIndex.value = (currentConversationIndex.value + 1) % conversations.length
+                    currentConversationIndex.value = (currentConversationIndex.value + 1) % conversations.value.length
                     visibleMessages.value = []
                     animationTimer = setTimeout(runAnimation, 500)
                 }, 3000)

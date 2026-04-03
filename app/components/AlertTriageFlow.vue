@@ -1,4 +1,15 @@
 <script setup lang="ts">
+    import { computed } from 'vue'
+
+    const { locale } = useSiteLocale()
+
+    const description = computed(() => {
+        if (locale.value === 'zh') {
+            return 'Castrel 接入你的告警通道后，会自动完成告警分诊，压低噪音，并把真正关键的事故优先浮出来。'
+        }
+
+        return 'Castrel connects to your alerting channels and automatically triages alerts, reducing noise and surfacing critical incidents.'
+    })
 </script>
 
 <template>
@@ -38,8 +49,7 @@
 
         <!-- 说明文字 -->
         <p class="text-center text-gray-600 dark:text-gray-400 max-w-md">
-            Castrel connects to your alerting channels and automatically triages alerts,
-            reducing noise and surfacing critical incidents.
+            {{ description }}
         </p>
     </div>
 </template>
