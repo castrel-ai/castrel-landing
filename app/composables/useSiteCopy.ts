@@ -6,6 +6,7 @@ const copy = {
     en: {
         documentation: 'Documentation',
         blog: 'Blog',
+        changelog: 'Changelog',
         languageMenu: 'Language',
         themeMenu: 'Theme',
         themeLight: 'Light',
@@ -27,6 +28,7 @@ const copy = {
     zh: {
         documentation: '文档',
         blog: '博客',
+        changelog: '更新日志',
         languageMenu: '语言',
         themeMenu: '主题',
         themeLight: '浅色',

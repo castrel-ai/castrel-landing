@@ -98,6 +98,7 @@ export default defineNuxtConfig({
                 // 字体预加载 - 提升 FCP
                 { rel: 'preload', href: '/fonts/ia-writer-quattro/ia-writer-quattro-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
                 { rel: 'preload', href: '/fonts/fira-code/fira-code-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+                { rel: 'preload', href: '/fonts/source-han-sans-sc/source-han-sans-cn-vf.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
             ],
         },
     },
@@ -105,7 +106,7 @@ export default defineNuxtConfig({
     // 全局 CSS
     css: ['~/assets/css/fonts.css'],
 
-    // 字体解析：仅使用本地字体，避免开发环境外网请求阻塞
+    // 字体解析：仅使用本地字体，并显式禁用在线 provider（避免触发 Google 请求）
     fonts: {
         provider: 'local',
         providers: {
@@ -116,6 +117,7 @@ export default defineNuxtConfig({
             google: false,
             googleicons: false,
         },
+        families: [],
     },
 
     // Tailwind CSS 配置
@@ -127,7 +129,7 @@ export default defineNuxtConfig({
                         // UI 字体：用于导航、按钮、标签等界面元素
                         ui: ['Microsoft YaHei', '-apple-system', 'sans-serif'],
                         // 文章字体：用于文档正文、博客内容
-                        prose: ['iA Writer Quattro', 'Noto Sans SC', 'sans-serif'],
+                        prose: ['iA Writer Quattro', 'Source Han Sans SC', 'sans-serif'],
                         // 代码字体：用于代码块、行内代码
                         mono: ['Fira Code', 'Menlo', 'Monaco', 'monospace'],
                     },

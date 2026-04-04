@@ -3,6 +3,7 @@ import {
     CHINESE_LOCALE,
     LOCALE_COOKIE,
     getBlogsCollection,
+    getChangelogCollection,
     getDocsCollection,
     getEquivalentLocalePath,
     getLandingCollection,
@@ -46,5 +47,6 @@ export function useSiteLocale() {
         landingCollection: computed(() => getLandingCollection(locale.value)),
         docsCollection: computed(() => getDocsCollection(locale.value)),
         blogsCollection: computed(() => getBlogsCollection(locale.value)),
+        changelogCollection: computed(() => getChangelogCollection(locale.value)),
     }
 }

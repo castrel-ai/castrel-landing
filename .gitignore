@@ -41,3 +41,6 @@ tmp/
 
 # Playwright local artifacts
 .playwright-mcp/
+
+# Object Storage
+blob-assets/

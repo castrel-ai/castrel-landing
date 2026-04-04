@@ -67,5 +67,21 @@ export default defineContentConfig({
                 prefix: '/zh/blogs',
             },
         }),
+        changelog_en: defineCollection({
+            type: 'page',
+            source: {
+                cwd: 'content/en',
+                include: 'changelog/**/*',
+                prefix: '/changelog',
+            },
+        }),
+        changelog_zh: defineCollection({
+            type: 'page',
+            source: {
+                cwd: 'content/zh',
+                include: 'changelog/**/*',
+                prefix: '/zh/changelog',
+            },
+        }),
     },
 })

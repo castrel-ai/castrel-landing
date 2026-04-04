@@ -64,15 +64,21 @@ export function getBlogsCollection(locale: SiteLocale): 'blogs_en' | 'blogs_zh' 
     return locale === CHINESE_LOCALE ? 'blogs_zh' : 'blogs_en'
 }
 
+export function getChangelogCollection(locale: SiteLocale): 'changelog_en' | 'changelog_zh' {
+    return locale === CHINESE_LOCALE ? 'changelog_zh' : 'changelog_en'
+}
+
 export function getCollectionFromContentPath(
     path: string | undefined,
-): 'docs_en' | 'docs_zh' | 'blogs_en' | 'blogs_zh' | null {
+): 'docs_en' | 'docs_zh' | 'blogs_en' | 'blogs_zh' | 'changelog_en' | 'changelog_zh' | null {
     const normalizedPath = normalizePath(path)
 
     if (normalizedPath.startsWith('/zh/docs/')) return 'docs_zh'
     if (normalizedPath.startsWith('/docs/')) return 'docs_en'
     if (normalizedPath.startsWith('/zh/blogs/')) return 'blogs_zh'
     if (normalizedPath.startsWith('/blogs/')) return 'blogs_en'
+    if (normalizedPath === '/zh/changelog' || normalizedPath.startsWith('/zh/changelog/')) return 'changelog_zh'
+    if (normalizedPath === '/changelog' || normalizedPath.startsWith('/changelog/')) return 'changelog_en'
 
     return null
 }
@@ -83,6 +89,10 @@ export function pathSupportsLocale(path: string | undefined): boolean {
     return (
         normalizedPath === '/'
         || normalizedPath === '/zh'
+        || normalizedPath === '/changelog'
+        || normalizedPath === '/zh/changelog'
+        || normalizedPath.startsWith('/changelog/')
+        || normalizedPath.startsWith('/zh/changelog/')
         || normalizedPath.startsWith('/docs/')
         || normalizedPath.startsWith('/zh/docs/')
         || normalizedPath === '/blogs'
@@ -97,6 +107,8 @@ export function getEquivalentLocalePath(path: string | undefined, locale: SiteLo
 
     if (locale === CHINESE_LOCALE) {
         if (normalizedPath === '/') return '/zh'
+        if (normalizedPath === '/changelog') return '/zh/changelog'
+        if (normalizedPath.startsWith('/changelog/')) return `/zh${normalizedPath}`
 
         if (normalizedPath.startsWith('/docs/')) {
             // Chinese docs are maintained as path-mirrored content, so we can map directly.
@@ -112,6 +124,9 @@ export function getEquivalentLocalePath(path: string | undefined, locale: SiteLo
 
         return '/zh'
     }
+
+    if (normalizedPath === '/changelog') return '/changelog'
+    if (normalizedPath.startsWith('/changelog/')) return normalizedPath
 
     return withLocalePrefix(normalizedPath, locale)
 }

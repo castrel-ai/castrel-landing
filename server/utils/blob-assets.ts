@@ -14,6 +14,9 @@ interface AssetPathInfo {
 }
 
 type AssetBaseDir = 'images' | 'fonts' | 'castrel-proxy/packages'
+interface BlobAssetServeOptions {
+    fallbackToLocal?: boolean
+}
 
 let manifestCache: Record<string, string> | null = null
 let manifestMtimeMs = -1
@@ -148,18 +151,33 @@ function streamLocalAsset(event: H3Event, localPath: string) {
     return sendStream(event, createReadStream(localPath))
 }
 
-export async function serveBlobBackedAsset(event: H3Event, baseDir: AssetBaseDir, path: string | string[] | undefined) {
+export async function serveBlobBackedAsset(
+    event: H3Event,
+    baseDir: AssetBaseDir,
+    path: string | string[] | undefined,
+    options: BlobAssetServeOptions = {},
+) {
     const { publicPath, localPath } = buildAssetPath(baseDir, path)
     const blobUrl = getBlobUrl(publicPath)
+    const fallbackToLocal = options.fallbackToLocal ?? true
 
     if (blobUrl) {
         try {
             return await streamBlobAsset(event, blobUrl)
         }
         catch {
-            return streamLocalAsset(event, localPath)
+            if (fallbackToLocal) {
+                return streamLocalAsset(event, localPath)
+            }
         }
     }
 
-    return streamLocalAsset(event, localPath)
+    if (fallbackToLocal) {
+        return streamLocalAsset(event, localPath)
+    }
+
+    throw createError({
+        statusCode: 404,
+        statusMessage: 'Asset not found',
+    })
 }

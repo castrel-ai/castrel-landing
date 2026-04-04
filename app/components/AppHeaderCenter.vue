@@ -9,18 +9,27 @@
     const { locale, toLocalePath } = useSiteLocale()
     const siteCopy = useSiteCopy()
 
-    const menuItems = computed<MenuItem[]>(() => [
-        {
-            label: siteCopy.value.documentation,
-            to: toLocalePath('/docs/getting-started/introduction', locale.value),
-            icon: 'i-lucide-book-open',
-        },
-        {
-            label: siteCopy.value.blog,
-            to: toLocalePath('/blogs', locale.value),
-            icon: 'i-lucide-file-text',
-        },
-    ])
+    const menuItems = computed<MenuItem[]>(() => {
+        const items: MenuItem[] = [
+            {
+                label: siteCopy.value.documentation,
+                to: toLocalePath('/docs/getting-started/introduction', locale.value),
+                icon: 'i-lucide-book-open',
+            },
+            {
+                label: siteCopy.value.blog,
+                to: toLocalePath('/blogs', locale.value),
+                icon: 'i-lucide-file-text',
+            },
+            {
+                label: siteCopy.value.changelog,
+                to: toLocalePath('/changelog', locale.value),
+                icon: 'i-lucide-history',
+            },
+        ]
+
+        return items
+    })
 
     const isActive = (item: MenuItem) => {
         if (item.to.includes('/docs/')) {
@@ -30,7 +39,9 @@
         if (item.to.includes('/blogs')) {
             return route.path.includes('/blogs')
         }
-
+        if (item.to.includes('/changelog')) {
+            return route.path.includes('/changelog')
+        }
         return route.path.startsWith(item.to)
     }
 </script>
