@@ -57,10 +57,17 @@
 ### 上传流程
 1. （可选）先统一生成 webp：
    - `pnpm images:compress-webp`
-2. 上传 Blob 并刷新 manifest：
+2. 全量上传 Blob 并刷新 manifest（会重建 `blob-assets-manifest.json`）：
    - `pnpm blob:upload-assets`
 3. 仅预览将上传的文件：
    - `pnpm blob:upload-assets:dry-run`
+
+### 增量上传（重要）
+- 当只新增少量图片时，不要用“临时脚本重写 manifest”只写入新文件映射，否则旧图片会从 manifest 消失，线上 `/images/**` 会批量 404。
+- 增量上传后必须确保 `blob-assets-manifest.json` 保留历史映射并追加新映射（与目标分支做并集）。
+- 变更前建议先检查：
+  - `rg '"/images/' blob-assets-manifest.json`
+  - 确认主页/logo/博客历史图片映射仍在，再提交。
 
 上传脚本：`scripts/upload-assets-to-blob.mjs`
 - 会读取 `blob-assets/` 下支持目录并上传。
