@@ -13,7 +13,7 @@
 set -e
 
 # Hardcoded version (tag includes "v" prefix)
-VERSION="v0.1.9"
+VERSION="v0.1.10"
 
 INSTALL_DIR="${CASTREL_INSTALL_DIR:-/usr/local/bin}"
 # Expand ~ to $HOME for user install (e.g. CASTREL_INSTALL_DIR="~/.local/bin")
