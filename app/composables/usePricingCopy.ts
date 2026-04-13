@@ -193,7 +193,7 @@ const copy = {
             success: {
                 title: '提交成功',
                 desktopDescription: '我们已收到你的信息，销售同学会尽快联系你。你现在可以在官网继续免费试用。',
-                mobileDescription: '我们已收到你的信息，销售同学会尽快联系你。当前应用更适合在电脑端使用，请复制下方链接到电脑浏览器中进行免费试用。',
+                mobileDescription: '信息已确认，客户经理将尽快联系您。为您提供专属支持。请复制链接至电脑浏览器，立即免费使用！',
                 trialButton: '去免费试用',
                 copyButton: '复制试用链接',
                 doneButton: '我知道了',
