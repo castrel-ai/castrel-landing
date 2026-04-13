@@ -28,6 +28,14 @@
             },
         ]
 
+        if (locale.value === 'zh') {
+            items.push({
+                label: siteCopy.value.pricing,
+                to: toLocalePath('/pricing', locale.value),
+                icon: 'i-lucide-wallet',
+            })
+        }
+
         return items
     })
 
@@ -41,6 +49,9 @@
         }
         if (item.to.includes('/changelog')) {
             return route.path.includes('/changelog')
+        }
+        if (item.to.includes('/pricing')) {
+            return route.path.includes('/pricing')
         }
         return route.path.startsWith(item.to)
     }

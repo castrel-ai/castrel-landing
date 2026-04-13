@@ -89,6 +89,7 @@ export function pathSupportsLocale(path: string | undefined): boolean {
     return (
         normalizedPath === '/'
         || normalizedPath === '/zh'
+        || normalizedPath === '/zh/pricing'
         || normalizedPath === '/changelog'
         || normalizedPath === '/zh/changelog'
         || normalizedPath.startsWith('/changelog/')
@@ -107,6 +108,7 @@ export function getEquivalentLocalePath(path: string | undefined, locale: SiteLo
 
     if (locale === CHINESE_LOCALE) {
         if (normalizedPath === '/') return '/zh'
+        if (normalizedPath === '/pricing') return '/zh/pricing'
         if (normalizedPath === '/changelog') return '/zh/changelog'
         if (normalizedPath.startsWith('/changelog/')) return `/zh${normalizedPath}`
 
@@ -125,6 +127,7 @@ export function getEquivalentLocalePath(path: string | undefined, locale: SiteLo
         return '/zh'
     }
 
+    if (normalizedPath === '/pricing') return '/'
     if (normalizedPath === '/changelog') return '/changelog'
     if (normalizedPath.startsWith('/changelog/')) return normalizedPath
 

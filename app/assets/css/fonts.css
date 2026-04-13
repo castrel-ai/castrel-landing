@@ -94,6 +94,17 @@ body {
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background:
+        radial-gradient(1200px 520px at 0% -5%, rgba(100, 116, 139, 0.05), transparent 62%),
+        radial-gradient(900px 460px at 100% 0%, rgba(148, 163, 184, 0.04), transparent 64%),
+        linear-gradient(145deg, #fcfdff, #f8fafc);
+}
+
+.dark body {
+    background:
+        radial-gradient(1200px 520px at 0% -5%, rgba(71, 85, 105, 0.16), transparent 62%),
+        radial-gradient(900px 460px at 100% 0%, rgba(30, 41, 59, 0.14), transparent 64%),
+        linear-gradient(145deg, #0a1019, #0d1420);
 }
 
 /* ============================================
@@ -184,4 +195,44 @@ article :where(code, pre, kbd, samp) {
 /* 2. 父子：如果子标题活跃，父标题显示非活跃样式 */
 [data-slot="root"] li:has(ul [data-slot="link"].text-primary)>[data-slot="link"].text-primary {
     color: var(--ui-text-muted) !important;
+}
+
+/* ============================================
+   全局滚动条（仅保留滚动条本体）
+   ============================================ */
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.55) transparent;
+}
+
+.dark * {
+    scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+
+/* Chromium / WebKit */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.55);
+    border: 0;
+    border-radius: 9999px;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.5);
+}
+
+*::-webkit-scrollbar-corner {
+    background: transparent;
 }

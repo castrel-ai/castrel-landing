@@ -6,7 +6,7 @@
 
 <template>
     <UHeader
-        :ui="{ center: 'flex-1' }"
+        :ui="{ root: 'border-b-0', center: 'flex-1' }"
         :to="toLocalePath('/', locale)"
         :title="appConfig.header?.title || site.name"
     >
