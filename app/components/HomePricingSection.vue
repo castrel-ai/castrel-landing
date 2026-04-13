@@ -150,83 +150,84 @@ async function submitSalesInquiry() {
 </script>
 
 <template>
-    <div class="mt-5">
-        <div
-            class="mx-auto flex w-fit items-center gap-2 rounded-full border border-default bg-default p-1 shadow-xs">
-            <button type="button"
-                class="rounded-full px-4 py-2 text-sm font-semibold transition"
-                :class="billingCycle === 'monthly'
-                    ? 'bg-primary text-inverted'
-                    : 'text-default hover:bg-elevated'"
-                @click="billingCycle = 'monthly'">
-                {{ pricingCopy.billingMonthly }}
-            </button>
-            <button type="button"
-                class="rounded-full px-4 py-2 text-sm font-semibold transition"
-                :class="billingCycle === 'yearly'
-                    ? 'bg-primary text-inverted'
-                    : 'text-primary font-bold hover:bg-elevated'"
-                @click="billingCycle = 'yearly'">
-                {{ pricingCopy.billingYearly }}（{{ yearlyDiscount }}）
-            </button>
+    <div v-if="locale === 'zh'">
+        <div class="mt-5">
+            <div
+                class="mx-auto flex w-fit items-center gap-2 rounded-full border border-default bg-default p-1 shadow-xs">
+                <button type="button"
+                    class="rounded-full px-4 py-2 text-sm font-semibold transition"
+                    :class="billingCycle === 'monthly'
+                        ? 'bg-primary text-inverted'
+                        : 'text-default hover:bg-elevated'"
+                    @click="billingCycle = 'monthly'">
+                    {{ pricingCopy.billingMonthly }}
+                </button>
+                <button type="button"
+                    class="rounded-full px-4 py-2 text-sm font-semibold transition"
+                    :class="billingCycle === 'yearly'
+                        ? 'bg-primary text-inverted'
+                        : 'text-primary font-bold hover:bg-elevated'"
+                    @click="billingCycle = 'yearly'">
+                    {{ pricingCopy.billingYearly }}（{{ yearlyDiscount }}）
+                </button>
+            </div>
         </div>
-    </div>
 
-    <div class="mt-5">
-        <UPricingPlans :plans="plans" :class="'gap-x-6 gap-y-6 lg:gap-x-8'">
-            <template #price="{ plan }">
-                <template v-if="plan.title === pricingCopy.planPro.title">
-                    <Transition name="pro-price" mode="out-in">
-                        <span :key="billingCycle" class="inline-block tabular-nums">
-                            {{ proPrice }}
-                        </span>
-                    </Transition>
+        <div class="mt-5">
+            <UPricingPlans :plans="plans" :class="'gap-x-6 gap-y-6 lg:gap-x-8'">
+                <template #price="{ plan }">
+                    <template v-if="plan.title === pricingCopy.planPro.title">
+                        <Transition name="pro-price" mode="out-in">
+                            <span :key="billingCycle" class="inline-block tabular-nums">
+                                {{ proPrice }}
+                            </span>
+                        </Transition>
+                    </template>
+                    <template v-else>
+                        {{ plan.price }}
+                    </template>
                 </template>
-                <template v-else>
-                    {{ plan.price }}
-                </template>
-            </template>
-            <template #button="{ plan, ui }">
-                <div v-if="plan.title === pricingCopy.planEnterprise.title" class="relative w-full">
+                <template #button="{ plan, ui }">
+                    <div v-if="plan.title === pricingCopy.planEnterprise.title" class="relative w-full">
+                        <UButton
+                            v-if="plan.button"
+                            v-bind="{ block: true, size: 'lg', ...plan.button }"
+                            data-slot="button"
+                            :class="ui.button({ class: plan.ui?.button })"
+                            @click="plan.button?.onClick" />
+                        <p
+                            class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-xs font-medium text-muted">
+                            {{ enterprisePhone }}
+                        </p>
+                    </div>
                     <UButton
-                        v-if="plan.button"
+                        v-else-if="plan.button"
                         v-bind="{ block: true, size: 'lg', ...plan.button }"
                         data-slot="button"
                         :class="ui.button({ class: plan.ui?.button })"
                         @click="plan.button?.onClick" />
-                    <p
-                        class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-xs font-medium text-muted">
-                        {{ enterprisePhone }}
-                    </p>
-                </div>
-                <UButton
-                    v-else-if="plan.button"
-                    v-bind="{ block: true, size: 'lg', ...plan.button }"
-                    data-slot="button"
-                    :class="ui.button({ class: plan.ui?.button })"
-                    @click="plan.button?.onClick" />
-            </template>
-        </UPricingPlans>
-    </div>
+                </template>
+            </UPricingPlans>
+        </div>
 
-    <UModal v-model:open="openSalesModal" :ui="{
-            content: 'sm:max-w-2xl rounded-2xl border border-default/70 bg-default shadow-xl',
-            header: 'hidden',
-            body: 'pt-4',
-            footer: 'pt-2',
-        }">
-        <template #body>
-            <form class="space-y-5" autocomplete="off" @submit.prevent="submitSalesInquiry">
-                <div>
-                    <label for="home-pricing-name"
-                        class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                            pricingCopy.salesModal.name }}</label>
-                    <input id="home-pricing-name" v-model="salesForm.name"
-                        name="contact_name" type="text" autocomplete="off"
-                        data-1p-ignore="true" data-lpignore="true"
-                        :placeholder="pricingCopy.salesModal.namePlaceholder"
-                        class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
-                </div>
+        <UModal v-model:open="openSalesModal" :ui="{
+                content: 'sm:max-w-2xl rounded-2xl border border-default/70 bg-default shadow-xl',
+                header: 'hidden',
+                body: 'pt-4',
+                footer: 'pt-2',
+            }">
+            <template #body>
+                <form class="space-y-5" autocomplete="off" @submit.prevent="submitSalesInquiry">
+                    <div>
+                        <label for="home-pricing-name"
+                            class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
+                                pricingCopy.salesModal.name }}</label>
+                        <input id="home-pricing-name" v-model="salesForm.name"
+                            name="contact_name" type="text" autocomplete="off"
+                            data-1p-ignore="true" data-lpignore="true"
+                            :placeholder="pricingCopy.salesModal.namePlaceholder"
+                            class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
+                    </div>
 
                 <div>
                     <label for="home-pricing-phone"
@@ -299,9 +300,10 @@ async function submitSalesInquiry() {
                     <UButton type="submit" :loading="submitting" :disabled="submitting"
                         :label="pricingCopy.salesModal.submit" />
                 </div>
-            </form>
-        </template>
-    </UModal>
+                </form>
+            </template>
+        </UModal>
+    </div>
 </template>
 
 <style scoped>
