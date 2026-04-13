@@ -46,6 +46,7 @@ const salesForm = reactive({
 const submitError = ref('')
 const submitSuccess = ref(false)
 const submitting = ref(false)
+const phonePrefix = '+86'
 
 watch(openSalesModal, (isOpen) => {
     if (isOpen) {
@@ -91,14 +92,14 @@ const plans = computed<PricingPlanProps[]>(() => [
         button: {
             label: pricingCopy.value.planEnterprise.button,
             onClick: () => { openSalesModal.value = true },
-            color: 'neutral',
-            variant: 'outline',
+            color: 'primary',
+            variant: 'solid',
         },
     },
 ])
 
 function isValidPhone(phone: string): boolean {
-    return /^[0-9+\-\s]{6,20}$/.test(phone.trim())
+    return /^\d{11}$/.test(phone.trim())
 }
 
 async function submitSalesInquiry() {
@@ -121,7 +122,7 @@ async function submitSalesInquiry() {
             method: 'POST',
             body: {
                 name: salesForm.name.trim(),
-                phone: salesForm.phone.trim(),
+                phone: `${phonePrefix}${salesForm.phone.trim()}`,
                 company: salesForm.company.trim(),
                 workEmail: salesForm.workEmail.trim(),
                 jobTitle: salesForm.jobTitle.trim(),
@@ -231,10 +232,18 @@ async function submitSalesInquiry() {
                     <label for="home-pricing-phone"
                         class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
                             pricingCopy.salesModal.phone }} <span class="text-rose-500">*</span></label>
-                    <input id="home-pricing-phone" v-model="salesForm.phone" name="phone"
-                        type="tel" autocomplete="tel" required
-                        :placeholder="pricingCopy.salesModal.phonePlaceholder"
-                        class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
+                    <div
+                        class="flex h-11 w-full overflow-hidden rounded-lg border border-default bg-muted/25 transition focus-within:border-primary focus-within:bg-default focus-within:ring-2 focus-within:ring-primary/20">
+                        <span
+                            class="inline-flex items-center border-r border-default px-3 text-sm text-muted">
+                            {{ phonePrefix }}
+                        </span>
+                        <input id="home-pricing-phone" v-model="salesForm.phone"
+                            name="phone" type="tel" autocomplete="tel" required
+                            inputmode="numeric" pattern="[0-9]{11}" maxlength="11"
+                            :placeholder="pricingCopy.salesModal.phonePlaceholder"
+                            class="h-full w-full border-0 bg-transparent px-3 text-sm text-default outline-none ring-0">
+                    </div>
                 </div>
 
                 <div>

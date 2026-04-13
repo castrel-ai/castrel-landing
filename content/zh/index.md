@@ -166,9 +166,6 @@ tabs:
 #title
 定价
 
-#description
-按团队规模灵活选择：免费版、专业版、企业版。
-
 #default
 :::home-pricing-section
 :::

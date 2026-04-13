@@ -195,9 +195,6 @@ Your data security is our top priority. Castrel is built with multiple layers of
 #title
 Pricing
 
-#description
-Choose by team size: Free, Pro, or Enterprise.
-
 #default
 :::home-pricing-section
 :::
