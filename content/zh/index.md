@@ -126,6 +126,7 @@ tabs:
   :::feature-bento
   ---
   gridCols: 4
+  mobileSingleColumn: true
   features:
     - icon: i-lucide-shield-check
       title: 只读访问

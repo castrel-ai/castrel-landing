@@ -13,6 +13,7 @@
     defineProps<{
         features: Feature[]
         gridCols?: number
+        mobileSingleColumn?: boolean
     }>()
 
     function getCardStyle(feature: Feature) {
@@ -28,7 +29,8 @@
 </script>
 
 <template>
-    <div class="bento-grid" :style="gridCols ? { '--grid-cols': gridCols } : {}">
+    <div class="bento-grid" :class="{ 'bento-grid--mobile-single-column': mobileSingleColumn }"
+        :style="gridCols ? { '--grid-cols': gridCols } : {}">
         <div v-for="(feature, index) in features" :key="index"
             class="bento-card relative rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col"
             :style="getCardStyle(feature)">
@@ -91,6 +93,17 @@
     .bento-grid {
         grid-template-columns: repeat(var(--grid-cols, 4), 1fr);
         grid-auto-rows: minmax(140px, auto);
+    }
+}
+
+@media (max-width: 1023px) {
+    .bento-grid--mobile-single-column {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-grid--mobile-single-column .bento-card {
+        grid-column: auto !important;
+        grid-row: auto !important;
     }
 }
 </style>

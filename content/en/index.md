@@ -155,6 +155,7 @@ Your data security is our top priority. Castrel is built with multiple layers of
   :::feature-bento
   ---
   gridCols: 4
+  mobileSingleColumn: true
   features:
     - icon: i-lucide-shield-check
       title: Read-Only Access
