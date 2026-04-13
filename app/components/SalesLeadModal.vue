@@ -5,10 +5,12 @@ const props = withDefaults(defineProps<{
     sourcePageFallback?: string
     localeTag?: string
     idPrefix?: string
+    trialUrl?: string
 }>(), {
     sourcePageFallback: '/zh/pricing',
     localeTag: 'zh-CN',
     idPrefix: 'sales',
+    trialUrl: '',
 })
 
 const pricingCopy = usePricingCopy()
@@ -24,11 +26,60 @@ const salesForm = reactive({
 const submitError = ref('')
 const submitting = ref(false)
 const phonePrefix = '+86'
+const openSuccess = ref(false)
+const copyHint = ref('')
+const isMobile = ref(false)
+let mobileMediaQuery: MediaQueryList | null = null
+
+const resolvedTrialUrl = computed(() => {
+    if (props.trialUrl.trim()) {
+        return props.trialUrl
+    }
+    return props.localeTag.toLowerCase().startsWith('zh')
+        ? 'https://castrel-app.cloudwise.com?utm_source=castrel.ai&utm_medium=website&utm_campaign=zh_sales_modal'
+        : 'https://app.castrel.ai?utm_source=castrel.ai&utm_medium=website&utm_campaign=en_sales_modal'
+})
 
 watch(open, (isOpen) => {
     if (isOpen) {
         submitError.value = ''
     }
+})
+
+watch(openSuccess, (isOpen) => {
+    if (!isOpen) {
+        copyHint.value = ''
+    }
+})
+
+function syncMobileState() {
+    isMobile.value = !!mobileMediaQuery?.matches
+}
+
+onMounted(() => {
+    if (!import.meta.client) {
+        return
+    }
+
+    mobileMediaQuery = window.matchMedia('(max-width: 767px)')
+    syncMobileState()
+    if (mobileMediaQuery.addEventListener) {
+        mobileMediaQuery.addEventListener('change', syncMobileState)
+        return
+    }
+    mobileMediaQuery.addListener(syncMobileState)
+})
+
+onBeforeUnmount(() => {
+    if (!mobileMediaQuery) {
+        return
+    }
+
+    if (mobileMediaQuery.removeEventListener) {
+        mobileMediaQuery.removeEventListener('change', syncMobileState)
+        return
+    }
+    mobileMediaQuery.removeListener(syncMobileState)
 })
 
 function isValidPhone(phone: string): boolean {
@@ -72,10 +123,24 @@ async function submitSalesInquiry() {
         salesForm.jobTitle = ''
         salesForm.useCase = ''
         open.value = false
+        openSuccess.value = true
     } catch (error: any) {
         submitError.value = error?.data?.message || pricingCopy.value.salesModal.submitError
     } finally {
         submitting.value = false
+    }
+}
+
+async function copyTrialLink() {
+    if (!import.meta.client) {
+        return
+    }
+
+    try {
+        await navigator.clipboard.writeText(resolvedTrialUrl.value)
+        copyHint.value = pricingCopy.value.salesModal.success.copySuccess
+    } catch {
+        copyHint.value = pricingCopy.value.salesModal.success.copyError
     }
 }
 </script>
@@ -172,6 +237,55 @@ async function submitSalesInquiry() {
                         :label="pricingCopy.salesModal.submit" />
                 </div>
             </form>
+        </template>
+    </UModal>
+
+    <UModal v-model:open="openSuccess" :ui="{
+            content: 'sm:max-w-xl rounded-2xl border border-default/70 bg-default shadow-xl',
+            header: 'hidden',
+            body: 'pt-6',
+            footer: 'pt-3',
+        }">
+        <template #body>
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-default">
+                    {{ pricingCopy.salesModal.success.title }}
+                </h3>
+                <p class="text-sm leading-6 text-muted">
+                    {{
+                        isMobile
+                            ? pricingCopy.salesModal.success.mobileDescription
+                            : pricingCopy.salesModal.success.desktopDescription
+                    }}
+                </p>
+
+                <div v-if="isMobile" class="space-y-2 rounded-xl border border-default/70 bg-muted/20 p-3">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-muted">
+                        {{ pricingCopy.salesModal.success.linkLabel }}
+                    </p>
+                    <a :href="resolvedTrialUrl" target="_blank" rel="noopener noreferrer"
+                        class="block break-all text-sm text-primary underline decoration-primary/40 underline-offset-2">
+                        {{ resolvedTrialUrl }}
+                    </a>
+                    <UButton color="neutral" variant="outline" class="w-full justify-center"
+                        :label="pricingCopy.salesModal.success.copyButton"
+                        @click="copyTrialLink" />
+                    <p v-if="copyHint" class="text-xs text-muted">
+                        {{ copyHint }}
+                    </p>
+                </div>
+
+                <div v-else>
+                    <UButton color="primary" class="w-full justify-center"
+                        :to="resolvedTrialUrl" target="_blank"
+                        :label="pricingCopy.salesModal.success.trialButton"
+                        @click="openSuccess = false" />
+                </div>
+
+                <UButton color="neutral" variant="ghost" class="w-full justify-center"
+                    :label="pricingCopy.salesModal.success.doneButton"
+                    @click="openSuccess = false" />
+            </div>
         </template>
     </UModal>
 </template>

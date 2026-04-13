@@ -20,7 +20,7 @@ Castrel 是一名可靠且安全的 AI SRE 智能体，帮助你完成事故排�
 #footer
 :::div{.flex .flex-col .gap-6}
 ::::div{.flex .flex-wrap .gap-x-6 .gap-y-3}
-:u-button{color="neutral" size="xl" to="https://castrel-app.cloudwise.com?utm_source=castrel.ai&utm_medium=website&utm_campaign=zh_home" target="_blank" trailing-icon="i-lucide-arrow-right"}[免费试用]
+:zh-hero-free-trial-cta
 :u-button{color="neutral" size="xl" to="/zh/docs/getting-started/introduction" icon="i-lucide-book" variant="ghost"}[查看文档]
 ::::
 :::
