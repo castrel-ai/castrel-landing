@@ -167,10 +167,6 @@ async function submitSalesInquiry() {
                     class="text-4xl font-black text-neutral-900 dark:text-white sm:text-5xl">
                     {{ pricingCopy.pageTitle }}
                 </h1>
-                <p
-                    class="mx-auto mt-3 max-w-2xl text-base text-neutral-600 dark:text-neutral-400">
-                    {{ pricingCopy.pageSubtitle }}
-                </p>
             </section>
 
             <section class="mt-5">
@@ -188,7 +184,7 @@ async function submitSalesInquiry() {
                         class="rounded-full px-4 py-2 text-sm font-semibold transition"
                         :class="billingCycle === 'yearly'
                             ? 'bg-primary text-inverted'
-                            : 'text-default hover:bg-elevated'"
+                            : 'text-primary font-bold hover:bg-elevated'"
                         @click="billingCycle = 'yearly'">
                         {{ pricingCopy.billingYearly }}（{{ yearlyDiscount }}）
                     </button>
@@ -210,6 +206,28 @@ async function submitSalesInquiry() {
                         <template v-else>
                             {{ plan.price }}
                         </template>
+                    </template>
+                    <template #button="{ plan, ui }">
+                        <div
+                            v-if="plan.title === pricingCopy.planEnterprise.title"
+                            class="relative w-full">
+                            <UButton
+                                v-if="plan.button"
+                                v-bind="{ block: true, size: 'lg', ...plan.button }"
+                                data-slot="button"
+                                :class="ui.button({ class: plan.ui?.button })"
+                                @click="plan.button?.onClick" />
+                            <p
+                                class="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-xs font-medium text-muted">
+                                欢迎致电：400-666-1332
+                            </p>
+                        </div>
+                        <UButton
+                            v-else-if="plan.button"
+                            v-bind="{ block: true, size: 'lg', ...plan.button }"
+                            data-slot="button"
+                            :class="ui.button({ class: plan.ui?.button })"
+                            @click="plan.button?.onClick" />
                     </template>
                 </UPricingPlans>
             </section>

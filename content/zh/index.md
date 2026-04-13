@@ -114,3 +114,62 @@ tabs:
   ---
   :::
 ::
+
+::u-page-section
+#title
+企业级安全保障
+
+#description
+数据安全是我们的最高优先级。Castrel 通过多层防护机制，确保你的数据始终私密且安全。
+
+#default
+  :::feature-bento
+  ---
+  gridCols: 4
+  features:
+    - icon: i-lucide-shield-check
+      title: 只读访问
+      description: Castrel 仅需要数据读权限，不进行写入、不修改系统，最大限度降低风险。
+      cols: 2
+      rows: 2
+    - icon: i-lucide-lock
+      title: 零训练承诺
+      description: 你的数据绝不会用于任何模型训练或微调。该承诺由 Castrel 及所使用模型服务商的隐私政策共同保障。
+      cols: 2
+      rows: 1
+    - icon: i-lucide-shield
+      title: 合规就绪
+      description: 我们遵循行业标准的安全实践。
+      cols: 1
+      rows: 1
+    - icon: i-lucide-eye-off
+      title: 默认私有
+      description: 除非你明确授权用于支持服务，否则任何员工均无权访问你的数据。
+      cols: 1
+      rows: 2
+    - icon: i-lucide-server
+      title: 私有化部署
+      description: Castrel 可部署在你的基础设施中，支持接入自有 AI Infra，数据控制权完全归你所有。
+      badge: 企业版
+      cols: 2
+      rows: 1
+    - icon: i-lucide-key
+      title: 端到端加密
+      description: 采用 AES-256 静态加密与 TLS 传输加密，覆盖数据全链路。
+      cols: 1
+      rows: 1
+  ---
+  :::
+::
+
+::u-page-section
+#title
+定价
+
+#description
+按团队规模灵活选择：免费版、专业版、企业版。
+
+#default
+:::home-pricing-section
+:::
+::
