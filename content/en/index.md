@@ -190,12 +190,3 @@ Your data security is our top priority. Castrel is built with multiple layers of
   ---
   :::
 ::
-
-::u-page-section
-#title
-Pricing
-
-#default
-:::home-pricing-section
-:::
-::
