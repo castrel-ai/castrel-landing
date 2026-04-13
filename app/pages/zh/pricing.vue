@@ -104,9 +104,14 @@ const salesForm = reactive({
     useCase: '',
 })
 const submitError = ref('')
-const submitSuccess = ref(false)
 const submitting = ref(false)
 const openSalesModal = ref(false)
+
+watch(openSalesModal, (isOpen) => {
+    if (isOpen) {
+        submitError.value = ''
+    }
+})
 
 function isValidPhone(phone: string): boolean {
     return /^[0-9+\-\s]{6,20}$/.test(phone.trim())
@@ -114,7 +119,6 @@ function isValidPhone(phone: string): boolean {
 
 async function submitSalesInquiry() {
     submitError.value = ''
-    submitSuccess.value = false
 
     if (!salesForm.phone.trim() || !salesForm.company.trim()) {
         submitError.value = pricingCopy.value.salesModal.requiredError
@@ -143,7 +147,6 @@ async function submitSalesInquiry() {
             },
         })
 
-        submitSuccess.value = true
         salesForm.name = ''
         salesForm.phone = ''
         salesForm.company = ''

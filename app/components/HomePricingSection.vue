@@ -47,6 +47,13 @@ const submitError = ref('')
 const submitSuccess = ref(false)
 const submitting = ref(false)
 
+watch(openSalesModal, (isOpen) => {
+    if (isOpen) {
+        submitError.value = ''
+        submitSuccess.value = false
+    }
+})
+
 const plans = computed<PricingPlanProps[]>(() => [
     {
         title: pricingCopy.value.planFree.title,
