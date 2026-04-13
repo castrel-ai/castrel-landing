@@ -12,6 +12,10 @@ export default defineNuxtConfig({
     // 实验性功能 - MCP 服务器需要 asyncContext
     experimental: {
         asyncContext: true,
+        // Avoid runtime dependency on /_nuxt/builds/meta/<buildId>.json.
+        // We have observed manifest/buildId drift on preview/prod edges causing 404
+        // and app bootstrap failure for the home page.
+        appManifest: false,
     },
 
     // MCP 服务器配置
