@@ -156,11 +156,23 @@ export default defineEventHandler(async (event) => {
         })
     }
 
+    const bearerToken = process.env.FEISHU_SALES_BEARER_TOKEN?.trim()
+    if (!bearerToken) {
+        throw createError({
+            statusCode: 500,
+            statusMessage: 'Internal Server Error',
+            message: '未配置 FEISHU_SALES_BEARER_TOKEN',
+        })
+    }
+
     try {
         await $fetch(webhookUrl, {
             method: 'POST',
             timeout: SALES_WEBHOOK_TIMEOUT_MS,
             retry: 0,
+            headers: {
+                Authorization: `Bearer ${bearerToken}`,
+            },
             body: {
                 name: body.name || '',
                 phone: body.phone,

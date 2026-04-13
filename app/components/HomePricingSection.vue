@@ -35,25 +35,6 @@ const pricingPlanUi = {
 }
 
 const openSalesModal = ref(false)
-const salesForm = reactive({
-    name: '',
-    phone: '',
-    company: '',
-    workEmail: '',
-    jobTitle: '',
-    useCase: '',
-})
-const submitError = ref('')
-const submitSuccess = ref(false)
-const submitting = ref(false)
-const phonePrefix = '+86'
-
-watch(openSalesModal, (isOpen) => {
-    if (isOpen) {
-        submitError.value = ''
-        submitSuccess.value = false
-    }
-})
 
 const plans = computed<PricingPlanProps[]>(() => [
     {
@@ -98,55 +79,6 @@ const plans = computed<PricingPlanProps[]>(() => [
     },
 ])
 
-function isValidPhone(phone: string): boolean {
-    return /^\d{11}$/.test(phone.trim())
-}
-
-async function submitSalesInquiry() {
-    submitError.value = ''
-    submitSuccess.value = false
-
-    if (!salesForm.phone.trim() || !salesForm.company.trim()) {
-        submitError.value = pricingCopy.value.salesModal.requiredError
-        return
-    }
-
-    if (!isValidPhone(salesForm.phone)) {
-        submitError.value = pricingCopy.value.salesModal.invalidPhoneError
-        return
-    }
-
-    submitting.value = true
-    try {
-        await $fetch('/api/webhooks/sales-leads', {
-            method: 'POST',
-            body: {
-                name: salesForm.name.trim(),
-                phone: `${phonePrefix}${salesForm.phone.trim()}`,
-                company: salesForm.company.trim(),
-                workEmail: salesForm.workEmail.trim(),
-                jobTitle: salesForm.jobTitle.trim(),
-                useCase: salesForm.useCase.trim(),
-                sourcePage: import.meta.client ? window.location.href : (locale.value === 'zh' ? '/zh' : '/'),
-                locale: locale.value === 'zh' ? 'zh-CN' : 'en-US',
-                submittedAt: new Date().toISOString(),
-            },
-        })
-
-        submitSuccess.value = true
-        salesForm.name = ''
-        salesForm.phone = ''
-        salesForm.company = ''
-        salesForm.workEmail = ''
-        salesForm.jobTitle = ''
-        salesForm.useCase = ''
-        openSalesModal.value = false
-    } catch (error: any) {
-        submitError.value = error?.data?.message || pricingCopy.value.salesModal.submitError
-    } finally {
-        submitting.value = false
-    }
-}
 </script>
 
 <template>
@@ -210,99 +142,10 @@ async function submitSalesInquiry() {
             </UPricingPlans>
         </div>
 
-        <UModal v-model:open="openSalesModal" :ui="{
-                content: 'sm:max-w-2xl rounded-2xl border border-default/70 bg-default shadow-xl',
-                header: 'hidden',
-                body: 'pt-4',
-                footer: 'pt-2',
-            }">
-            <template #body>
-                <form class="space-y-5" autocomplete="off" @submit.prevent="submitSalesInquiry">
-                    <div>
-                        <label for="home-pricing-name"
-                            class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                                pricingCopy.salesModal.name }}</label>
-                        <input id="home-pricing-name" v-model="salesForm.name"
-                            name="contact_name" type="text" autocomplete="off"
-                            data-1p-ignore="true" data-lpignore="true"
-                            :placeholder="pricingCopy.salesModal.namePlaceholder"
-                            class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
-                    </div>
-
-                <div>
-                    <label for="home-pricing-phone"
-                        class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                            pricingCopy.salesModal.phone }} <span class="text-rose-500">*</span></label>
-                    <div
-                        class="flex h-11 w-full overflow-hidden rounded-lg border border-default bg-muted/25 transition focus-within:border-primary focus-within:bg-default focus-within:ring-2 focus-within:ring-primary/20">
-                        <span
-                            class="inline-flex items-center border-r border-default px-3 text-sm text-muted">
-                            {{ phonePrefix }}
-                        </span>
-                        <input id="home-pricing-phone" v-model="salesForm.phone"
-                            name="phone" type="tel" autocomplete="tel" required
-                            inputmode="numeric" pattern="[0-9]{11}" maxlength="11"
-                            :placeholder="pricingCopy.salesModal.phonePlaceholder"
-                            class="h-full w-full border-0 bg-transparent px-3 text-sm text-default outline-none ring-0">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="home-pricing-company"
-                        class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                            pricingCopy.salesModal.company }} <span class="text-rose-500">*</span></label>
-                    <input id="home-pricing-company" v-model="salesForm.company"
-                        name="company" type="text" autocomplete="organization" required
-                        :placeholder="pricingCopy.salesModal.companyPlaceholder"
-                        class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
-                </div>
-
-                <div class="grid gap-4 sm:grid-cols-2">
-                    <div>
-                        <label for="home-pricing-work-email"
-                            class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                                pricingCopy.salesModal.workEmail }}</label>
-                        <input id="home-pricing-work-email" v-model="salesForm.workEmail"
-                            name="work_email" type="email" autocomplete="email"
-                            :placeholder="pricingCopy.salesModal.workEmailPlaceholder"
-                            class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
-                    </div>
-
-                    <div>
-                        <label for="home-pricing-job-title"
-                            class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                                pricingCopy.salesModal.jobTitle }}</label>
-                        <input id="home-pricing-job-title" v-model="salesForm.jobTitle"
-                            name="job_title" type="text" autocomplete="organization-title"
-                            :placeholder="pricingCopy.salesModal.jobTitlePlaceholder"
-                            class="h-11 w-full rounded-lg border border-default bg-muted/25 px-3 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="home-pricing-use-case"
-                        class="mb-2 block text-xs font-semibold tracking-wide text-muted">{{
-                            pricingCopy.salesModal.useCase }}</label>
-                    <textarea id="home-pricing-use-case" v-model="salesForm.useCase"
-                        name="use_case" rows="3"
-                        :placeholder="pricingCopy.salesModal.useCasePlaceholder"
-                        class="w-full rounded-lg border border-default bg-muted/25 px-3 py-2 text-sm text-default outline-none ring-primary/20 transition focus:border-primary focus:bg-default focus:ring-2" />
-                </div>
-
-                <p v-if="submitError" class="text-sm text-rose-500">
-                    {{ submitError }}
-                </p>
-                <p v-if="submitSuccess" class="text-sm text-emerald-600">
-                    Success.
-                </p>
-
-                <div class="flex justify-end">
-                    <UButton type="submit" :loading="submitting" :disabled="submitting"
-                        :label="pricingCopy.salesModal.submit" />
-                </div>
-                </form>
-            </template>
-        </UModal>
+        <SalesLeadModal v-model:open="openSalesModal"
+            :source-page-fallback="locale === 'zh' ? '/zh' : '/'"
+            :locale-tag="locale === 'zh' ? 'zh-CN' : 'en-US'"
+            id-prefix="home-pricing" />
     </div>
 </template>
 
