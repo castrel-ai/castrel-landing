@@ -108,7 +108,10 @@ export default defineNuxtConfig({
     },
 
     // 全局 CSS
-    css: ['~/assets/css/fonts.css'],
+    css: [
+        '~/assets/css/fonts.css',
+        '~/assets/css/docs-integrations-nav-icons.css',
+    ],
 
     // 字体解析：仅使用本地字体，并显式禁用在线 provider（避免触发 Google 请求）
     fonts: {

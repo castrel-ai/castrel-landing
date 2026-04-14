@@ -192,7 +192,7 @@ tabs:
       to: /zh/docs/integrations/vercel
     - name: VictoriaMetrics
       icon: i-simple-icons-victoriametrics
-    - name: Volcengine
+    - name: 火山引擎
       icon: i-lucide-plug
     - name: 微信
       icon: i-simple-icons-wechat

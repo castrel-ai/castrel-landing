@@ -154,7 +154,7 @@ Native integrations with popular observability, cloud and technology tools.
       icon: i-lucide-plug
     - name: Jenkins
       icon: i-simple-icons-jenkins
-    - name: 监控宝
+    - name: Cloudwise JKB
       icon: i-lucide-plug
     - name: Kogia
       icon: i-lucide-plug
@@ -178,7 +178,7 @@ Native integrations with popular observability, cloud and technology tools.
     - name: Prometheus
       icon: i-simple-icons-prometheus
       to: /docs/integrations/prometheus
-    - name: 轻帆云
+    - name: Qingfan Cloud
       icon: i-lucide-plug
     - name: Riverbed
       icon: i-lucide-plug
@@ -198,7 +198,7 @@ Native integrations with popular observability, cloud and technology tools.
       icon: i-lucide-plug
     - name: Terraform
       icon: i-simple-icons-terraform
-    - name: 透视宝
+    - name: Cloudwise TSB
       icon: i-lucide-plug
     - name: Vercel
       icon: i-simple-icons-vercel
@@ -207,7 +207,7 @@ Native integrations with popular observability, cloud and technology tools.
       icon: i-simple-icons-victoriametrics
     - name: Volcengine
       icon: i-lucide-plug
-    - name: 微信
+    - name: WeChat
       icon: i-simple-icons-wechat
     - name: Zabbix
       icon: i-lucide-plug

@@ -1,0 +1,55 @@
+aside a[href="/docs/integrations/prometheus"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/prometheus"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/prometheus.svg");
+}
+
+aside a[href="/docs/integrations/elasticsearch"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/elasticsearch"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/elasticsearch.svg");
+}
+
+aside a[href="/docs/integrations/grafana-loki"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/grafana-loki"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/grafana-loki.svg");
+}
+
+aside a[href="/docs/integrations/grafana-tempo"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/grafana-tempo"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/grafana-tempo.svg");
+}
+
+aside a[href="/docs/integrations/github"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/github"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/github-icon.svg");
+}
+
+aside a[href="/docs/integrations/slack"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/slack"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/slack-icon.svg");
+}
+
+aside a[href="/docs/integrations/vercel"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/vercel"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/vercel-icon.svg");
+}
+
+aside a[href="/docs/integrations/graylog"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/graylog"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/graylog-attachment.svg");
+}
+
+aside a[href="/docs/integrations/datadog"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/datadog"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/datadog-icon.svg");
+}
+
+aside a[href*="/docs/integrations/"] [data-slot="linkLeadingIcon"] {
+    background-image: var(--integration-logo-url) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background-color: transparent !important;
+    color: transparent !important;
+}

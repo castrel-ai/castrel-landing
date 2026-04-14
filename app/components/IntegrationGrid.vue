@@ -16,7 +16,7 @@
         '阿里云': 'https://cdn.simpleicons.org/alibabacloud/FF6A00',
         'Ansible': 'https://api.iconify.design/logos/ansible.svg',
         'AWS': 'https://api.iconify.design/logos/aws.svg',
-        'ClickHouse': '/images/integrations/clickhouse-cl.png',
+        'ClickHouse': 'https://cdn.simpleicons.org/clickhouse/FFCC01',
         'Confluence': 'https://api.iconify.design/logos/confluence.svg',
         'Datadog': 'https://api.iconify.design/logos/datadog-icon.svg',
         'Dify': 'https://cdn.simpleicons.org/dify',
@@ -27,17 +27,21 @@
         '飞书': '/images/integrations/feishu-84a9.png',
         'Freshworks': 'https://api.iconify.design/logos/fresh.svg',
         'GitHub': 'https://api.iconify.design/logos/github-icon.svg',
-        'GitLab': 'https://api.iconify.design/logos/gitlab.svg',
+        'GitLab': 'https://cdn.simpleicons.org/gitlab/FC6D26',
         'Google Cloud': 'https://api.iconify.design/logos/google-cloud.svg',
         'Google Docs': 'https://api.iconify.design/logos/google-icon.svg',
         'Grafana': 'https://api.iconify.design/logos/grafana.svg',
-        'Graylog': 'https://api.iconify.design/logos/graylog-icon.svg',
+        'Graylog': '/images/integrations/graylog-attachment.svg',
         'Huawei Cloud': 'https://cdn.simpleicons.org/huawei/D81E06',
         '华为云': 'https://cdn.simpleicons.org/huawei/D81E06',
+        'Cloudwise JKB': '/images/integrations/cloudwise-purple.svg',
+        '监控宝': '/images/integrations/cloudwise-purple.svg',
         'Jenkins': 'https://api.iconify.design/logos/jenkins.svg',
         'Kubernetes': 'https://api.iconify.design/logos/kubernetes.svg',
-        'Linear': '/images/integrations/linear-apple.png',
-        'Grafana Loki': 'https://api.iconify.design/logos/grafana.svg',
+        'Kogia': '/images/integrations/kogia.svg',
+        'LDAP': '/images/integrations/ldap-attachment1.svg',
+        'Linear': 'https://cdn.simpleicons.org/linear/5E6AD2',
+        'Grafana Loki': '/images/integrations/grafana-loki.svg',
         'n8n': 'https://cdn.simpleicons.org/n8n/EA4B71',
         'New Relic': 'https://api.iconify.design/logos/new-relic-icon.svg',
         'Notion': 'https://api.iconify.design/logos/notion-icon.svg',
@@ -45,19 +49,23 @@
         'Prometheus': 'https://api.iconify.design/logos/prometheus.svg',
         'Sentry': '/images/integrations/sentry-glyph.svg',
         'Slack': 'https://api.iconify.design/logos/slack-icon.svg',
-        'SolarWinds': 'https://api.iconify.design/logos/solarwinds.svg',
+        'SolarWinds': 'https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_56d5d9c06838826bab60f7c98d0c16c6/solarwinds-worldwide-llc-solarwinds-observability.png',
         'Telegram': 'https://api.iconify.design/logos/telegram.svg',
-        'Grafana Tempo': 'https://api.iconify.design/logos/grafana.svg',
+        'Grafana Tempo': '/images/integrations/grafana-tempo.svg',
         'Tencent Cloud': '/images/integrations/tencent-cloud-icon.png',
         '腾讯云': '/images/integrations/tencent-cloud-icon.png',
         'Terraform': 'https://api.iconify.design/logos/terraform-icon.svg',
+        'Cloudwise TSB': '/images/integrations/cloudwise-purple.svg',
+        '透视宝': '/images/integrations/cloudwise-purple.svg',
         'Vercel': 'https://api.iconify.design/logos/vercel-icon.svg',
         'VictoriaMetrics': 'https://cdn.simpleicons.org/victoriametrics',
         'Volcengine': '/images/integrations/volcengine-favicon.png',
+        '火山引擎': '/images/integrations/volcengine-favicon.png',
         '微信': 'https://cdn.simpleicons.org/wechat',
         'WeChat': 'https://cdn.simpleicons.org/wechat',
-        'Riverbed': '/images/integrations/riverbed.svg',
+        'Riverbed': 'https://www.riverbed.com/riverbed-wp-content/themes/riverbed/favicon.ico',
         'Zabbix': 'https://api.iconify.design/logos/zabbix.svg',
+        'Qingfan Cloud': 'https://www.qingfanyun.com/static/img/index/nav_logo.png',
         '轻帆云': 'https://www.qingfanyun.com/static/img/index/nav_logo.png',
     }
 
@@ -235,11 +243,9 @@
         :style="{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }">
         <div v-for="card in visibleCards" :key="card.slot" class="integration-cell">
             <Transition name="card-swap" mode="out-in">
-                <component :is="card.item.to ? 'a' : 'div'"
-                    :key="`${card.slot}-${card.renderKey}`" :href="card.item.to"
-                    :target="card.item.to ? '_blank' : undefined"
-                    class="integration-card no-underline"
-                    :class="card.item.to ? 'cursor-pointer' : 'cursor-default'">
+                <div
+                    :key="`${card.slot}-${card.renderKey}`"
+                    class="integration-card no-underline cursor-default">
                     <div
                         class="flex h-full flex-col items-center justify-center rounded-lg border border-neutral-200 bg-white p-4 transition-colors hover:border-primary-500 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-primary-400">
                         <img v-if="getLogoUrl(card.item)"
@@ -258,7 +264,7 @@
                             {{ card.item.name }}
                         </span>
                     </div>
-                </component>
+                </div>
             </Transition>
         </div>
     </div>
