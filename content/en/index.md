@@ -112,33 +112,105 @@ Native integrations with popular observability, cloud and technology tools.
   :::integration-grid
   ---
   integrations:
-    - name: Prometheus
-      icon: i-simple-icons-prometheus
-      to: /docs/integrations/prometheus
-    - name: Elasticsearch
-      icon: i-simple-icons-elasticsearch
-      to: /docs/integrations/elasticsearch
-    - name: Grafana Loki
-      icon: /images/logo-grafana-loki.png
-      to: /docs/integrations/grafana-loki
-    - name: Grafana Tempo
-      icon: /images/tempo-icon.png
-      to: /docs/integrations/grafana-tempo
+    - name: Aliyun
+      icon: i-simple-icons-alibabacloud
+    - name: Ansible
+      icon: i-simple-icons-ansible
+    - name: AWS
+      icon: i-simple-icons-amazonwebservices
+    - name: ClickHouse
+      icon: i-simple-icons-clickhouse
+    - name: Confluence
+      icon: i-simple-icons-confluence
     - name: Datadog
       icon: i-simple-icons-datadog
       to: /docs/integrations/datadog
-    - name: Graylog
-      icon: i-simple-icons-graylog
-      to: /docs/integrations/graylog
-    - name: Slack
-      icon: i-simple-icons-slack
-      to: /docs/integrations/slack
-    - name: Vercel
-      icon: i-simple-icons-vercel
-      to: /docs/integrations/vercel
+    - name: Dify
+      icon: i-lucide-plug
+    - name: DingTalk
+      icon: i-lucide-plug
+    - name: Elasticsearch
+      icon: i-simple-icons-elasticsearch
+      to: /docs/integrations/elasticsearch
+    - name: Feishu
+      icon: i-lucide-plug
+    - name: Freshworks
+      icon: i-lucide-plug
     - name: GitHub
       icon: i-simple-icons-github
       to: /docs/integrations/github
+    - name: GitLab
+      icon: i-simple-icons-gitlab
+    - name: Google Cloud
+      icon: i-simple-icons-googlecloud
+    - name: Google Docs
+      icon: i-simple-icons-googledocs
+    - name: Grafana
+      icon: i-simple-icons-grafana
+    - name: Graylog
+      icon: i-simple-icons-graylog
+      to: /docs/integrations/graylog
+    - name: Huawei Cloud
+      icon: i-lucide-plug
+    - name: Jenkins
+      icon: i-simple-icons-jenkins
+    - name: 监控宝
+      icon: i-lucide-plug
+    - name: Kogia
+      icon: i-lucide-plug
+    - name: Kubernetes
+      icon: i-simple-icons-kubernetes
+    - name: LDAP
+      icon: i-lucide-plug
+    - name: Linear
+      icon: i-simple-icons-linear
+    - name: Grafana Loki
+      icon: i-simple-icons-grafana
+      to: /docs/integrations/grafana-loki
+    - name: n8n
+      icon: i-simple-icons-n8n
+    - name: New Relic
+      icon: i-simple-icons-newrelic
+    - name: Notion
+      icon: i-simple-icons-notion
+    - name: PagerDuty
+      icon: i-simple-icons-pagerduty
+    - name: Prometheus
+      icon: i-simple-icons-prometheus
+      to: /docs/integrations/prometheus
+    - name: 轻帆云
+      icon: i-lucide-plug
+    - name: Riverbed
+      icon: i-lucide-plug
+    - name: Sentry
+      icon: i-simple-icons-sentry
+    - name: Slack
+      icon: i-simple-icons-slack
+      to: /docs/integrations/slack
+    - name: SolarWinds
+      icon: i-lucide-plug
+    - name: Telegram
+      icon: i-simple-icons-telegram
+    - name: Grafana Tempo
+      icon: i-simple-icons-grafana
+      to: /docs/integrations/grafana-tempo
+    - name: Tencent Cloud
+      icon: i-lucide-plug
+    - name: Terraform
+      icon: i-simple-icons-terraform
+    - name: 透视宝
+      icon: i-lucide-plug
+    - name: Vercel
+      icon: i-simple-icons-vercel
+      to: /docs/integrations/vercel
+    - name: VictoriaMetrics
+      icon: i-simple-icons-victoriametrics
+    - name: Volcengine
+      icon: i-lucide-plug
+    - name: 微信
+      icon: i-simple-icons-wechat
+    - name: Zabbix
+      icon: i-lucide-plug
   ---
   :::
 ::
