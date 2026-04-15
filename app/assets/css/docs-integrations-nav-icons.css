@@ -43,6 +43,176 @@ aside a[href="/zh/docs/integrations/datadog"] [data-slot="linkLeadingIcon"] {
     --integration-logo-url: url("https://api.iconify.design/logos/datadog-icon.svg");
 }
 
+aside a[href="/docs/integrations/aws"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/aws"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/aws.svg");
+}
+
+aside a[href="/docs/integrations/google-cloud"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/google-cloud"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/google-cloud.svg");
+}
+
+aside a[href="/docs/integrations/aliyun"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/aliyun"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/alibabacloud/FF6A00");
+}
+
+aside a[href="/docs/integrations/tencent-cloud"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/tencent-cloud"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/tencent-cloud-icon.png");
+}
+
+aside a[href="/docs/integrations/huaweicloud"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/huaweicloud"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/huawei/D81E06");
+}
+
+aside a[href="/docs/integrations/volcengine"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/volcengine"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/volcengine-favicon.png");
+}
+
+aside a[href="/docs/integrations/qingfanyun"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/qingfanyun"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://www.qingfanyun.com/static/img/index/nav_logo.png");
+}
+
+aside a[href="/docs/integrations/grafana"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/grafana"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/grafana.svg");
+}
+
+aside a[href="/docs/integrations/victoriametrics"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/victoriametrics"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/victoriametrics");
+}
+
+aside a[href="/docs/integrations/new-relic"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/new-relic"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/new-relic-icon.svg");
+}
+
+aside a[href="/docs/integrations/zabbix"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/zabbix"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/zabbix.svg");
+}
+
+aside a[href="/docs/integrations/jiankongbao"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/jiankongbao"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/cloudwise-purple.svg");
+}
+
+aside a[href="/docs/integrations/pagerduty"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/pagerduty"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/pagerduty-icon.svg");
+}
+
+aside a[href="/docs/integrations/sentry"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/sentry"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/sentry-glyph.svg");
+}
+
+aside a[href="/docs/integrations/freshworks"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/freshworks"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/fresh.svg");
+}
+
+aside a[href="/docs/integrations/linear"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/linear"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/linear/5E6AD2");
+}
+
+aside a[href="/docs/integrations/clickhouse"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/clickhouse"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/clickhouse/FFCC01");
+}
+
+aside a[href="/docs/integrations/kubernetes"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/kubernetes"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/kubernetes.svg");
+}
+
+aside a[href="/docs/integrations/terraform"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/terraform"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/terraform-icon.svg");
+}
+
+aside a[href="/docs/integrations/jenkins"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/jenkins"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/jenkins.svg");
+}
+
+aside a[href="/docs/integrations/ansible"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/ansible"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/ansible.svg");
+}
+
+aside a[href="/docs/integrations/gitlab"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/gitlab"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/gitlab/FC6D26");
+}
+
+aside a[href="/docs/integrations/dingtalk"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/dingtalk"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/ant-design/dingtalk.svg?color=%231677FF");
+}
+
+aside a[href="/docs/integrations/feishu"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/feishu"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/feishu-84a9.png");
+}
+
+aside a[href="/docs/integrations/telegram"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/telegram"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/telegram.svg");
+}
+
+aside a[href="/docs/integrations/email"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/email"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/google-gmail.svg");
+}
+
+aside a[href="/docs/integrations/weixin-clawbot"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/weixin-clawbot"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/wechat/07C160");
+}
+
+aside a[href="/docs/integrations/notion"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/notion"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/notion-icon.svg");
+}
+
+aside a[href="/docs/integrations/confluence"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/confluence"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/confluence.svg");
+}
+
+aside a[href="/docs/integrations/google-docs"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/google-docs"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/google-icon.svg");
+}
+
+aside a[href="/docs/integrations/dingtalk-docs"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/dingtalk-docs"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/ant-design/dingtalk.svg?color=%231677FF");
+}
+
+aside a[href="/docs/integrations/ldap"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/ldap"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("/images/integrations/ldap-attachment1.svg");
+}
+
+aside a[href="/docs/integrations/dify"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/dify"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://cdn.simpleicons.org/dify");
+}
+
+aside a[href="/docs/integrations/custom-mcp"] [data-slot="linkLeadingIcon"],
+aside a[href="/zh/docs/integrations/custom-mcp"] [data-slot="linkLeadingIcon"] {
+    --integration-logo-url: url("https://api.iconify.design/logos/anthropic-icon.svg");
+}
+
 aside a[href*="/docs/integrations/"] [data-slot="linkLeadingIcon"] {
     background-image: var(--integration-logo-url) !important;
     background-repeat: no-repeat !important;
