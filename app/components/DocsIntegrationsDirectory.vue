@@ -132,7 +132,7 @@ const INTEGRATION_LOGO_URLS: Record<string, string> = {
     'Elasticsearch': 'https://api.iconify.design/logos/elasticsearch.svg',
     'Feishu': '/images/integrations/feishu-84a9.png',
     '飞书': '/images/integrations/feishu-84a9.png',
-    'Freshworks': 'https://api.iconify.design/logos/fresh.svg',
+    'Freshworks': '/images/integrations/freshworks.svg',
     'GitHub': 'https://api.iconify.design/logos/github-icon.svg',
     'GitLab': 'https://cdn.simpleicons.org/gitlab/FC6D26',
     'Google Cloud': 'https://api.iconify.design/logos/google-cloud.svg',
