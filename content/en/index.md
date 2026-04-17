@@ -20,7 +20,7 @@ Castrel is a helpful and secure SRE Agent for incident investigation, alert tria
 #footer
 :::div{.flex .flex-col .gap-6}
 ::::div{.flex .flex-wrap .gap-x-6 .gap-y-3}
-:u-button{color="neutral" size="xl" to="https://app.castrel.ai?utm_source=castrel.ai&utm_medium=website&utm_campaign=en_home" target="_blank" trailing-icon="i-lucide-arrow-right"}[Try Free]
+:en-hero-free-trial-cta
 :u-button{color="neutral" size="xl" to="/docs/getting-started/introduction" icon="i-lucide-book" variant="ghost"}[Documentation]
 ::::
 ::::div{.text-sm .text-muted}

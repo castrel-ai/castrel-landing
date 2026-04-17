@@ -123,15 +123,10 @@
         </UPageBody>
 
         <template v-if="page?.body?.toc?.links?.length" #right>
-            <UContentToc
-                highlight
+            <SiteDocsPageToc
                 :title="siteCopy.tableOfContents"
                 :links="page.body?.toc?.links"
-            >
-                <template #bottom>
-                    <DocsAsideRightBottom />
-                </template>
-            </UContentToc>
+            />
         </template>
     </UPage>
 </template>

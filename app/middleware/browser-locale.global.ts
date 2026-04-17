@@ -1,14 +1,15 @@
-import { CHINESE_LOCALE, DEFAULT_LOCALE, LOCALE_COOKIE, detectChineseLanguage } from '~~/utils/site-locale'
+import { CHINESE_LOCALE, DEFAULT_LOCALE, LOCALE_COOKIE, detectChineseLanguage, withLocalePrefix } from '~~/utils/site-locale'
 
 export default defineNuxtRouteMiddleware((to) => {
+    const chineseHomePath = withLocalePrefix('/', CHINESE_LOCALE)
+
     const redirectToChinese = () => {
         if (process.client) {
-            // Force full document navigation to avoid intermittent client-side 404
-            // when auto-locale switching from `/` to `/zh` in preview builds.
-            return navigateTo('/zh/', { external: true, replace: true })
+            // Force full document navigation while keeping the canonical zh home path.
+            return navigateTo(chineseHomePath, { external: true, replace: true })
         }
 
-        return navigateTo('/zh/', { redirectCode: 302, replace: true })
+        return navigateTo(chineseHomePath, { redirectCode: 302, replace: true })
     }
 
     const localeCookie = useCookie<string | undefined>(LOCALE_COOKIE)
