@@ -23,6 +23,8 @@ Castrel 是一名可靠且安全的 AI SRE 智能体，帮助你完成事故排�
 :zh-hero-free-trial-cta
 :u-button{color="neutral" size="xl" to="/zh/docs/getting-started/introduction" icon="i-lucide-book" variant="ghost"}[查看文档]
 ::::
+
+:site-community-links{variant="hero" featured-only="true"}
 :::
 
 #default
