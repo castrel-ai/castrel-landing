@@ -8,8 +8,12 @@ const UContentNavigationStub = defineComponent({
             type: Array,
             default: () => [],
         },
+        defaultOpen: {
+            type: Boolean,
+            default: undefined,
+        },
     },
-    template: '<div data-testid="docs-navigation" :data-count="navigation.length" />',
+    template: '<div data-testid="docs-navigation" :data-count="navigation.length" :data-default-open="String(defaultOpen)" />',
 })
 
 const SiteSupportBannerStub = defineComponent({
@@ -38,6 +42,7 @@ describe('DocsAsideLeftBody', () => {
         })
 
         expect(wrapper.find('[data-testid="docs-navigation"]').attributes('data-count')).toBe('1')
+        expect(wrapper.find('[data-testid="docs-navigation"]').attributes('data-default-open')).toBe('true')
         expect(wrapper.find('[data-testid="support-banner"]').exists()).toBe(true)
     })
 
@@ -62,6 +67,7 @@ describe('DocsAsideLeftBody', () => {
         })
 
         expect(wrapper.find('[data-testid="docs-navigation"]').attributes('data-count')).toBe('1')
+        expect(wrapper.find('[data-testid="docs-navigation"]').attributes('data-default-open')).toBe('true')
         expect(wrapper.find('[data-testid="support-banner"]').exists()).toBe(false)
     })
 })

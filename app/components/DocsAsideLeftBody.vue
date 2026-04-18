@@ -9,6 +9,7 @@ const { locale } = useSiteLocale()
     <div class="space-y-6">
         <UContentNavigation
             highlight
+            :default-open="true"
             :navigation="navigation"
         />
 

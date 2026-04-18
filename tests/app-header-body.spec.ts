@@ -22,8 +22,12 @@ const UContentNavigationStub = defineComponent({
             type: Array,
             default: () => [],
         },
+        defaultOpen: {
+            type: Boolean,
+            default: undefined,
+        },
     },
-    template: '<div data-testid="docs-navigation">{{ navigation.length }}</div>',
+    template: '<div data-testid="docs-navigation" :data-default-open="String(defaultOpen)">{{ navigation.length }}</div>',
 })
 
 async function mountHeaderBody(route: string) {
@@ -64,5 +68,6 @@ describe('AppHeaderBody', () => {
 
         const docsWrapper = await mountHeaderBody('/docs/getting-started/introduction')
         expect(docsWrapper.find('[data-testid="docs-navigation"]').exists()).toBe(true)
+        expect(docsWrapper.find('[data-testid="docs-navigation"]').attributes('data-default-open')).toBe('true')
     })
 })

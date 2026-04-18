@@ -27,6 +27,7 @@ const hasDocsNavigation = computed(() => (navigation?.value?.length ?? 0) > 0)
             <UContentNavigation
                 highlight
                 variant="link"
+                :default-open="true"
                 :navigation="navigation" />
         </div>
     </div>
