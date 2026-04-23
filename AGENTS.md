@@ -78,6 +78,8 @@
 - 安装脚本保留在：`public/castrel-proxy/install.sh`（不要迁走）。
 - 对外安装入口（推荐）：`/castrel-proxy/install.sh`。
   - 目标用法：`curl -fsSL https://castrel.ai/castrel-proxy/install.sh | bash`
+  - 默认是用户级安装（`~/.local/bin`，避免无谓 sudo）。
+  - 如需安装到其他目录可显式传参：`curl -fsSL https://castrel.ai/castrel-proxy/install.sh | bash -s -- --install-dir /usr/local/bin`
 - 二进制与 `.sha256` 放在 Blob 目录：
   - `blob-assets/castrel-proxy/packages/*`
 
