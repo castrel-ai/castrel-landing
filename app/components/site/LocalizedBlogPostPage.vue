@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import type { Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
     import { getBlogsCollection } from '~~/utils/site-locale'
 
     const props = defineProps<{
@@ -26,7 +27,6 @@
     }
 
     if (post.value) {
-        const appConfig = useAppConfig()
         const seoOgImagePath = typeof post.value.meta?.seo?.ogImage === 'string'
             ? post.value.meta.seo.ogImage
             : null
@@ -40,7 +40,7 @@
             || directOgImagePath
             || headerImagePath
             || '/images/blog/ai-troubleshooting/incident-investigation-header.png'
-        const ogImageUrl = new URL(ogImagePath, appConfig.appUrl).toString()
+        const ogImageUrl = resolveBlobAssetUrl(ogImagePath)
 
         useSeoMeta({
             title: post.value.title,
@@ -92,7 +92,7 @@
             class="mb-10 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800"
         >
             <NuxtImg
-                :src="post.meta.image.src"
+                :src="resolveBlobAssetUrl(post.meta.image.src)"
                 :alt="post.title"
                 class="size-full object-cover"
                 format="webp"
@@ -116,7 +116,7 @@
             <div class="flex items-center gap-3">
                 <div v-if="post.meta?.authorImage" class="size-12 overflow-hidden rounded-full">
                     <NuxtImg
-                        :src="post.meta.authorImage"
+                        :src="resolveBlobAssetUrl(post.meta.authorImage)"
                         :alt="post.meta.authorName"
                         class="size-full object-cover"
                         format="webp"

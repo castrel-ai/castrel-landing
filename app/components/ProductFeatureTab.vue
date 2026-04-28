@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { computed, useSlots } from 'vue'
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
 
     interface TabData {
         label: string
@@ -36,7 +37,7 @@
         <div v-if="tab.fullWidthImage"
             class="visual-area relative h-[400px] overflow-hidden gradient-base">
             <div class="image-wrapper">
-                <NuxtImg :src="tab.fullWidthImage" :alt="tab.title"
+                <NuxtImg :src="resolveBlobAssetUrl(tab.fullWidthImage)" :alt="tab.title"
                     class="w-full h-full object-cover rounded-lg" format="webp"
                     quality="80" loading="lazy" :style="{
                         objectPosition: tab.imagePosition || 'center'
@@ -60,7 +61,7 @@
                 :class="{ 'gradient-base': tab.rightImage }">
                 <slot :name="`tab-${index}-right`">
                     <div v-if="tab.rightImage" class="image-wrapper">
-                        <NuxtImg :src="tab.rightImage" :alt="tab.title"
+                        <NuxtImg :src="resolveBlobAssetUrl(tab.rightImage)" :alt="tab.title"
                             class="w-full h-full object-cover rounded-lg" format="webp"
                             quality="80" loading="lazy" :style="{
                                 objectPosition: tab.imagePosition || 'center',

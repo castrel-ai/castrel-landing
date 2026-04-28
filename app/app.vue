@@ -48,13 +48,8 @@ const { data: navigation } = await useAsyncData(
     },
 )
 
-const { data: files } = useLazyAsyncData(
-    () => `search_${docsCollection.value}`,
-    () => queryCollectionSearchSections(docsCollection.value as keyof PageCollections),
-    {
-        server: false,
-        watch: [locale],
-    },
+const { files, searchLoading } = useDeferredContentSearch(
+    computed(() => docsCollection.value as keyof PageCollections),
 )
 
 provide('navigation', navigation)
@@ -74,6 +69,7 @@ provide('navigation', navigation)
             <LazyUContentSearch
                 :files="files"
                 :navigation="navigation"
+                :loading="searchLoading"
             />
         </ClientOnly>
     </UApp>
