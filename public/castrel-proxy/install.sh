@@ -19,8 +19,9 @@ BINARY_NAME="castrel-proxy"
 INSTALL_DIR=""
 INSTALL_DIR_FROM_CLI="0"
 
-# Remote base URL
-BASE_URL="https://castrel.ai/castrel-proxy"
+# Remote package base URL. Override for mirrors/private distribution if needed.
+PACKAGE_BASE_URL="${CASTREL_PROXY_PACKAGE_BASE_URL:-https://on72nnontavb3pup.public.blob.vercel-storage.com/castrel-proxy/packages}"
+PACKAGE_BASE_URL="${PACKAGE_BASE_URL%/}"
 
 # Temporary directory for downloads
 TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'castrel-proxy-install')
@@ -29,20 +30,20 @@ TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'castrel-proxy-install')
 
 get_package_url() {
   case "$1" in
-    macos-arm64)  echo "${BASE_URL}/packages/castrel-proxy-macos-arm64" ;;
-    macos-x86_64) echo "${BASE_URL}/packages/castrel-proxy-macos-x86_64" ;;
-    linux-x86_64) echo "${BASE_URL}/packages/castrel-proxy-linux-x86_64" ;;
-    linux-arm64)  echo "${BASE_URL}/packages/castrel-proxy-linux-arm64" ;;
+    macos-arm64)  echo "${PACKAGE_BASE_URL}/castrel-proxy-macos-arm64" ;;
+    macos-x86_64) echo "${PACKAGE_BASE_URL}/castrel-proxy-macos-x86_64" ;;
+    linux-x86_64) echo "${PACKAGE_BASE_URL}/castrel-proxy-linux-x86_64" ;;
+    linux-arm64)  echo "${PACKAGE_BASE_URL}/castrel-proxy-linux-arm64" ;;
     *)            echo "" ;;
   esac
 }
 
 get_checksum_url() {
   case "$1" in
-    macos-arm64)  echo "${BASE_URL}/packages/castrel-proxy-macos-arm64.sha256" ;;
-    macos-x86_64) echo "${BASE_URL}/packages/castrel-proxy-macos-x86_64.sha256" ;;
-    linux-x86_64) echo "${BASE_URL}/packages/castrel-proxy-linux-x86_64.sha256" ;;
-    linux-arm64)  echo "${BASE_URL}/packages/castrel-proxy-linux-arm64.sha256" ;;
+    macos-arm64)  echo "${PACKAGE_BASE_URL}/castrel-proxy-macos-arm64.sha256" ;;
+    macos-x86_64) echo "${PACKAGE_BASE_URL}/castrel-proxy-macos-x86_64.sha256" ;;
+    linux-x86_64) echo "${PACKAGE_BASE_URL}/castrel-proxy-linux-x86_64.sha256" ;;
+    linux-arm64)  echo "${PACKAGE_BASE_URL}/castrel-proxy-linux-arm64.sha256" ;;
     *)            echo "" ;;
   esac
 }

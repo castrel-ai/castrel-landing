@@ -1,8 +1,9 @@
 <script setup lang="ts">
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
 </script>
 
 <template>
-    <NuxtImg src="/images/tasks.png" alt="Task Execution" class="task-image"
+    <NuxtImg :src="resolveBlobAssetUrl('/images/tasks.png')" alt="Task Execution" class="task-image"
         format="webp" quality="80" loading="lazy" />
 </template>
 

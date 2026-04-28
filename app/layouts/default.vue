@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
+
 // 仅在生产环境加载 SpeedInsights 以减少开发时的 JS 体积
 const SpeedInsights = defineAsyncComponent(() =>
     import('@vercel/speed-insights/nuxt').then(m => m.SpeedInsights)
 )
 const isProd = process.env.NODE_ENV === 'production'
 const route = useRoute()
-const appConfig = useAppConfig()
 const { locale } = useSiteLocale()
-const docsOgImageUrl = new URL('/images/docs_og_image.png', appConfig.appUrl).toString()
+const docsOgImageUrl = resolveBlobAssetUrl('/images/docs_og_image.png')
 
 useSeoMeta(() =>
     (route.path.startsWith('/docs') || route.path.startsWith('/zh/docs'))

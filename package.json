@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@barzhsieh/nuxt-content-mermaid": "^2.2.1",
+    "@iconify-json/lucide": "1.2.101",
+    "@iconify-json/simple-icons": "1.2.76",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/content": "^3.11.0",
     "@nuxt/eslint": "1.12.1",

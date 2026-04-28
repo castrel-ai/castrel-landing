@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import type { Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
     import { getChangelogCollection } from '~~/utils/site-locale'
 
     const props = defineProps<{
@@ -51,7 +52,7 @@
     }
 
     function getImageSrc(): string {
-        return entry.value?.image?.src || entry.value?.meta?.image?.src || ''
+        return resolveBlobAssetUrl(entry.value?.image?.src || entry.value?.meta?.image?.src || '')
     }
 </script>
 

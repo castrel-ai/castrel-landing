@@ -1,13 +1,14 @@
 <script setup lang="ts">
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
 </script>
 
 <template>
     <div class="incident-images">
         <div class="images-container">
-            <NuxtImg src="/images/incident1.png" alt="Symptom Matrix"
+            <NuxtImg :src="resolveBlobAssetUrl('/images/incident1.png')" alt="Symptom Matrix"
                 class="incident-image image-back" format="webp" quality="80"
                 loading="lazy" />
-            <NuxtImg src="/images/incident2.png" alt="Hypothesis List"
+            <NuxtImg :src="resolveBlobAssetUrl('/images/incident2.png')" alt="Hypothesis List"
                 class="incident-image image-front" format="webp" quality="80"
                 loading="lazy" />
         </div>

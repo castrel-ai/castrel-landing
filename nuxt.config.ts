@@ -56,6 +56,21 @@ export default defineNuxtConfig({
         quality: 80,
     },
 
+    // 图标配置：Docus/Nuxt UI 会在预渲染期间解析大量图标。
+    // 将站内使用的集合打入本地 bundle，避免构建时等待 Iconify/API 加载超时。
+    icon: {
+        provider: 'server',
+        fallbackToApi: false,
+        collections: ['lucide', 'simple-icons'],
+        serverBundle: {
+            collections: ['lucide', 'simple-icons'],
+        },
+        clientBundle: {
+            scan: true,
+            sizeLimitKb: 512,
+        },
+    },
+
     // LLM 索引配置
     llms: {
         domain: siteUrl,
@@ -102,7 +117,6 @@ export default defineNuxtConfig({
                 // 字体预加载 - 提升 FCP
                 { rel: 'preload', href: '/fonts/ia-writer-quattro/ia-writer-quattro-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
                 { rel: 'preload', href: '/fonts/fira-code/fira-code-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
-                { rel: 'preload', href: '/fonts/source-han-sans-sc/source-han-sans-cn-vf.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
             ],
         },
     },
@@ -136,7 +150,7 @@ export default defineNuxtConfig({
                         // UI 字体：用于导航、按钮、标签等界面元素
                         ui: ['Microsoft YaHei', '-apple-system', 'sans-serif'],
                         // 文章字体：用于文档正文、博客内容
-                        prose: ['iA Writer Quattro', 'Source Han Sans SC', 'sans-serif'],
+                        prose: ['iA Writer Quattro', 'Microsoft YaHei', 'PingFang SC', 'sans-serif'],
                         // 代码字体：用于代码块、行内代码
                         mono: ['Fira Code', 'Menlo', 'Monaco', 'monospace'],
                     },

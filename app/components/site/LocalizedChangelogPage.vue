@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import type { Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
     import { getChangelogCollection } from '~~/utils/site-locale'
 
     interface ChangelogItem {
@@ -87,7 +88,7 @@
     }
 
     function getEntryImageSrc(entry?: ChangelogItem): string {
-        return entry?.image?.src || entry?.meta?.image?.src || ''
+        return resolveBlobAssetUrl(entry?.image?.src || entry?.meta?.image?.src || '')
     }
 
     function getEntryPath(path: string): string {

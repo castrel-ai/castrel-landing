@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import type { Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
+    import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
     import { getLandingCollection, normalizePath } from '~~/utils/site-locale'
 
     const props = defineProps<{
@@ -32,8 +33,8 @@
 
     if (page.value?.seo?.ogImage) {
         useSeoMeta({
-            ogImage: page.value.seo.ogImage,
-            twitterImage: page.value.seo.ogImage,
+            ogImage: resolveBlobAssetUrl(page.value.seo.ogImage),
+            twitterImage: resolveBlobAssetUrl(page.value.seo.ogImage),
         })
     }
 </script>

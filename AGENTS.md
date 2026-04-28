@@ -40,6 +40,8 @@
 
 ## 2) Blob 资产用法
 
+详细实现说明见：`docs/blob-asset-loading.md`。修改图片、字体、Castrel Proxy 包下载或 manifest 解析逻辑前，先读该文档。
+
 ### 资产来源目录
 - 图片：`blob-assets/images`
 - 字体：`blob-assets/fonts`
@@ -52,7 +54,13 @@
 
 路由内部通过 `server/utils/blob-assets.ts`：
 - 先读 `blob-assets-manifest.json` 找 Blob URL。
-- 如果 Blob 拉取失败，自动回退本地 `blob-assets/**` 文件。
+- 图片与 Castrel Proxy 包如果 Blob 拉取失败，会回退本地 `blob-assets/**` 文件。
+- 字体路由不回退本地文件，缺失映射应在验收时暴露出来。
+
+页面渲染侧通过 `utils/blob-assets.ts` 的 `resolveBlobAssetUrl(src)` 直连 Blob：
+- Markdown 图片由 `app/components/content/ProseImg.vue` 覆盖渲染，并自动 lazy-load。
+- Vue 组件中的 `/images/**` 应显式调用 `resolveBlobAssetUrl()`。
+- 找不到 manifest 映射时回退原路径，旧 `/images/**` route 仍然可用。
 
 ### 上传流程
 1. （可选）先统一生成 webp：
