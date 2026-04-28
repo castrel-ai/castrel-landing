@@ -56,6 +56,21 @@ export default defineNuxtConfig({
         quality: 80,
     },
 
+    // 图标配置：Docus/Nuxt UI 会在预渲染期间解析大量图标。
+    // 将站内使用的集合打入本地 bundle，避免构建时等待 Iconify/API 加载超时。
+    icon: {
+        provider: 'server',
+        fallbackToApi: false,
+        collections: ['lucide', 'simple-icons'],
+        serverBundle: {
+            collections: ['lucide', 'simple-icons'],
+        },
+        clientBundle: {
+            scan: true,
+            sizeLimitKb: 512,
+        },
+    },
+
     // LLM 索引配置
     llms: {
         domain: siteUrl,

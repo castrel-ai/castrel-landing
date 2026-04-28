@@ -60,6 +60,8 @@ Content here
 
 ## Media
 
+Blob-backed asset loading is documented in [`docs/blob-asset-loading.md`](docs/blob-asset-loading.md). Read it before changing image, font, or Castrel Proxy package loading behavior.
+
 ### Images
 
 Image source files are stored in `blob-assets/images/`.
@@ -75,7 +77,7 @@ Note: `.gif` is converted to a single-frame `.webp` for predictable build-time p
 
 ### Fonts
 
-Font source files are stored in `blob-assets/fonts/` and configured in `app/assets/css/fonts.css`.
+Font source files are stored in `blob-assets/fonts/`. Font-face declarations live in `public/font-faces.css`; global font-family rules live in `app/assets/css/fonts.css`.
 
 ### Castrel Proxy packages
 
@@ -101,9 +103,11 @@ pnpm blob:upload-assets:dry-run
 ```
 
 Runtime behavior:
-- `server/routes/images/[...path].ts` and `server/routes/fonts/[...path].ts` first resolve Blob URL from `blob-assets-manifest.json`.
-- `server/routes/castrel-proxy/packages/[...path].ts` does the same for Castrel Proxy binaries and checksum files.
-- If Blob is unavailable, they fallback to local files in `blob-assets/`.
+- Markdown images and selected Vue components resolve `/images/**` to Blob URLs with `utils/blob-assets.ts`.
+- `server/routes/images/[...path].ts` and `server/routes/fonts/[...path].ts` keep old stable paths working.
+- `server/routes/castrel-proxy/packages/[...path].ts` does the same for old Castrel Proxy binary and checksum URLs.
+- Image and Castrel Proxy package routes fall back to local files in `blob-assets/` if Blob is unavailable.
+- Font routes do not fall back to local files, so missing Blob mappings are visible during validation.
 - You can also set `BLOB_ASSET_BASE_URL` or `NUXT_PUBLIC_BLOB_ASSET_BASE_URL` to use a fixed Blob prefix.
 
 ## Stack
