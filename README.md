@@ -1,7 +1,6 @@
 # Castrel Landing & Docs
 
 
-
 Repo for [castrel.ai](https://castrel.ai). Based on [Docus](https://docus.dev/) and [Nuxt 4](https://nuxt.com/).
 
 
