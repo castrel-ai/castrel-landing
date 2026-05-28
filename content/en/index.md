@@ -23,9 +23,6 @@ Castrel is a helpful and secure SRE Agent for incident investigation, alert tria
 :en-hero-free-trial-cta
 :u-button{color="neutral" size="xl" to="/docs/getting-started/introduction" icon="i-lucide-book" variant="ghost"}[Documentation]
 ::::
-::::div{.text-sm .text-muted}
-Castrel is currently in :u-badge{variant="outline" color="neutral" class="align-middle -mt-0.5"}[beta].
-::::
 :::
 
 #default
