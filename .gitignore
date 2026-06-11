@@ -45,3 +45,4 @@ tmp/
 # Object Storage
 blob-assets/
 .vercel
+.claude
