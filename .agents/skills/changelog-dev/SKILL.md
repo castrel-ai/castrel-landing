@@ -254,13 +254,15 @@ This release introduces a foundational infrastructure Skill library, providing d
 
      | 禁用（内部 / 实现术语） | 改写为（用户视角） |
      | --- | --- |
-     | Canvas | 文档画布 / 文档 |
+     | Canvas | 右侧面板 |
      | ghost、toolset、Steering、ask_user_question | 用界面实际功能名描述 |
-     | submit-ci / write-knowledge / 写操作 | 提交流水线 / 写入知识库 / 对外写入 |
+     | submit-ci / write-knowledge / 写操作 | 提交资源 / 写入知识库 |
      | Connector（中文正文中） | 连接器 |
      | Bridge / BridgeNode | Castrel Proxy |
+     | 子智能体视图 / Sub Agent view、文档画布 / 终端转录等内部界面名 | 直接省略内部视图枚举，或用普通用户能看懂的说法 |
 
      > ⚠️ 黑名单仅是示例，不是穷举。任何直接来自代码、Issue 描述或评论的工程师措辞，都必须先翻译成用户视角再写入，严禁逐字搬运。
+   - **简洁直接（参考 OpenAI Codex changelog 风格）**：句子短、用词平实、先说用户能做什么；避免堆叠形容词与营销话术，不枚举内部界面/视图名称。
    - **价值导向**：每段正文回答"这个功能让用户能做什么/获得什么"，而非"我们做了什么改动"。
    - **不提对比**：禁止出现"之前/过去/原来/Previously"等对比旧行为的句式。直接描述新能力。
    - 中文保持自然，英文保持简洁。
