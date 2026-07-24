@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T02:04:36.838Z",
+  "generatedAt": "2026-07-24T03:38:06.281Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -118,6 +118,17 @@
     "/images/changelog/v1-15-0/index-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-15-0/index-en.png",
     "/images/changelog/v1-15-0/index-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-15-0/index-zh.png",
     "/images/changelog/v1-18-0/loopAutomation-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-18-0/loopAutomation-en.png",
-    "/images/changelog/v1-18-0/loopAutomation-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-18-0/loopAutomation-zh.png"
+    "/images/changelog/v1-18-0/loopAutomation-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-18-0/loopAutomation-zh.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/castrel-proxy节点状态-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/castrel-proxy%E8%8A%82%E7%82%B9%E7%8A%B6%E6%80%81-en.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/castrel-proxy连接状态-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/castrel-proxy%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81-zh.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/复盘记录-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E5%A4%8D%E7%9B%98%E8%AE%B0%E5%BD%95-en.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/复盘记录-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E5%A4%8D%E7%9B%98%E8%AE%B0%E5%BD%95-zh.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/根因分析报告-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-en.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/根因分析报告-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-zh.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/自动恢复记录-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E8%87%AA%E5%8A%A8%E6%81%A2%E5%A4%8D%E8%AE%B0%E5%BD%95-en.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/自动恢复记录-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E8%87%AA%E5%8A%A8%E6%81%A2%E5%A4%8D%E8%AE%B0%E5%BD%95-zh.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/节点权限策略-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E8%8A%82%E7%82%B9%E6%9D%83%E9%99%90%E7%AD%96%E7%95%A5-en.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/节点权限策略-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/%E8%8A%82%E7%82%B9%E6%9D%83%E9%99%90%E7%AD%96%E7%95%A5-zh.png",
+    "/images/blog/3.castrel-proxy-automated-recovery/header.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.castrel-proxy-automated-recovery/header.png"
   }
 }
