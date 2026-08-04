@@ -1,6 +1,6 @@
 ---
-title: From SLO Definition to Continuous Health Checks
-description: See how Castrel turns an SLO request into a validated visual dashboard, then preserves the objectives, queries, and business context for future health checks.
+title: Turn SLOs into Visual Dashboards for Continuous Health Checks
+description: See how Castrel turns an SLO request into a validated visual dashboard with charts and rules, then preserves the objectives, queries, and business context for future health checks.
 date: 2026-08-04
 order: 3
 category: Product
