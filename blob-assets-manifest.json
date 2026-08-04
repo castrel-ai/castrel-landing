@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T03:23:50.702Z",
+  "generatedAt": "2026-08-04T09:17:33.391Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -120,6 +120,10 @@
     "/images/changelog/v1-18-0/loopAutomation-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-18-0/loopAutomation-en.png",
     "/images/changelog/v1-18-0/loopAutomation-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-18-0/loopAutomation-zh.png",
     "/images/changelog/v1-20-0/slo-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-20-0/slo-en.png",
-    "/images/changelog/v1-20-0/slo-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-20-0/slo-zh.png"
+    "/images/changelog/v1-20-0/slo-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-20-0/slo-zh.png",
+    "/images/blog/3.slo-dashboard-health-checks/dashboard-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.slo-dashboard-health-checks/dashboard-en.png",
+    "/images/blog/3.slo-dashboard-health-checks/dashboard-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.slo-dashboard-health-checks/dashboard-zh.png",
+    "/images/blog/3.slo-dashboard-health-checks/healthy-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.slo-dashboard-health-checks/healthy-en.png",
+    "/images/blog/3.slo-dashboard-health-checks/healthy-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/3.slo-dashboard-health-checks/healthy-zh.png"
   }
 }
