@@ -23,11 +23,9 @@ export default defineNuxtConfig({
         name: 'castrel-docs',
     },
 
-    // Nitro 配置 - 预渲染和压缩优化
+    // Nitro 配置 - 预渲染和压缩优化。
+    // 不要内联 @nuxt/content：它依赖 Nuxt 在构建时解析的 #content/manifest 虚拟导入。
     nitro: {
-        externals: {
-            inline: ['@nuxt/content'],
-        },
         prerender: {
             crawlLinks: true,
             routes: ['/', '/zh'],
