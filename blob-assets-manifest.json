@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T09:09:25.137Z",
+  "generatedAt": "2026-08-10T12:46:11.984Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -136,6 +136,8 @@
     "/images/changelog/v1-21-0/alert-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/alert-en-aYFFRIpgCOiYaRCVd9t971DedRmQlA.png",
     "/images/changelog/v1-21-0/alert-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/alert-zh.png",
     "/images/changelog/v1-21-0/alert-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/alert-en-LViC9FRqMl82ajOtBNSszOx5rTSgyr.gif",
-    "/images/changelog/v1-21-0/alert-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/alert-zh-4PmbuMMtCIGIJ7ySzZNSJAkZ6rpHOh.gif"
+    "/images/changelog/v1-21-0/alert-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/alert-zh-4PmbuMMtCIGIJ7ySzZNSJAkZ6rpHOh.gif",
+    "/images/changelog/v1-21-0/switch-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/switch-en.gif",
+    "/images/changelog/v1-21-0/switch-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/switch-zh.gif"
   }
 }
