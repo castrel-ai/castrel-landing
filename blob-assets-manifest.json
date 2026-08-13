@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T02:50:28.714Z",
+  "generatedAt": "2026-08-13T08:33:54.458Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -140,6 +140,10 @@
     "/images/changelog/v1-21-0/switch-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/switch-en.gif",
     "/images/changelog/v1-21-0/switch-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/switch-zh.gif",
     "/images/blog/4.disk-capacity-forecast/1-forecast-chart.jpg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/1-forecast-chart.jpg",
-    "/images/blog/4.disk-capacity-forecast/2-forecast-report.jpg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/2-forecast-report.jpg"
+    "/images/blog/4.disk-capacity-forecast/2-forecast-report.jpg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/2-forecast-report.jpg",
+    "/images/blog/4.disk-capacity-forecast/3-demo-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/3-demo-en.gif",
+    "/images/blog/4.disk-capacity-forecast/3-demo-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/3-demo-zh.gif",
+    "/images/blog/4.disk-capacity-forecast/4-screenshot-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/4-screenshot-en.png",
+    "/images/blog/4.disk-capacity-forecast/4-screenshot-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/4-screenshot-zh.png"
   }
 }
