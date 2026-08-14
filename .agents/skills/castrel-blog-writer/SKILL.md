@@ -1,354 +1,149 @@
 ---
 name: castrel-blog-writer
-description: Write and publish-ready commit Castrel external product blogs and WeChat/public-account articles for official publishing. Use when drafting or improving posts about Castrel core features, real or typical usage scenarios, scenario cases based on demo materials, product capability launches, customer-facing value narratives, screenshots, webpage evidence, and measurable outcomes. For website blog requests, write both English and Chinese Markdown files under content/en/blogs and content/zh/blogs, then commit, push, and open a PR. Focus on what problem Castrel solves, what work changes, and what value is created rather than listing features or calling something a demo.
+description: Write or improve publishable Castrel product articles for the official website, WeChat/public accounts, customer communication, and internal circulation. Use for core feature introductions, capability launches, practical scenario articles, and approved customer cases based on briefs, Castrel tasks, webpages, screenshots, recordings, reports, or other evidence. For website publication, create aligned English and Chinese Markdown files in content/en/blogs and content/zh/blogs; perform Git and PR delivery only when the user requests repository publication or delivery.
 ---
 
 # Castrel Blog Writer
 
-Use this skill to write Castrel product articles for the official website, company public account, internal circulation, customer communication, and product promotion.
-
-The main article types are:
-
-- Core feature promotion
-- Scenario case articles
-- Product capability launch posts
-- Usage scenario explanations
-- Case-style articles based on demo materials
-
-Write for mixed audiences: potential customers, first-time readers, internal employees, leadership, product/technical readers, and business decision makers.
-
-## Core Goal
-
-Do not simply introduce Castrel. Make readers believe Castrel solves a real problem and creates concrete value.
-
-Every article should make clear:
+Turn source material into a credible product narrative that explains:
 
 - What problem existed before Castrel
-- Why the old way was slow, fragmented, hard to verify, or hard to reuse
-- How Castrel changes the work process
-- What result Castrel produces
-- Why the result is credible
-- What business, efficiency, or organizational value is created
+- Why the old process was fragmented, slow, difficult to verify, or difficult to reuse
+- What part of the work Castrel changes or takes over
+- What result is produced and how it can be checked
+- What concrete business, efficiency, quality, or organizational value follows
 
-## Required Repository Workflow
+Write for a mixed B2B audience by default. Adapt tone and length to the requested channel. Do not ask the user to define the audience unless that choice would materially change the article.
 
-When the user asks to write a Castrel website blog, complete the repository workflow instead of only drafting in chat:
+## Workflow
 
-1. Check the current working tree and identify existing user changes.
-2. Get the latest code before editing.
-3. Create a dedicated branch before writing files.
-4. Default branch name: `feat/blog-<short-topic>`.
-5. Read existing blog files in both `content/en/blogs` and `content/zh/blogs` before deciding the file name, frontmatter, and structure.
-6. Write both English and Chinese blog files.
-7. Validate the result, commit only the related files, push the branch, and open a PR.
+### 1. Understand The Request And Sources
 
-Do not overwrite or revert unrelated user changes. If existing changes affect the blog files or branch workflow, work with them carefully and ask only when proceeding would be risky.
+Identify or infer:
 
-## Blog File Output Rules
+- The publishing channel and communication goal
+- The article type: feature introduction, capability launch, scenario article, or customer case
+- The people affected, original process, Castrel workflow, final artifact, and value
+- Whether the material represents a demo, typical scenario, internal workflow, PoC or trial, or customer production use
 
-Write website blog files to:
+Read supplied sources with appropriate tools before asking the user to explain them. Accept Castrel task URLs, briefs, documentation, product pages, screenshots, recordings, meeting notes, reports, data, artifacts, or direct descriptions.
 
-- English: `content/en/blogs`
-- Chinese: `content/zh/blogs`
+Ask a follow-up question only when a source is inaccessible or missing information would materially change the central argument, factual framing, customer classification, quantitative claim, or product claim. Otherwise proceed with clearly stated assumptions.
 
-Create both language versions for every new website blog. Keep the routes and filenames mirrored unless the user explicitly requests otherwise.
+When given a Castrel task URL, reconstruct the useful workflow from its available content: the original goal, context, tools, actions, decisions, evidence, corrections, validation, final work product, and possible reuse.
 
-Before writing, inspect existing files and follow their naming pattern. The current pattern is numeric prefix plus slug:
+### 2. Establish The Evidence Boundary
 
-```text
-<number>.<slug>.md
-```
+Classify claims before drafting:
 
-Use the next available numeric prefix based on the latest files in the target blog directories. Do not assume the next number from memory.
+- **Observed fact:** directly supported by the supplied material
+- **Reasoned judgment:** a conclusion supported by observed facts
+- **Product action:** what Castrel demonstrably did or is designed to do
+- **Conditional capability:** behavior that depends on configuration, permissions, data, or confirmation
 
-Use the existing frontmatter shape from nearby blog files. Do not invent fields the site does not already use. Keep English and Chinese frontmatter semantically aligned, including title, description, date, order, category, image, SEO image, and navigation fields when present.
+Never invent customer names, metrics, production adoption, or live usage. Do not upgrade a demo, PoC, trial, or unnamed scenario into a customer case.
 
-## Bilingual Blog Requirements
+Use these public framings:
 
-The English and Chinese versions should be publishable in their own languages, not literal translations of each other.
+- No named customer or production proof: “typical scenario” or “practical workflow”
+- Confirmed internal use: “internal workflow”
+- Confirmed customer and approved framing: “customer case”
 
-- English should read naturally for international B2B product readers.
-- Chinese should read naturally for the Chinese website or public account context.
-- Keep the same facts, claims, data, customer framing, and public messaging constraints in both versions.
-- Keep the section structure aligned so reviewers can compare the two versions easily.
-- Do not create an English-only or Chinese-only blog unless the user explicitly asks.
+Do not call source material a “demo” in public copy unless the user explicitly wants that framing.
 
-## Validation And Delivery
+Use definitive language only for verified behavior. Use “can,” “when connected,” or “when configured” for conditional behavior. Qualify or omit unsupported links and improvement claims.
 
-Before committing, check:
+### 3. Build The Article
 
-- Both language files exist in the correct directories.
-- Filenames and numeric prefixes follow the existing blog pattern.
-- Frontmatter matches existing blog conventions.
-- The two versions are structurally aligned.
-- The article does not present demo material as a customer case unless approved.
-- Claims, customer names, metrics, and production usage are supported by provided material.
-- Only files related to the blog are staged.
-
-Run reasonable project validation based on the repository's available scripts. If validation cannot be run, explain why.
-
-Commit with a concise message such as:
+Use this narrative spine rather than a rigid heading template:
 
 ```text
-feat: add <short-topic> blog
+Problem and consequence
+→ limits of the old process
+→ Castrel workflow and evidence
+→ result
+→ value and reuse
 ```
 
-Open a PR that includes:
+For complex workflows, group details into two to four meaningful stages. Headings should reveal the argument when read alone. Explain essential unfamiliar terms at first use without turning the article into a glossary.
 
-- English blog path
-- Chinese blog path
-- Summary of the article angle
-- Validation performed
+Connect important facts causally where the evidence supports it:
 
-## Writing Direction
-
-Use the user's feature brief, demo URL, screenshots, webpage content, data, and notes as source material. Convert them into a publishable product narrative.
-
-When the source material is a demo, do not write the article as a demo recap. Reframe it as:
-
-- A real usage scenario
-- A typical customer scenario
-- A common business task
-- A practical workflow
-- A case based on a real work process
-
-Avoid saying:
-
-- "This demo shows..."
-- "In this demo..."
-- "We built a demo..."
-- "Let's play with..."
-
-Prefer:
-
-- "In a typical scenario..."
-- "Take product content production as an example..."
-- "In actual work, this kind of task often requires..."
-- "Castrel can take over this part of the workflow..."
-
-Do not invent customer names, production usage claims, or quantitative results that the user did not provide. If the material is a demo and no real customer is named, present it as a typical scenario or practical workflow rather than a customer case.
-
-## Style
-
-Reference AI-native B2B product blog style, but keep the subject focused on Castrel core features and scenario cases.
-
-The article should be:
-
-- Clear, concrete, and publishable
-- Promotional but not hollow
-- Confident but not exaggerated
-- Business-readable, with enough process detail to be credible
-- Focused on problems, process, results, and value
-- Free of generic AI-sounding phrasing
-
-Avoid empty phrases such as:
-
-- "With the rapid development of AI..."
-- "Empower digital transformation..."
-- "Build an intelligent closed loop..."
-- "Greatly improve efficiency..."
-- "Unlock unlimited potential..."
-- "Revolutionize traditional workflows..."
-
-Prefer specific writing:
-
-- "The hard part of this work is not that people do not know how to do it. It is that the process is too fragmented."
-- "A person has to collect context, check pages, preserve evidence, and explain the result."
-- "Castrel lets the agent take over that middle part of the work."
-- "The output is not just an answer. It is a work product that can be checked and reused."
-
-## User Inputs
-
-Before writing, identify whether the user is asking for:
-
-1. Core feature promotion
-2. Scenario case promotion
-
-For core feature promotion, collect or infer:
-
-- Feature name
-- What problem the feature solves
-- How users handled the problem before Castrel
-- How Castrel handles it now
-- What final output or result Castrel creates
-- Target audience: customers, first-time readers, employees, leadership, or mixed audience
-- Available data: time saved, fewer steps, lower cost, higher success rate, shorter delivery cycle
-- URLs, screenshots, or screenshot targets
-- Public messaging constraints: sensitive information, unreleased features, customer names, claims to avoid
-
-For scenario case promotion, collect or infer:
-
-- Scenario name
-- Real problem represented by the scenario
-- Original manual process
-- Castrel workflow: what it reads, opens, operates, decides, captures, and produces
-- Final result or artifact
-- URLs: Castrel page, scenario page, result page, reference pages, or public pages
-- Before/after data: original time vs current time, number of people, number of steps, cycle time
-- Whether it can be described as actual internal usage, a typical customer scenario, or a scenario based on a real workflow
-
-Ask concise follow-up questions only when a missing item would change the argument, credibility, or public messaging. Otherwise proceed with explicit assumptions.
-
-## Article Structures
-
-Use these structures as defaults. Adapt headings to fit the publishing channel and article angle.
-
-### Core Feature Article
-
-```markdown
-# Title
-
-## A Concrete Problem
-
-Start from a recognizable work problem. Explain what users do today and why it is inefficient, fragmented, hard to verify, or hard to repeat.
-
-## Why The Old Way Falls Short
-
-Explain why manual work, scripts, ordinary chatbots, or traditional workflow tools are insufficient.
-
-## How Castrel Solves It
-
-Introduce the Castrel capability. Do not list functions mechanically. Explain what part of the work Castrel takes over.
-
-## What The Workflow Looks Like
-
-Describe a realistic use process:
-
-- What the user wants to accomplish
-- What context Castrel collects
-- What pages, files, or tools Castrel checks
-- What evidence Castrel preserves
-- What output Castrel produces
-
-## Results And Value
-
-Use available data. If no data exists, emphasize concrete value: less manual collection work, clearer evidence, repeatable process, shorter cycle, more stable output.
-
-## Why This Matters
-
-Connect the feature to a broader work change without becoming vague.
-
-## Closing
-
-Close with Castrel's product value and the scenarios where this capability is useful.
+```text
+Business goal → signal or evidence → judgment → Castrel action → result → reuse
 ```
 
-### Scenario Case Article
+Explain why a capability, rule, metric, or output matters and how it affects the next decision or stage. Use a concise table or structured list when three or more items share fixed fields; otherwise prefer prose.
 
-```markdown
-# Title
+Make the title express at least two of these: scenario, change or outcome, and Castrel's role. Keep the title, description, imagery, and central claim aligned.
 
-## Background
+### 4. Write In Castrel's Editorial Style
 
-Describe a real or typical work scenario. Do not say it is a demo unless instructed.
+Write clear, concrete, confident B2B prose. Be promotional without exaggeration and include enough process detail to make the result credible.
 
-## The Original Process
+Avoid generic marketing language such as:
 
-Explain what people previously had to do manually. Highlight time cost, context switching, repeated work, verification difficulty, or lack of reuse.
+- “With the rapid development of AI...”
+- “Empower digital transformation”
+- “Unlock unlimited potential”
+- “Revolutionize traditional workflows”
+- Unsupported claims that Castrel “greatly” or “significantly” improves something
 
-## How Castrel Takes Over The Workflow
+Prefer specific descriptions of the old work, what Castrel handled, what was produced, and why the change matters. If a paragraph mainly lists what “Castrel can” do, rewrite it around the change in work or resulting value.
 
-Describe Castrel's work process:
+When data is available, explain the before/after and connect the number to a business outcome. Do not insert illustrative numbers into publishable copy.
 
-- Understand the goal
-- Read relevant materials
-- Browse pages
-- Extract key information
-- Capture screenshots or evidence
-- Organize structure
-- Generate the final artifact
-- Preserve the workflow for reuse when relevant
+## Screenshots And Web Evidence
 
-## The Result
+When URLs or screenshots are relevant, use available browser capabilities to inspect the visible workflow and final output. If authentication blocks access, ask the user to sign in; do not inspect passwords, cookies, local storage, or session stores.
 
-Show what was produced: article, report, decision, screenshot set, table, page state, or other artifact.
+Use screenshots as evidence rather than decoration. Prefer states that show:
 
-## The Value
-
-Explain what the scenario proves about Castrel:
-
-- The agent can build context
-- The agent can complete continuous work
-- The result can be checked
-- The process can be reused
-- People spend less time on repeated collection, organization, and coordination
-
-## Closing
-
-Explain which similar scenarios this capability can expand to.
-```
-
-## Data Handling
-
-If the user provides numbers, make the data part of the article's value argument.
-
-Examples of useful data:
-
-- Time saved
-- Fewer manual steps
-- Fewer people involved
-- Shorter delivery cycle
-- Lower communication cost
-- Higher success rate
-- More stable output quality
-- Fewer repeated operations
-
-Do not write only "Castrel improves efficiency." Explain the before/after.
-
-Example:
-
-> A task that previously required about 2 hours of manual reading, screenshotting, and first-draft writing can now be completed in about 15 minutes. More importantly, the process leaves behind webpage references, screenshots, and a reusable workflow, making the result easier to review and repeat.
-
-## Browser And Screenshot Workflow
-
-When the user provides URLs or asks for screenshots, use browser capabilities when available to:
-
-- Open the provided URLs
-- Read visible webpage content
-- Navigate through the product or scenario flow
-- Capture important interface states
-- Inspect final outputs
-- Write captions and article paragraphs based on screenshots
-
-For pages that require login, ask the user to sign in in the selected browser when authentication blocks access. Do not inspect passwords, cookies, local storage, or session stores.
-
-Prefer screenshots that serve as evidence, not decoration. Capture:
-
-- The page Castrel inspected
-- The workflow step that proves the case
+- What Castrel inspected or operated
+- A meaningful workflow step
 - A before/after state
-- A final output or result
-- A relevant product interface state
+- The final output or result
 
-For each screenshot used in an article, explain:
+For each selected screenshot, make clear what it shows, why it matters, and which claim it supports.
 
-- What the screenshot shows
-- Why it matters
-- How it supports the article's claim
+## Website Blog Output
 
-## Safe Reframing
+When creating website blog files:
 
-If the user provides demo material:
+1. Inspect nearby files in `content/en/blogs` and `content/zh/blogs`.
+2. Create both English and Chinese versions unless the user explicitly requests one language.
+3. Mirror filenames, routes, section structure, facts, claims, metrics, and customer framing.
+4. Write idiomatically in each language rather than translating literally.
+5. Follow the existing numeric filename pattern, `<number>.<slug>.md`, using the next available prefix found in the repository.
+6. Reuse the frontmatter shape of nearby files; do not invent fields. Keep titles, descriptions, dates, ordering, categories, images, SEO fields, and navigation fields semantically aligned when present.
 
-- Do not call it a demo in the public-facing article unless the user explicitly asks.
-- Use "typical scenario" when there is no named customer or production proof.
-- Use "actual internal workflow" only when the user confirms it was actually used internally.
-- Use "customer case" only when the user provides a real customer and approves that framing.
+If the user asks only for drafting or revision, stop after delivering the requested copy or files. Do not pull, branch, commit, push, or open a PR implicitly.
 
-Do not fabricate customer names, metrics, production adoption, or live usage.
+## Repository Delivery
 
-## Quality Bar
+Only when the user requests repository delivery, publication, a commit, or a PR:
 
-Before finalizing, check:
+1. Inspect the working tree and preserve unrelated user changes.
+2. Update from the target branch when safe and necessary.
+3. Create a dedicated branch following the repository or environment naming convention.
+4. Validate both language files and run reasonable project checks.
+5. Stage only article-related files.
+6. Commit with a concise message such as `feat: add <topic> blog`.
+7. Push and open a PR when requested.
 
-- Does the article lead with a real problem instead of a feature list?
-- Does it explain what Castrel changes in the work process?
-- Does it say what problem is solved?
-- Does it include a concrete scenario or case?
-- If data exists, is the data turned into a value claim?
-- If screenshots exist, are they used as evidence?
-- Does it avoid directly calling the source material a demo?
-- Does it avoid generic AI marketing language?
-- Is it suitable for an official website or company public account?
+Include both article paths, the narrative angle, and validation performed in the PR description. If existing changes overlap the article or make the branch workflow risky, pause and ask before proceeding.
 
-If a paragraph mainly says "Castrel can...", rewrite it around "This matters because..." or "This changes the work because...".
+## Final Check
+
+Before delivery, verify that:
+
+- The affected reader, old process, failure mode, and consequence are clear before the product pitch
+- The article explains how Castrel changes the work, not merely which features exist
+- The result and value follow from supported evidence
+- Customer, production-use, metric, and capability claims are correctly calibrated
+- Demo material is framed safely
+- The heading outline is coherent and the title works outside the article page
+- Available data and screenshots contribute to the argument
+- The copy avoids generic AI marketing language
+- Website versions are idiomatic, structurally aligned, and use valid filenames and frontmatter
+- Repository delivery, when requested, includes only related files and reports validation
