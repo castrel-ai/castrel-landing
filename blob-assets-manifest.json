@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T06:16:20.062Z",
+  "generatedAt": "2026-08-17T09:10:59.363Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -142,6 +142,12 @@
     "/images/changelog/v1-21-0/switch-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/switch-en.gif",
     "/images/changelog/v1-21-0/switch-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-21-0/switch-zh.gif",
     "/images/changelog/v1-23-0/switchLLM-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-23-0/switchLLM-en.gif",
-    "/images/changelog/v1-23-0/switchLLM-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-23-0/switchLLM-zh.gif"
+    "/images/changelog/v1-23-0/switchLLM-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-23-0/switchLLM-zh.gif",
+    "/images/blog/4.application-health-inspection/disk-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/disk-en.png",
+    "/images/blog/4.application-health-inspection/disk-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/disk-zh.png",
+    "/images/blog/4.application-health-inspection/dispositions-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/dispositions-en.png",
+    "/images/blog/4.application-health-inspection/dispositions-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/dispositions-zh.png",
+    "/images/blog/4.application-health-inspection/sql-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/sql-en.png",
+    "/images/blog/4.application-health-inspection/sql-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/sql-zh.png"
   }
 }
