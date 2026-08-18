@@ -9,6 +9,8 @@ import process from 'node:process';
 import { put } from '@vercel/blob';
 
 const dryRun = process.argv.includes('--dry-run');
+const onlyArgIndex = process.argv.indexOf('--only');
+const onlyPath = onlyArgIndex !== -1 ? process.argv[onlyArgIndex + 1] : null;
 const projectRoot = process.cwd();
 const assetsRoot = resolve(projectRoot, 'blob-assets');
 const manifestPath = resolve(projectRoot, 'blob-assets-manifest.json');
@@ -103,14 +105,31 @@ async function main() {
   }
 
   const allFiles = [];
-  for (const dirName of supportedDirs) {
-    const dirPath = resolve(assetsRoot, dirName);
-    const exists = await fs
-      .stat(dirPath)
-      .then((s) => s.isDirectory())
-      .catch(() => false);
-    if (!exists) continue;
-    allFiles.push(...(await walk(dirPath)));
+  if (onlyPath) {
+    const onlyRoot = resolve(assetsRoot, onlyPath);
+    const relOnly = relative(assetsRoot, onlyRoot).replaceAll('\\', '/');
+    if (relOnly.startsWith('..') || relOnly === '') {
+      throw new Error(`--only must reference a file or subdirectory inside ${assetsRoot}`);
+    }
+    const stat = await fs.stat(onlyRoot).catch(() => null);
+    if (!stat) {
+      throw new Error(`--only path does not exist: ${onlyPath}`);
+    }
+    if (stat.isDirectory()) {
+      allFiles.push(...(await walk(onlyRoot)));
+    } else if (stat.isFile()) {
+      allFiles.push(onlyRoot);
+    }
+  } else {
+    for (const dirName of supportedDirs) {
+      const dirPath = resolve(assetsRoot, dirName);
+      const exists = await fs
+        .stat(dirPath)
+        .then((s) => s.isDirectory())
+        .catch(() => false);
+      if (!exists) continue;
+      allFiles.push(...(await walk(dirPath)));
+    }
   }
 
   // Load existing manifest to preserve mappings not being re-uploaded
