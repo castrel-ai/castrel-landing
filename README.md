@@ -1,7 +1,7 @@
 # Castrel Landing & Docs
 
 
-Repo for [castrel.ai](https://castrel.ai). Based on [Docus](https://docus.dev/) and [Nuxt 4](https://nuxt.com/).
+Repo for [www.castrel.ai](https://www.castrel.ai). Based on [Docus](https://docus.dev/) and [Nuxt 4](https://nuxt.com/).
 
 
 
@@ -127,3 +127,9 @@ pnpm build
 ```
 
 The built files will be in the `.output` directory.
+
+### SEO configuration
+
+- The canonical website origin defaults to `https://www.castrel.ai`. Override it with `NUXT_PUBLIC_SITE_URL` only when deploying another public canonical domain.
+- Set `NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION` to the verification token supplied by Google Search Console to emit the verification meta tag.
+- The app serves `/sitemap.xml` from the current Nuxt Content collections. `/robots.txt` advertises that sitemap through the existing robots module.

@@ -1,8 +1,20 @@
 import RemoveDocusRoutes from './modules/remove-docus-routes'
 
-const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://castrel.ai'
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://www.castrel.ai'
+const googleSiteVerification = process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 
 export default defineNuxtConfig({
+    // Public website identity. Keep this separate from app.castrel.ai, which is
+    // the authenticated product rather than the canonical marketing site.
+    site: {
+        url: siteUrl,
+        name: 'Castrel AI',
+    },
+
+    robots: {
+        sitemap: '/sitemap.xml',
+    },
+
     // 路由重定向
     routeRules: {
         '/privacy': { redirect: '/docs/security/privacy-policy' },
@@ -109,6 +121,14 @@ export default defineNuxtConfig({
     // 应用配置
     app: {
         head: {
+            meta: googleSiteVerification
+                ? [
+                    {
+                        name: 'google-site-verification',
+                        content: googleSiteVerification,
+                    },
+                ]
+                : [],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
                 { rel: 'stylesheet', href: '/font-faces.css' },
