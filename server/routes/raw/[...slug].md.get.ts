@@ -28,5 +28,6 @@ export default eventHandler(async (event) => {
     }
 
     setHeader(event, 'Content-Type', 'text/markdown; charset=utf-8')
+    setHeader(event, 'X-Robots-Tag', 'noindex, follow')
     return stringify({ ...page.body, type: 'minimark' }, { format: 'markdown/html' })
 })
