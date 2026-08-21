@@ -73,14 +73,19 @@
             {{ props.alt }}
         </figcaption>
     </figure>
-    <img
-        v-else
-        :src="resolvedSrc"
-        :alt="props.alt"
-        :width="props.width"
-        :height="props.height"
-        loading="lazy"
-        decoding="async"
-    >
+    <figure v-else class="not-prose my-8 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+        <img
+            :src="resolvedSrc"
+            :alt="props.alt"
+            :width="props.width"
+            :height="props.height"
+            class="w-full"
+            loading="lazy"
+            decoding="async"
+        >
+        <figcaption v-if="props.alt" class="px-4 py-3 text-center text-xs text-neutral-500 dark:text-neutral-400">
+            {{ props.alt }}
+        </figcaption>
+    </figure>
 </template>
 
