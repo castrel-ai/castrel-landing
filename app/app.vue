@@ -2,11 +2,11 @@
 import type { ContentNavigationItem, PageCollections } from '@nuxt/content'
 import * as nuxtUiLocales from '@nuxt/ui/locale'
 import { extractDocsNavigation } from '~~/utils/docs-navigation'
+import { buildLocalizedSeoLinks } from '~~/utils/seo'
 
 const { seo } = useAppConfig()
 const site = useSiteConfig()
 const route = useRoute()
-const appConfig = useAppConfig()
 const { locale, docsCollection } = useSiteLocale()
 
 const nuxtUiLocale = computed(() =>
@@ -19,10 +19,7 @@ useHead(() => ({
     meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
     link: [
         { rel: 'icon', href: '/favicon.ico' },
-        {
-            rel: 'canonical',
-            href: new URL(route.path, appConfig.appUrl).toString(),
-        },
+        ...buildLocalizedSeoLinks(route.path, site.url, locale.value),
     ],
     htmlAttrs: {
         lang: lang.value,

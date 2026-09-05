@@ -49,15 +49,13 @@
         },
     )
 
-    const latestEntry = computed(() => entries.value?.[0] || null)
+    const changelogDescription = computed(() => props.locale === 'zh'
+        ? '查看 Castrel 的产品版本、AI SRE 能力、集成与体验更新。'
+        : 'Explore Castrel product releases, AI SRE capabilities, integrations, and experience updates.')
 
     useSeoMeta({
-        title: `${siteCopy.value.changelog} | Castrel`,
-        description:
-            getEntryDescription(latestEntry.value)
-            || (props.locale === 'zh'
-                ? 'Castrel 产品更新日志，包含版本变化与能力说明。'
-                : 'Product changelog for Castrel, including releases and updates.'),
+        title: siteCopy.value.changelog,
+        description: changelogDescription.value,
     })
 
     function formatDate(entry?: ChangelogItem): string {
@@ -103,6 +101,15 @@
 
 <template>
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <header class="mb-12 max-w-3xl">
+            <h1 class="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-5xl">
+                {{ siteCopy.changelog }}
+            </h1>
+            <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-300">
+                {{ changelogDescription }}
+            </p>
+        </header>
+
         <div v-if="entries?.length" class="relative">
             <div class="space-y-8">
                 <article
