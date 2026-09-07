@@ -2,6 +2,7 @@
     import type { Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
     import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
+    import { dedupeAndSortChangelogEntries } from '~~/utils/changelog'
     import { getChangelogCollection } from '~~/utils/site-locale'
 
     interface ChangelogItem {
@@ -37,15 +38,7 @@
         async () => {
             const changelogItems = await queryCollection(collectionName.value as keyof Collections).all()
 
-            return (changelogItems || []).sort((a: any, b: any) => {
-                const timestampA = Date.parse(a.date || a.meta?.date || '') || 0
-                const timestampB = Date.parse(b.date || b.meta?.date || '') || 0
-                if (timestampA !== timestampB) return timestampB - timestampA
-
-                const orderA = a.order || a.meta?.order || 0
-                const orderB = b.order || b.meta?.order || 0
-                return orderB - orderA
-            }) as ChangelogItem[]
+            return dedupeAndSortChangelogEntries(changelogItems || []) as ChangelogItem[]
         },
     )
 
