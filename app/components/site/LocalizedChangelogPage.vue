@@ -1,7 +1,8 @@
 <script setup lang="ts">
-    import type { Collections } from '@nuxt/content'
+    import type { CollectionQueryBuilder, Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
     import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
+    import { dedupeAndSortChangelogEntries } from '~~/utils/changelog'
     import { getChangelogCollection } from '~~/utils/site-locale'
 
     interface ChangelogItem {
@@ -24,6 +25,10 @@
         }
     }
 
+    declare const queryCollection: <T extends keyof Collections>(
+        collection: T,
+    ) => CollectionQueryBuilder<Collections[T]>
+
     const props = defineProps<{
         locale: SiteLocale
     }>()
@@ -37,15 +42,7 @@
         async () => {
             const changelogItems = await queryCollection(collectionName.value as keyof Collections).all()
 
-            return (changelogItems || []).sort((a: any, b: any) => {
-                const timestampA = Date.parse(a.date || a.meta?.date || '') || 0
-                const timestampB = Date.parse(b.date || b.meta?.date || '') || 0
-                if (timestampA !== timestampB) return timestampB - timestampA
-
-                const orderA = a.order || a.meta?.order || 0
-                const orderB = b.order || b.meta?.order || 0
-                return orderB - orderA
-            }) as ChangelogItem[]
+            return dedupeAndSortChangelogEntries(changelogItems || []) as ChangelogItem[]
         },
     )
 
@@ -83,7 +80,7 @@
         return entry?.title || entry?.meta?.title || ''
     }
 
-    function getEntryDescription(entry?: ChangelogItem): string {
+    function getEntryDescription(entry?: ChangelogItem | null): string {
         return entry?.description || entry?.meta?.description || ''
     }
 
