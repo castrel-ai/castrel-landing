@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { Collections } from '@nuxt/content'
+    import type { CollectionQueryBuilder, Collections } from '@nuxt/content'
     import type { SiteLocale } from '~~/utils/site-locale'
     import { resolveBlobAssetUrl } from '~~/utils/blob-assets'
     import { dedupeAndSortChangelogEntries } from '~~/utils/changelog'
@@ -24,6 +24,10 @@
             }
         }
     }
+
+    declare const queryCollection: <T extends keyof Collections>(
+        collection: T,
+    ) => CollectionQueryBuilder<Collections[T]>
 
     const props = defineProps<{
         locale: SiteLocale
@@ -76,7 +80,7 @@
         return entry?.title || entry?.meta?.title || ''
     }
 
-    function getEntryDescription(entry?: ChangelogItem): string {
+    function getEntryDescription(entry?: ChangelogItem | null): string {
         return entry?.description || entry?.meta?.description || ''
     }
 
