@@ -1,12 +1,40 @@
 import RemoveDocusRoutes from './modules/remove-docus-routes'
 
-const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://castrel.ai'
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'https://www.castrel.ai'
+const googleSiteVerification = process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+const isIndexableDeployment = process.env.VERCEL_ENV
+    ? process.env.VERCEL_ENV === 'production'
+    : process.env.NODE_ENV === 'production'
+const robotsMetaContent = isIndexableDeployment
+    ? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+    : 'noindex, nofollow'
 
 export default defineNuxtConfig({
+    // Public website identity. Keep this separate from app.castrel.ai, which is
+    // the authenticated product rather than the canonical marketing site.
+    site: {
+        url: siteUrl,
+        name: 'Castrel AI',
+        // Vercel preview deployments must not compete with the production domain.
+        indexable: isIndexableDeployment,
+    },
+
+    robots: {
+        sitemap: '/sitemap.xml',
+        // The deployment-aware meta tag is emitted explicitly below so that
+        // even the eagerly prerendered home page follows preview noindex rules.
+        metaTag: false,
+    },
+
     // 路由重定向
     routeRules: {
         '/privacy': { redirect: '/docs/security/privacy-policy' },
         '/terms': { redirect: '/docs/security/terms-of-service' },
+        // These machine-readable representations are useful to agents, but they
+        // duplicate public HTML content and must not enter search indexes.
+        '/raw/**': { headers: { 'X-Robots-Tag': 'noindex, follow' } },
+        '/llms.txt': { headers: { 'X-Robots-Tag': 'noindex, follow' } },
+        '/__nuxt_content/**': { headers: { 'X-Robots-Tag': 'noindex, nofollow, nosnippet' } },
     },
 
     // 实验性功能 - MCP 服务器需要 asyncContext
@@ -109,6 +137,20 @@ export default defineNuxtConfig({
     // 应用配置
     app: {
         head: {
+            meta: [
+                {
+                    name: 'robots',
+                    content: robotsMetaContent,
+                },
+                ...(googleSiteVerification
+                    ? [
+                        {
+                            name: 'google-site-verification',
+                            content: googleSiteVerification,
+                        },
+                    ]
+                    : []),
+            ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
                 { rel: 'stylesheet', href: '/font-faces.css' },

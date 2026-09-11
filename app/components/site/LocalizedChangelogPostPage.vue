@@ -29,7 +29,7 @@
         const entryTitle = entry.value.title || entry.value.meta?.title || ''
         const entryDescription = entry.value.description || entry.value.meta?.description || ''
         useSeoMeta({
-            title: `${entryTitle} | Castrel`,
+            title: entryTitle,
             description: entryDescription,
         })
     }

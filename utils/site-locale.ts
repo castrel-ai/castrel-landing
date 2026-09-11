@@ -7,7 +7,9 @@ export const CHINESE_LOCALE: SiteLocale = 'zh'
 export const LOCALE_COOKIE = 'site_locale'
 
 const AVAILABLE_ZH_BLOG_PATHS = new Set([
+    '/blogs/application-health-inspection',
     '/blogs/how-castrel-builds-an-incident-troubleshooting-agent',
+    '/blogs/slo-dashboard-health-checks',
 ])
 
 export function normalizePath(path: string | undefined): string {

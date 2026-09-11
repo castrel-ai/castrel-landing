@@ -33,7 +33,12 @@ const localizedError = computed(() => ({
 useSeoMeta({
     title: () => localizedError.value.statusMessage || 'Page not found',
     description: () => localizedError.value.message || '',
+    robots: 'noindex, nofollow',
 })
+
+if (import.meta.server) {
+    useResponseHeader('X-Robots-Tag').value = 'noindex, nofollow'
+}
 
 const { data: navigation } = await useAsyncData(
     () => `navigation_${docsCollection.value}`,

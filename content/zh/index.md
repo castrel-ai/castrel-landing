@@ -1,7 +1,7 @@
 ---
 seo:
-  title: Castrel - AI SRE 智能体
-  description: Castrel 是一名可靠且安全的 AI SRE 智能体，帮助你完成事故排查、告警分诊、自动化运维等工作。
+  title: AI SRE 智能体：告警分诊与故障排查
+  description: Castrel 连接指标、日志、链路、告警、运行手册和协作工具，基于证据排查故障，并将有效流程沉淀为可重复执行的自动化。
 ---
 
 ::u-page-hero

@@ -1,5 +1,10 @@
 export default defineAppConfig({
     appUrl: process.env.NUXT_PUBLIC_APP_URL || 'https://app.castrel.ai',
+    seo: {
+        titleTemplate: '%s | Castrel',
+        title: 'AI SRE Agent for Evidence-Backed Operations',
+        description: 'Castrel connects observability data, operational knowledge, and execution tools to triage alerts, investigate incidents, and automate repeatable operations.',
+    },
     header: {
         logo: {
             light: '/images/logo.svg',

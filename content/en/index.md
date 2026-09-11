@@ -1,7 +1,7 @@
 ---
 seo:
-  title: Castrel - the AI SRE Agent
-  description: Castrel is a helpful and secure SRE Agent for incident investigation, alert triage, auto operation and more.
+  title: AI SRE Agent for Alert Triage & Incident Investigation
+  description: Castrel connects metrics, logs, traces, alerts, runbooks, and collaboration tools to investigate incidents with evidence and automate repeatable operations.
 ---
 
 ::u-page-hero
