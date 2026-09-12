@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T02:06:47.862Z",
+  "generatedAt": "2026-09-11T09:56:12.239Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -151,7 +151,6 @@
     "/images/blog/4.disk-capacity-forecast/4-screenshot-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/4-screenshot-zh.png",
     "/images/blog/4.disk-capacity-forecast/5-cover-zh.jpeg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/5-cover-zh.jpeg",
     "/images/blog/4.disk-capacity-forecast/5-cover-en.jpeg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.disk-capacity-forecast/5-cover-en.jpeg",
-    "/images/changelog/v1-23-0/switchLLM-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-23-0/switchLLM-zh.gif",
     "/images/blog/4.application-health-inspection/disk-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/disk-en.png",
     "/images/blog/4.application-health-inspection/disk-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/disk-zh.png",
     "/images/blog/4.application-health-inspection/dispositions-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/4.application-health-inspection/dispositions-en.png",
@@ -163,6 +162,16 @@
     "/images/changelog/v1-26-0/incident-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-26-0/incident-en.png",
     "/images/changelog/v1-26-0/incident-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-26-0/incident-zh.png",
     "/images/changelog/v1-26-0/incident-en-v2.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-26-0/incident-en-v2.png",
-    "/images/changelog/v1-26-0/incident-zh-v2.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-26-0/incident-zh-v2.png"
+    "/images/changelog/v1-26-0/incident-zh-v2.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-26-0/incident-zh-v2.png",
+    "/images/blog/5.parallel-incident-investigations/activity-collaboration-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/activity-collaboration-en.png",
+    "/images/blog/5.parallel-incident-investigations/activity-collaboration-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/activity-collaboration-zh.png",
+    "/images/blog/5.parallel-incident-investigations/incident-assistant-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/incident-assistant-en.png",
+    "/images/blog/5.parallel-incident-investigations/incident-assistant-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/incident-assistant-zh.png",
+    "/images/blog/5.parallel-incident-investigations/investigation-report-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/investigation-report-en.png",
+    "/images/blog/5.parallel-incident-investigations/investigation-report-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/investigation-report-zh.png",
+    "/images/blog/5.parallel-incident-investigations/parallel-tasks-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/parallel-tasks-en.png",
+    "/images/blog/5.parallel-incident-investigations/parallel-tasks-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/parallel-tasks-zh.png",
+    "/images/blog/5.parallel-incident-investigations/cover-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/cover-zh.png",
+    "/images/blog/5.parallel-incident-investigations/cover-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/blog/5.parallel-incident-investigations/cover-en.png"
   }
 }
