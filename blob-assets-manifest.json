@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T09:41:16.554Z",
+  "generatedAt": "2026-09-17T09:02:58.952Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -178,6 +178,8 @@
     "/images/changelog/v1-27-0/dashboard-create-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-27-0/dashboard-create-en.gif",
     "/images/changelog/v1-27-0/dashboard-create-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-27-0/dashboard-create-zh.gif",
     "/images/changelog/v1-27-0/dashboard-execute-en.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-27-0/dashboard-execute-en.gif",
-    "/images/changelog/v1-27-0/dashboard-execute-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-27-0/dashboard-execute-zh.gif"
+    "/images/changelog/v1-27-0/dashboard-execute-zh.gif": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-27-0/dashboard-execute-zh.gif",
+    "/images/changelog/v1-28-0/tool-cover-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-28-0/tool-cover-en.png",
+    "/images/changelog/v1-28-0/tool-cover-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-28-0/tool-cover-zh.png"
   }
 }
