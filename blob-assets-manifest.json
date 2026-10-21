@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T03:49:57.999Z",
+  "generatedAt": "2026-10-21T06:40:45.325Z",
   "assets": {
     "/images/alert-triage.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.png",
     "/images/alert-triage.webp": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/alert-triage.webp",
@@ -186,6 +186,10 @@
     "/images/changelog/v1-30-0/incident-coordination-zh.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-zh.png",
     "/images/changelog/v1-30-0/incident-coordination-en.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-en.png",
     "/images/changelog/v1-30-0/incident-coordination-zh.svg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-zh.svg",
-    "/images/changelog/v1-30-0/incident-coordination-en.svg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-en.svg"
+    "/images/changelog/v1-30-0/incident-coordination-en.svg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-en.svg",
+    "/images/changelog/v1-30-0/incident-coordination-zh-v2.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-zh-v2.png",
+    "/images/changelog/v1-30-0/incident-coordination-en-v2.png": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-en-v2.png",
+    "/images/changelog/v1-30-0/incident-coordination-zh-v2.svg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-zh-v2.svg",
+    "/images/changelog/v1-30-0/incident-coordination-en-v2.svg": "https://on72nnontavb3pup.public.blob.vercel-storage.com/images/changelog/v1-30-0/incident-coordination-en-v2.svg"
   }
 }
